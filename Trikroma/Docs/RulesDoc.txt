@@ -1,0 +1,32 @@
+//trikroma//
+
+>> Introduction
+trikroma is an abstract tile-based puzzle game for iOS/Android devices.
+Players tap and drag triangular tiles called TRIs to add/subtract colors
+to/from adjacent tiles until they accomplish the puzzle's objective.
+
+>> Colors
+TRIs can be of one of eight colors: Red (R), Green (G), Blue (B), Yellow (Y),
+Fuchsia (F), Aqua (A), White (W) and Black (K). The colors that certain TRIs
+are in will determine whether the puzzle's objective has been accomplished.
+
+>> Addition
+When tapping and dragging across a "+" sign, the source TRI's color is added
+to the destination TRI's color. The following are all valid additions:
+
+> R + K = R		> G + K = G		> B + K = B
+> R + G = Y		> G + B = A		> B + R = F
+> Y + K = Y		> F + K = F		> A + K = A
+> Y + B = W		> A + R = W		> F + G = W
+> Y + A = W		> Y + F = W		> A + F = W
+
+>> Subtraction
+When tapping and dragging across a "-" sign, the source TRI's color is subtracted
+from the destination TRI's color. The following are all valid subtractions:
+
+> W - R = A		> W - G = F		> W - B = Y
+> W - A = R		> W - Y = B		> W - F = G
+> A - G = B		> A - B = G		> Y - R = G
+> Y - G = R		> F - B = R		> F - R = B
+> A - Y = B		> A - F = G		> Y - A = R
+> Y - F = G		> F - Y = B		> F - A = R
