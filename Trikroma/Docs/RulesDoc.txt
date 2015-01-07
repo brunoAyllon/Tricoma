@@ -16,17 +16,22 @@ to the destination TRI's color. The following are all valid additions:
 
 > R + K = R		> G + K = G		> B + K = B
 > R + G = Y		> G + B = A		> B + R = F
-> Y + K = Y		> F + K = F		> A + K = A
-> Y + B = W		> A + R = W		> F + G = W
-> Y + A = W		> Y + F = W		> A + F = W
+> Y + R = Y		> A + G = A		> F + B = F
+> Y + K = Y		> A + K = A		> F + K = F
+> Y + G = Y		> A + B = A		> F + G = F
+> Y + B = W		> A + R = W		> F + R = W
+> Y + A = W		> A + F = W		> F + Y = W
 
 >> Subtraction
 When tapping and dragging across a "-" sign, the source TRI's color is subtracted
 from the destination TRI's color. The following are all valid subtractions:
 
 > W - R = A		> W - G = F		> W - B = Y
-> W - A = R		> W - Y = B		> W - F = G
-> A - G = B		> A - B = G		> Y - R = G
-> Y - G = R		> F - B = R		> F - R = B
-> A - Y = B		> A - F = G		> Y - A = R
-> Y - F = G		> F - Y = B		> F - A = R
+> W - Y = B		> W - F = G		> W - A = R
+> Y - R = G		> A - B = G		> F - R = B
+> Y - G = R		> A - G = B		> F - B = R
+> Y - B = Y		> A - R = A		> F - G = F
+> Y - A = F		> A - F = Y		> F - Y = A
+> Y - F = A		> A - Y = F		> F - A = Y
+
+Note: No Undo/Redo - Puzzles should be solvable within 3 - 5 minutes. Players that make mistakes should Reset.
