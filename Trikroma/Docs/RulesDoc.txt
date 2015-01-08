@@ -15,23 +15,61 @@ When tapping and dragging across a "+" sign, the source TRI's color is added
 to the destination TRI's color. The following are all valid additions:
 
 > R + K = R		> G + K = G		> B + K = B
-> R + G = Y		> G + B = A		> B + R = F
-> Y + R = Y		> A + G = A		> F + B = F
+> R + R = R		> G + R = Y		> B + R = F
+> R + G = Y		> G + G = G		> B + G = A
+> R + B = F		> G + B = A		> B + B = B
+> R + Y = Y		> G + Y = Y		> B + Y = W
+> R + F = F		> G + F = W		> B + F = F
+> R + A = W		> G + A = A		> B + A = A
+> R + W = W		> G + W = W		> B + W = W
+
 > Y + K = Y		> A + K = A		> F + K = F
-> Y + G = Y		> A + B = A		> F + G = F
-> Y + B = W		> A + R = W		> F + R = W
-> Y + A = W		> A + F = W		> F + Y = W
+> Y + R = Y		> A + R = W		> F + R = A
+> Y + G = Y		> A + G = A		> F + G = W
+> Y + B = W		> A + B = A		> F + B = A
+> Y + Y = Y		> A + Y = W		> F + Y = W
+> Y + F = W		> A + F = W		> F + F = F
+> Y + A = W		> A + A = A		> F + A = W
+> Y + W = W		> A + W = W		> F + W = W
+
+> K + K = K
+> K + R = R
+> K + G = G
+> K + B = B
+> K + Y = Y
+> K + F = F
+> K + A = A
+> K + W = W
 
 >> Subtraction
 When tapping and dragging across a "-" sign, the source TRI's color is subtracted
 from the destination TRI's color. The following are all valid subtractions:
 
-> W - R = A		> W - G = F		> W - B = Y
-> W - Y = B		> W - F = G		> W - A = R
-> Y - R = G		> A - B = G		> F - R = B
-> Y - G = R		> A - G = B		> F - B = R
-> Y - B = Y		> A - R = A		> F - G = F
-> Y - A = F		> A - F = Y		> F - Y = A
-> Y - F = A		> A - Y = F		> F - A = Y
+> R - K = R		> G - K = G		> B - K = B
+> R - R = K		> G - R = G		> B - R = B
+> R - G = R		> G - G = K		> B - G = B
+> R - B = R		> G - B = G		> B - B = K
+> R - Y = K		> G - Y = K		> B - Y = B
+> R - F = K		> G - F = G		> B - F = K
+> R - A = R		> G - A = K		> B - A = K
+> R - W = K		> G - W = K		> B - W = K
+
+> Y - K = Y		> A - K = A		> F - K = F
+> Y - R = G		> A - R = A		> F - R = B
+> Y - G = R		> A - G = B		> F - G = F
+> Y - B = Y		> A - B = G		> F - B = R
+> Y - Y = K		> A - Y = F		> F - Y = A
+> Y - F = A		> A - F = Y		> F - F = K
+> Y - A = F		> A - A = K		> F - A = Y
+> Y - W = K		> A - W = K		> F - W = K
+
+> W - K = W
+> W - R = A
+> W - G = F
+> W - B = Y
+> W - Y = B
+> W - F = G
+> W - A = R
+> W - W = K
 
 Note: No Undo/Redo - Puzzles should be solvable within 3 - 5 minutes. Players that make mistakes should Reset.
