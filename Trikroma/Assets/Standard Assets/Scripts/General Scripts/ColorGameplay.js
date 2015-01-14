@@ -25,6 +25,30 @@ private var colorManipFrom:String = String.Empty;
 // Which object are we giving the color to ?
 private var colorManipTo:String = String.Empty;  
 
+private var numberOfUndos:int;
+private var numberOfRedos:int;
+
+public function UndoMove():void
+{
+	if(numberOfUndos)
+	{
+		Undo.PerformUndo();
+		--numberOfUndos;
+		++numberOfRedos;
+	}
+}
+
+public function RedoMove():void
+{
+	if(numberOfUndos)
+	{
+		Undo.PerformUndo();
+		--numberOfRedos;
+		++numberOfUndos;
+	}
+}
+
+
 // Holds node information
 class VictoryNode extends System.ValueType
 {
@@ -115,7 +139,7 @@ public function isNeighbor(potentialNeighborPos:Vector2, objectPos:Vector2)
 	}
 
 	Debug.Log("A: "+ objectPos.x+ " "+ objectPos.y);
-	Debug.Log("B: "+ );
+	//Debug.Log("B: "+ );
 	Debug.Log ( "Neighbor: " + ( objectPos == (potentialNeighborPos + Vector2(-1.0, 0.0) ) ) || 
 			 ( objectPos == (potentialNeighborPos + Vector2( 1.0, 0.0) ) ) || 
 			 ( objectPos == (potentialNeighborPos + Vector2( 0.0, lastNeighborY) ) ) );
@@ -137,22 +161,22 @@ public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
 		
 		// First we check if the color has changed in any way that will affect the number of correct nodes
 		
+		++numberOfUndos;
+		Undo.RecordObject(this, "Tile Number Change");
+		
 		// From correct to incorrect
 		if(victoryGrid[nodePosition.x, nodePosition.y].isDesiredColor(gridScript.objectRenderer[nodePosition.x, nodePosition.y].material.color))
 		{
 			Debug.Log("Becomes INcorrect");
-			Undo.RecordObject(this, "Tile Number Change");
 			currentCorrectTiles = Mathf.Max(0.0, currentCorrectTiles - 1.0);
 		}
 		// From incorrect to correct
 		else if(victoryGrid[nodePosition.x, nodePosition.y].isDesiredColor(newColor))
 		{
 			Debug.Log("Becomes correct");
-			Undo.RecordObject(this, "Tile Number Change");
 			currentCorrectTiles = Mathf.Min(desiredCorrectTiles, currentCorrectTiles + 1.0);
 		}
 		
-		// Work in progress: undo functionality
 		Undo.RecordObject(gridScript.objectRenderer[nodePosition.x, nodePosition.y].material, "Color Change");
 		
 		
@@ -263,6 +287,9 @@ public function ReadVictoryDataFromFile()
 
 function Start () 
 {	
+	numberOfUndos = 0;
+	numberOfRedos = 0;
+
 	// Check if we have the required script
 	gridScript = transform.GetComponent(CreateGrid);
 	// If so and we have an input file
