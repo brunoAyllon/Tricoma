@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 486912}
   - 212: {fileID: 21286912}
   - 114: {fileID: 11486912}
-  - 114: {fileID: 11441388}
+  - 114: {fileID: 11443398}
   m_Layer: 0
   m_Name: Puzzle
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11441388
+--- !u!114 &11443398
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -38,9 +38,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 186912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5ccf7a14c08ee4fba0d6f4e23a5b05, type: 3}
+  m_Script: {fileID: 11500000, guid: d167c8f6898ce124993ec004cb31bf7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryInputFile: {fileID: 4900000, guid: a123de7c77b728046b33094a793eac2d, type: 3}
 --- !u!114 &11486912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,12 +55,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataInputFile: {fileID: 4900000, guid: c5bb29df5299a3749a83a556348f6809, type: 3}
   symbolUseDefault: Z
+  defaultColor: {r: 0, g: 1, b: 0, a: 1}
   objectToReplicate: {fileID: 142354, guid: 35061b2312b98ad4d8c7f20388b59c7b, type: 2}
   isAlternating: 1
   startWithUprightObj: 1
   numberOfRows: 8
   numberOfColumns: 10
-  defaultColor: {r: 0, g: 1, b: 0, a: 1}
   defaultMaterial: {fileID: 0}
 --- !u!212 &21286912
 SpriteRenderer:
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 45f7ebdd0902c7e4abf02d82ff0ffa9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
