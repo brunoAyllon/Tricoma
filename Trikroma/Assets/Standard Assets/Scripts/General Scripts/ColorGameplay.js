@@ -1,5 +1,6 @@
 ﻿#pragma strict
 
+//
 // What file should we read the victory coditions from ?
 public var victoryInputFile:TextAsset = null;
 // Stores type and color of the victory node
@@ -40,9 +41,9 @@ public function UndoMove():void
 
 public function RedoMove():void
 {
-	if(numberOfUndos)
+	if(numberOfRedos)
 	{
-		Undo.PerformUndo();
+		Undo.PerformRedo();
 		--numberOfRedos;
 		++numberOfUndos;
 	}
