@@ -1,5 +1,8 @@
 ﻿#pragma strict
 
+// Allows to leverage .NET functionality, which permits the use of C# data structures in Java Script
+import System.Collections.Generic;
+
 // File from which we read the level
 public var dataInputFile: TextAsset;
 
@@ -41,7 +44,45 @@ public var defaultMaterial :Material;
 @HideInInspector public var objectRenderer : SpriteRenderer[,];
 
 // What are we parsing at the moment ?
-enum DataParse{None, nodeColor, rowsAndColumns};
+enum DataParse{None, nodeColor, rowsAndColumns, edges};
+
+enum EdgeType{edgeNone, edgePlus, edgeMinus};
+
+// Adjacency list for all the edges
+@HideInInspector public var adjList:Dictionary.<Vector2, List.<Edge> >; 
+
+// Definition of an edge
+class Edge extends System.ValueType
+{
+	// Edge type
+	public var type:EdgeType;
+	// What node it connects to
+	public var connectsTo:Vector2;
+	
+	public function Edge(edgeType:EdgeType, connectingNodePos:Vector2)
+	{
+		type = edgeType;
+		connectsTo = connectingNodePos;
+	}
+	
+	// Is it connected to the given position ?
+	public function isConnectedTo(nodePos:Vector2):boolean
+	{
+		return nodePos == connectsTo;
+	}
+	
+	// Was the node properly initialized ?
+	public function isValid():boolean
+	{
+		return type == EdgeType.edgeNone;
+	}
+}
+
+// Utility function, printing Vector2s is otherwise a pain.
+public function PrintVec2(vector:Vector2, message:String)
+{
+	Debug.Log(message + " ("+vector.x+", "+vector.y+" )");
+}
 
 // Retunrs object location in the grid based on its name
 // Observation: Instantiated objects will always have a name in the format <Object Name> <grid position x coordinate> <grid position y coordinate>
@@ -52,8 +93,10 @@ public function getObjectPositionFromName(name: String):Vector2
 	{
 		// Split into 3 fileds: object name, x coordinate and y coordinate
 		var iAndj = name.Split(' '[0]);
+		
 		// Rerturns the x and y values after reading the strings as ints
 		return Vector2( int.Parse(iAndj[1]), int.Parse(iAndj[2]) );
+		
 	}
 	// In case of an invalid input
 	return Vector2(-1, -1);
@@ -79,6 +122,7 @@ public function ReadDataFromFile( ):void
 	
 	var dataParseMode:DataParse = DataParse.None;
 	var colorMatrixLine:int = -1.0;
+	var edgeMatrixInitialized :boolean = false;
 	
 	// On hold for the custom texture loading stretch goal
 	/*var spriteMatrixLine:int = -1.0;
@@ -88,7 +132,7 @@ public function ReadDataFromFile( ):void
 	for (currentLine in allTheText)
 	{
 		
-		var data:String[] = currentLine.ToUpper().Replace(" ", "").Split(','[0]);
+		var data:String[] = currentLine.ToUpper().Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
 		
 		// Choose parse mode
 		if(data[0].Contains("COLORMATRIX:"))
@@ -116,6 +160,10 @@ public function ReadDataFromFile( ):void
 		else if(data[0].Contains("MATRIXSIZE:"))
 		{
 			dataParseMode = DataParse.rowsAndColumns;
+		}
+		else if(data[0].Contains("EDGES:") )
+		{
+			dataParseMode = DataParse.edges;
 		}
 		// In case the user did not switch what kind of data he is parsing in
 		else
@@ -182,6 +230,66 @@ public function ReadDataFromFile( ):void
 						}
 						break;	
 						
+					// Read all the edges
+					case DataParse.edges:	
+						// If the matrix was not initialized, we get an error
+						if(numberOfRows < 0 ||  numberOfColumns < 0)
+						{
+							Debug.Log("Cannot read edge data, matrix size not established");
+						}
+						else
+						{
+							// Initialize the matrix if it was not already done
+							if(!edgeMatrixInitialized)
+							{
+								Debug.Log("Initialize edges");
+								// Initialize the dictionary (fancy C# term for what is essentially std::map)
+								adjList = new Dictionary.<Vector2, List.<Edge> >();
+								
+								// Signal that we finished initialization
+								edgeMatrixInitialized = true;
+							}
+							
+							Debug.Log("More stuff");
+							// Read the first node's position
+							var firstVert:Vector2 = Vector2(int.Parse(data[0]), int.Parse(data[1]) );
+							// Now the edge type
+							var newEdgeType:EdgeType;
+							if(data[2]=="+")
+							{
+								newEdgeType = EdgeType.edgePlus;
+							}
+							else if(data[2]=="-")
+							{
+								newEdgeType = EdgeType.edgeMinus;
+							}
+							else
+							{
+								newEdgeType = EdgeType.edgeNone;
+							}
+							
+							// Now read the second node's position
+							var secondVert:Vector2 = Vector2(int.Parse(data[3]), int.Parse(data[4]) );
+							
+							Debug.Log("Edge: ("+ firstVert.x+", "+firstVert.y+ ") "+data[2]+" ("+ secondVert.x+", "+secondVert.y+ ") " );
+							
+							 // If this is the first item in either adjacency list, Initialize the list
+							 if(!adjList.ContainsKey(firstVert))
+							 { 
+							 	adjList.Add(firstVert, new List.<Edge>() );
+							 }
+							
+							  if(!adjList.ContainsKey(secondVert))
+							 { 
+							 	adjList.Add(secondVert, new List.<Edge>() );
+							 }
+							 
+							// And add them to each other's adjacencies
+							adjList[firstVert] .Add( Edge(newEdgeType, secondVert) ) ;
+							adjList[secondVert].Add( Edge(newEdgeType, firstVert) ) ;		
+							
+						}
+						break;
 					// On hold for the custom texture loading stretch goal
 					/*case DataParse.spriteFiles:
 							var filename:String = ( spriteFolderPath + currentLine ) as String;

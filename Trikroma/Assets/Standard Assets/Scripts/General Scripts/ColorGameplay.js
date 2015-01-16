@@ -8,8 +8,6 @@ private var victoryGrid:VictoryNode[,];
 
 // This script RERQUIRES being attached to an object with a CreateGrid component
 private var gridScript:CreateGrid  = null;
-// Adjacency list, work in progress
-private var adjList:Array[,]; 
 
 // How many correct tiles did the grid have once we created it ?
 private var initialCorrectTiles:int;
@@ -19,16 +17,46 @@ private var currentCorrectTiles: int;
 private var desiredCorrectTiles:int;
 
 // Node Type, invalid nodes will not be considered as changeable
-enum NodeType{Node_Invalid, Node_Normal};
+enum VictoryNodeType{Node_Invalid, Node_Normal};
 
 // Which object are we getting the color from ?
 private var colorManipFrom:String = String.Empty; 
 // Which object are we giving the color to ?
 private var colorManipTo:String = String.Empty;  
 
+// How many undos and redos we can still perform
 private var numberOfUndos:int;
 private var numberOfRedos:int;
 
+
+// Holds node information
+class VictoryNode extends System.ValueType
+{
+	// Self explanatory
+	public var typeOfNode:VictoryNodeType;
+	public var desiredColor:Color;
+	
+	// Node constructor
+	public function VictoryNode( nodeType:VictoryNodeType, nodeColor:Color)
+	{
+		typeOfNode = nodeType;
+		desiredColor = nodeColor;
+	}
+	
+	// Was it initialized ?
+	public function isValid():boolean
+	{
+		return typeOfNode != VictoryNodeType.Node_Invalid;
+	}
+	
+	// Is the given color the one we need to consider this node correct ?
+	public function isDesiredColor(colorToCheck:Color)
+	{
+		return colorToCheck == desiredColor;
+	}
+}
+
+// Activated by message, undoes a player move
 public function UndoMove():void
 {
 	if(numberOfUndos)
@@ -39,6 +67,7 @@ public function UndoMove():void
 	}
 }
 
+// Activated by message, redoes a player move
 public function RedoMove():void
 {
 	if(numberOfRedos)
@@ -49,33 +78,6 @@ public function RedoMove():void
 	}
 }
 
-
-// Holds node information
-class VictoryNode extends System.ValueType
-{
-	// Self explanatory
-	public var typeOfNode:NodeType;
-	public var desiredColor:Color;
-	
-	// Node constructor
-	public function VictoryNode( nodeType:NodeType, nodeColor:Color)
-	{
-		typeOfNode = nodeType;
-		desiredColor = nodeColor;
-	}
-	
-	// Was it initialized ?
-	public function isValid():boolean
-	{
-		return typeOfNode != NodeType.Node_Invalid;
-	}
-	
-	// Is the given color the one we need to consider this node correct ?
-	public function isDesiredColor(colorToCheck:Color)
-	{
-		return colorToCheck == desiredColor;
-	}
-}
 
 // Called when we receive a message from a reset button
 public function ResetLevel()
@@ -109,8 +111,54 @@ public function EndColorManip(colliderName:String)
 	// If they are not the same and they are both valid 
 	if(colorManipTo != colorManipFrom && colorManipTo!=String.Empty && colorManipFrom!=String.Empty)
 	{
-		// Take color from one and add it to the other
-		AddColor(colorManipFrom, colorManipTo);
+		// Used to check if the edge is valid
+		var isConnected:boolean = false;
+		// What kind of operation is done by that edge ?
+		var operationType:EdgeType;
+		
+		// Get the obejct's position on the grid
+		var From:Vector2   = gridScript.getObjectPositionFromName(colorManipFrom);
+		var To:  Vector2   = gridScript.getObjectPositionFromName(colorManipTo);
+		
+		if(!gridScript.adjList.ContainsKey(To))
+		{
+			Debug.Log("No key here");
+		}
+		
+		// If the adjacency list exists and the nodes are neighbors
+		if((isNeighbor(From, To)) && gridScript.adjList.ContainsKey(To))
+		{
+			Debug.Log("Hello Mr. Key");
+			// Find the edge and its type
+			for(var edge:Edge in gridScript.adjList[To])
+			{
+				if(edge.isConnectedTo(From))
+				{
+					isConnected = true;
+					operationType = edge.type;
+				}
+			}
+			
+		}
+		// If the edge is not connected, we have an error
+		if(!isConnected)
+		{
+			Debug.Log("Invalid edge");
+		}
+		else
+		{
+			// Finally, call the appropriate color operation
+			switch (operationType)
+			{	
+				case EdgeType.edgePlus:
+					AddColor(From, To);
+					break;
+					
+				case EdgeType.edgeMinus:
+					SubColor(From, To);
+					break;
+			}
+		}
 	}
 	
 	// Reset the values
@@ -194,48 +242,29 @@ public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
 }
 
 // Adds color from one node to the other
-public function AddColor(from:String, to:String)
-{
-	// Get the obejct's position on the grid
-	var From:Vector2 = gridScript.getObjectPositionFromName(from);
-	var To:Vector2   = gridScript.getObjectPositionFromName(to);
+public function AddColor(from:Vector2, to:Vector2)
+{	
+	// Calculate the new color
+	var newColor:Color = Color(
+	Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[from.x, from.y].material.color.r + gridScript.objectRenderer[to.x, to.y].material.color.r) * 100f) / 100f ),
+	Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[from.x, from.y].material.color.g + gridScript.objectRenderer[to.x, to.y].material.color.g) * 100f) / 100f ),
+	Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[from.x, from.y].material.color.b + gridScript.objectRenderer[to.x, to.y].material.color.b) * 100f) / 100f ) );
 	
-	// If they are neighbors
-	if(isNeighbor(From, To))
-	{	
-//		Debug.Log(gridScript.objectRenderer[From.x, From.y].material.color.r+ " "+gridScript.objectRenderer[From.x, From.y].material.color.g+" "+gridScript.objectRenderer[From.x, From.y].material.color.b);
-//		Debug.Log(gridScript.objectRenderer[To.x, To.y].material.color.r+ " "+gridScript.objectRenderer[To.x, To.y].material.color.g+" "+gridScript.objectRenderer[To.x, To.y].material.color.b);
-		
-		// Calculate the new color
-		var newColor:Color = Color(
-		Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[From.x, From.y].material.color.r + gridScript.objectRenderer[To.x, To.y].material.color.r) * 100f) / 100f ),
-		Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[From.x, From.y].material.color.g + gridScript.objectRenderer[To.x, To.y].material.color.g) * 100f) / 100f ),
-		Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[From.x, From.y].material.color.b + gridScript.objectRenderer[To.x, To.y].material.color.b) * 100f) / 100f ) );
-		
-		// And update the node's color
-		UpdateNodeColor(To, newColor);
-	}
+	// And update the node's color
+	UpdateNodeColor(to, newColor);
 }
 
 // Suntracts color from 2 nodes
-public function SubColor(from:String, to:String)
+public function SubColor(from:Vector2, to:Vector2)
 {	
-	// Get the obejct's position on the grid
-	var From:Vector2   = gridScript.getObjectPositionFromName(from);
-	var To:  Vector2   = gridScript.getObjectPositionFromName(to);
-
-	// If they are neighbors
-	if(isNeighbor(From, To))
-	{
-		// Calculate the new color
-		var newColor:Color = Color(
-		Mathf.Max(0.0, gridScript.objectRenderer[From.x, From.y].material.color.r - gridScript.objectRenderer[To.x, To.y].material.color.r),
-		Mathf.Max(0.0, gridScript.objectRenderer[From.x, From.y].material.color.g - gridScript.objectRenderer[To.x, To.y].material.color.g),
-		Mathf.Max(0.0, gridScript.objectRenderer[From.x, From.y].material.color.b - gridScript.objectRenderer[To.x, To.y].material.color.b) );
-		
-		// And update the node's color
-		UpdateNodeColor(To, newColor);
-	}
+	// Calculate the new color
+	var newColor:Color = Color(
+	Mathf.Max(0.0, gridScript.objectRenderer[from.x,from.y].material.color.r - gridScript.objectRenderer[to.x, to.y].material.color.r),
+	Mathf.Max(0.0, gridScript.objectRenderer[from.x, from.y].material.color.g - gridScript.objectRenderer[to.x, to.y].material.color.g),
+	Mathf.Max(0.0, gridScript.objectRenderer[from.x, from.y].material.color.b - gridScript.objectRenderer[to.x, to.y].material.color.b) );
+	
+	// And update the node's color
+	UpdateNodeColor(to, newColor);
 }
 
 // Did we win the game ?
@@ -246,6 +275,83 @@ public function isVictorious():boolean
 
 public function ReadVictoryDataFromFile()
 {
+	var dataParseMode:DataParse = DataParse.None;
+	var colorMatrixLine:int = -1.0;
+	
+	var allTheText = victoryInputFile.text.Split("\n"[0]);
+	
+	// For each line
+	for (currentLine in allTheText)
+	{
+		
+		var data:String[] = currentLine.ToUpper().Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
+		
+		// Choose parse mode
+		if(data[0].Contains("COLORMATRIX:"))
+		{
+			dataParseMode = DataParse.nodeColor;
+		}
+		
+		// In case the user did not switch what kind of data he is parsing in
+		else
+		{
+			switch (dataParseMode)
+			{
+				// Invalid line
+				case DataParse.None:
+					Debug.Log("Invalid file format");
+					break;
+				
+				// 	If we already have the number of rows and columns in the grid, read the data 
+				case DataParse.nodeColor:
+					if(gridScript.numberOfRows < 0 ||  gridScript.numberOfColumns < 0)
+					{
+						Debug.Log("Matrix size not established");
+					}
+					
+					// Before reading the first line (colorMatrixLine has a value of -1), we initialize the color matrix
+					if(colorMatrixLine < 0)
+					{
+						// Initialize the node vector
+						victoryGrid = new VictoryNode[gridScript.numberOfRows, gridScript.numberOfColumns];
+						for(var node in victoryGrid)
+						{
+							// Initialize the color to the default color, such as transparent, white, black, etc
+							node.typeOfNode = VictoryNodeType.Node_Invalid;
+							node.desiredColor= gridScript.defaultColor;
+						}
+						++colorMatrixLine;
+					}
+					
+					// Now read the color values from file
+					if(colorMatrixLine < gridScript.numberOfRows)
+					{
+						for(var j = 0.0; j < gridScript.numberOfColumns; ++j)
+						{
+							// Trasform the strings into RGB format
+							var rgbColor = gridScript.HexValueToRGB(data[j]);
+							// And store them
+							victoryGrid[colorMatrixLine, j].desiredColor = rgbColor;
+							++desiredCorrectTiles;
+							if(victoryGrid[colorMatrixLine, j].isDesiredColor(gridScript.objectRenderer[colorMatrixLine, j].material.color))
+							{
+								++currentCorrectTiles;
+							}
+						}
+						// Next line
+						++colorMatrixLine;
+					}
+					
+					break;
+			}
+		}
+		
+		initialCorrectTiles = currentCorrectTiles;
+	}
+	
+	// For my own paranoia's sake, I am keeping the old version of the code around
+	
+	/*
 	// First read all the data
 	var allTheText = victoryInputFile.text.Split("\n"[0]);
 	
@@ -254,7 +360,7 @@ public function ReadVictoryDataFromFile()
 	for(var node in victoryGrid)
 	{
 		// Initialize the color to the default color, such as transparent, white, black, etc
-		node.typeOfNode = NodeType.Node_Invalid;
+		node.typeOfNode = VictoryNodeType.Node_Invalid;
 		node.desiredColor= gridScript.defaultColor;
 	}
 	
@@ -272,7 +378,7 @@ public function ReadVictoryDataFromFile()
 			victoryGrid[i, j].desiredColor = rgbColor;
 			if( rgbColor != gridScript.defaultColor)
 			{
-				victoryGrid[i, j].typeOfNode = NodeType.Node_Normal;
+				victoryGrid[i, j].typeOfNode = VictoryNodeType.Node_Normal;
 				++desiredCorrectTiles;
 				if(victoryGrid[i, j].isDesiredColor(gridScript.objectRenderer[i, j].material.color))
 				{
@@ -282,7 +388,7 @@ public function ReadVictoryDataFromFile()
 		}
 	}
 	
-	initialCorrectTiles = currentCorrectTiles;
+	initialCorrectTiles = currentCorrectTiles;*/
 }
 
 
@@ -295,13 +401,7 @@ function Start ()
 	gridScript = transform.GetComponent(CreateGrid);
 	// If so and we have an input file
 	if(gridScript && victoryInputFile)
-	{
-		// First get some info from the grid
-		var numRows:int = gridScript.numberOfRows;
-		var numCols:int = gridScript.numberOfColumns;
-		// Then build the adjacency list
-		adjList = new Array[numRows, numCols];
-		
+	{	
 		// Never leave a variable without a default values
 		currentCorrectTiles = 0;
 		desiredCorrectTiles = 0;
