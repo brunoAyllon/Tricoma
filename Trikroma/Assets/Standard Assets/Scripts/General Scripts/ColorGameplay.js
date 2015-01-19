@@ -112,21 +112,23 @@ public function EndColorManip(colliderName:String)
 	if(colorManipTo != colorManipFrom && colorManipTo!=String.Empty && colorManipFrom!=String.Empty)
 	{
 		// Used to check if the edge is valid
-		var isConnected:boolean = false;
+		//var isConnected:boolean = false;
 		// What kind of operation is done by that edge ?
-		var operationType:EdgeType;
+		//var operationType:EdgeType;
 		
 		// Get the obejct's position on the grid
 		var From:Vector2   = gridScript.getObjectPositionFromName(colorManipFrom);
 		var To:  Vector2   = gridScript.getObjectPositionFromName(colorManipTo);
 		
-		if(!gridScript.adjList.ContainsKey(To))
+		var edgeFound:Edge = gridScript.getEdge(To, From);
+		
+		/*if(!gridScript.adjList.ContainsKey(To))
 		{
 			Debug.Log("No key here");
 		}
 		
 		// If the adjacency list exists and the nodes are neighbors
-		if((isNeighbor(From, To)) && gridScript.adjList.ContainsKey(To))
+		if((gridScript.isNeighbor(From, To)) && gridScript.adjList.ContainsKey(To))
 		{
 			Debug.Log("Hello Mr. Key");
 			// Find the edge and its type
@@ -139,16 +141,16 @@ public function EndColorManip(colliderName:String)
 				}
 			}
 			
-		}
+		}*/
 		// If the edge is not connected, we have an error
-		if(!isConnected)
+		if(!edgeFound.isValid())
 		{
 			Debug.Log("Invalid edge");
 		}
 		else
 		{
 			// Finally, call the appropriate color operation
-			switch (operationType)
+			switch (edgeFound.type)
 			{	
 				case EdgeType.edgePlus:
 					AddColor(From, To);
@@ -166,38 +168,6 @@ public function EndColorManip(colliderName:String)
 	colorManipTo = String.Empty;
 }
 
-// Check if 2 nodes are neighbors of a triangle, unfortunately this is the only function that is tri specific, but can be adapted in the future to support more, if needed
-public function isNeighbor(potentialNeighborPos:Vector2, objectPos:Vector2)
-{
-	// Each tri has 3 neighbors 2 neighbors are always constant, the left and right one
-	// Third one is below for an upright tri and below for an upside-down one
-	var lastNeighborY = 1.0;
-	
-	/*
-		There are 3 scenarios in which our last neighbor lies in the node below
-		
-		1- We start drawing upright and our x position is zero
-		2- We start drawing upright and are in an even x position
-		3- We start drawing upside down tris and  our x position is odd
-	
-	*/
-	if( gridScript.startWithUprightObj && ( !(objectPos.x % 2) || (objectPos.x == 0) )|| 
-	  (!gridScript.startWithUprightObj && (objectPos.x % 2)) )
-	{	
-			lastNeighborY = -1.0;	
-	}
-
-	Debug.Log("A: "+ objectPos.x+ " "+ objectPos.y);
-	//Debug.Log("B: "+ );
-	Debug.Log ( "Neighbor: " + ( objectPos == (potentialNeighborPos + Vector2(-1.0, 0.0) ) ) || 
-			 ( objectPos == (potentialNeighborPos + Vector2( 1.0, 0.0) ) ) || 
-			 ( objectPos == (potentialNeighborPos + Vector2( 0.0, lastNeighborY) ) ) );
-	
-	// Check if at least one of them is a neighbor
-	return ( ( objectPos == (potentialNeighborPos + Vector2(-1.0, 0.0) ) ) || 
-			 ( objectPos == (potentialNeighborPos + Vector2( 1.0, 0.0) ) ) || 
-			 ( objectPos == (potentialNeighborPos + Vector2( 0.0, lastNeighborY) ) ) );
-}
 
 // Changes the node color, updates metrics and checks for victory condition
 public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
@@ -440,7 +410,7 @@ function Update ()
 			// If we hit an object and it has  a collider
 			if (hitInfo != null && hitInfo.collider != null)
 			{
-				Debug.Log("Message down");
+				//Debug.Log("Message down");
 				// Send it the mouse down message
 				hitInfo.collider.gameObject.SendMessage("MouseDown", SendMessageOptions.DontRequireReceiver);
 			}
@@ -457,7 +427,7 @@ function Update ()
 			// If we hit an object and it has  a collider
 			if (hitInfo != null && hitInfo.collider != null)
 			{
-				Debug.Log("Message up");
+				//Debug.Log("Message up");
 				// Send it the mouse up message
 				hitInfo.collider.gameObject.SendMessage("MouseUp", SendMessageOptions.DontRequireReceiver);
 			}

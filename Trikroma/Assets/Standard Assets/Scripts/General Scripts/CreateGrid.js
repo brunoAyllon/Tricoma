@@ -15,6 +15,8 @@ public var defaultColor = Color.green;
 // Object we are going to create (tri, quad, hex, etc)
 public var objectToReplicate:GameObject;
 
+public var drawEdges:boolean;
+
 // On hold for the custom texture loading stretch goal
 /*private var useCustomSprites:boolean;
 public var spriteFolderPath:String;
@@ -74,7 +76,7 @@ class Edge extends System.ValueType
 	// Was the node properly initialized ?
 	public function isValid():boolean
 	{
-		return type == EdgeType.edgeNone;
+		return type != EdgeType.edgeNone;
 	}
 }
 
@@ -100,6 +102,86 @@ public function getObjectPositionFromName(name: String):Vector2
 	}
 	// In case of an invalid input
 	return Vector2(-1, -1);
+}
+
+public function getEdge(From:Vector2, To:Vector2):Edge
+{
+	Debug.Log("Edge check: "+ From.x+" "+From.y+" -> "+To.x+" "+To.y);
+	if((isNeighbor(From, To)) && adjList.ContainsKey(From))
+	{
+		for(var edge:Edge in adjList[From])
+		{
+			if(edge.isConnectedTo(To))
+			{
+				Debug.Log("Edge exists");
+				return edge;
+			}
+		}
+	}
+	
+	Debug.Log("No edge here");
+	return Edge(EdgeType.edgeNone, Vector2(-1, -1));
+}
+
+// Check if 2 nodes are neighbors of a triangle, unfortunately this is the only function that is tri specific, but can be adapted in the future to support more, if needed
+public function isNeighbor(potentialNeighborPos:Vector2, objectPos:Vector2)
+{
+	// Each tri has 3 neighbors 2 neighbors are always constant, the left and right one
+	// Third one is below for an upright tri and below for an upside-down one
+	var lastNeighborY = 1.0;
+	
+	/*
+		There are 3 scenarios in which our last neighbor lies in the node below
+		
+		1- We start drawing upright and our x position is zero
+		2- We start drawing upright and are in an even x position
+		3- We start drawing upside down tris and  our x position is odd
+	
+	*/
+	if( isUpright(objectPos) )
+	{	
+			lastNeighborY = -1.0;	
+	}
+
+	//Debug.Log("A: "+ objectPos.x+ " "+ objectPos.y);
+	//Debug.Log("B: "+ );
+	Debug.Log ( "Neighbor: " + ( ( objectPos == (potentialNeighborPos + Vector2(0.0, -1.0) ) ) || 
+			 ( objectPos == (potentialNeighborPos + Vector2( 0.0, 1.0) ) ) || 
+			 ( objectPos == (potentialNeighborPos + Vector2( lastNeighborY, 0.0) ) ) ) );
+	
+	// Check if at least one of them is a neighbor
+	return ( ( objectPos == (potentialNeighborPos + Vector2( 0.0, 1.0) ) ) || 
+			 ( objectPos == (potentialNeighborPos + Vector2( 0.0, -1.0) ) ) || 
+			 ( objectPos == (potentialNeighborPos + Vector2( lastNeighborY, 0.0) ) ) );
+}
+
+
+public function isUpright(objectPos:Vector2):boolean
+{
+	//return ( ( startWithUprightObj && ( !(objectPos.y % 2) ) )|| (!startWithUprightObj && !!(objectPos. % 2)) );
+	
+	if(startWithUprightObj)
+	{
+		if(objectPos.x % 2)
+		{
+			return !!(objectPos.y % 2);
+		}
+		else
+		{
+			return !(objectPos.y % 2);
+		}
+	}
+	else
+	{
+		if(objectPos.x % 2)
+		{
+			return !(objectPos.y % 2);
+		}
+		else
+		{
+			return !!(objectPos.y % 2);
+		}
+	}
 }
 
 /* Reads the grid from file
@@ -242,7 +324,6 @@ public function ReadDataFromFile( ):void
 							// Initialize the matrix if it was not already done
 							if(!edgeMatrixInitialized)
 							{
-								Debug.Log("Initialize edges");
 								// Initialize the dictionary (fancy C# term for what is essentially std::map)
 								adjList = new Dictionary.<Vector2, List.<Edge> >();
 								
@@ -250,7 +331,6 @@ public function ReadDataFromFile( ):void
 								edgeMatrixInitialized = true;
 							}
 							
-							Debug.Log("More stuff");
 							// Read the first node's position
 							var firstVert:Vector2 = Vector2(int.Parse(data[0]), int.Parse(data[1]) );
 							// Now the edge type
@@ -271,23 +351,30 @@ public function ReadDataFromFile( ):void
 							// Now read the second node's position
 							var secondVert:Vector2 = Vector2(int.Parse(data[3]), int.Parse(data[4]) );
 							
-							Debug.Log("Edge: ("+ firstVert.x+", "+firstVert.y+ ") "+data[2]+" ("+ secondVert.x+", "+secondVert.y+ ") " );
 							
-							 // If this is the first item in either adjacency list, Initialize the list
-							 if(!adjList.ContainsKey(firstVert))
-							 { 
-							 	adjList.Add(firstVert, new List.<Edge>() );
-							 }
-							
-							  if(!adjList.ContainsKey(secondVert))
-							 { 
-							 	adjList.Add(secondVert, new List.<Edge>() );
-							 }
-							 
-							// And add them to each other's adjacencies
-							adjList[firstVert] .Add( Edge(newEdgeType, secondVert) ) ;
-							adjList[secondVert].Add( Edge(newEdgeType, firstVert) ) ;		
-							
+							if(isNeighbor(firstVert, secondVert))
+							{
+								Debug.Log("Edge: ("+ firstVert.x+", "+firstVert.y+ ") "+data[2]+" ("+ secondVert.x+", "+secondVert.y+ ") " );
+								
+								 // If this is the first item in either adjacency list, Initialize the list
+								 if(!adjList.ContainsKey(firstVert))
+								 { 
+								 	adjList.Add(firstVert, new List.<Edge>() );
+								 }
+								
+								  if(!adjList.ContainsKey(secondVert))
+								 { 
+								 	adjList.Add(secondVert, new List.<Edge>() );
+								 }
+								 
+								// And add them to each other's adjacencies
+								adjList[firstVert] .Add( Edge(newEdgeType, secondVert) ) ;
+								adjList[secondVert].Add( Edge(newEdgeType, firstVert) ) ;		
+							}
+							else
+							{
+								Debug.Log("Those nodes are not neighbors");
+							}
 						}
 						break;
 					// On hold for the custom texture loading stretch goal
