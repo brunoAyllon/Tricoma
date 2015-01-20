@@ -176,7 +176,7 @@ public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
 	// Check for same color
 	if(gridScript.objectRenderer[nodePosition.x, nodePosition.y].material.color != newColor)
 	{
-		Debug.Log("Different color");
+		//Debug.Log("Different color");
 		
 		// First we check if the color has changed in any way that will affect the number of correct nodes
 		
@@ -186,13 +186,13 @@ public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
 		// From correct to incorrect
 		if(victoryGrid[nodePosition.x, nodePosition.y].isDesiredColor(gridScript.objectRenderer[nodePosition.x, nodePosition.y].material.color))
 		{
-			Debug.Log("Becomes INcorrect");
+			//Debug.Log("Becomes INcorrect");
 			currentCorrectTiles = Mathf.Max(0.0, currentCorrectTiles - 1.0);
 		}
 		// From incorrect to correct
 		else if(victoryGrid[nodePosition.x, nodePosition.y].isDesiredColor(newColor))
 		{
-			Debug.Log("Becomes correct");
+			//Debug.Log("Becomes correct");
 			currentCorrectTiles = Mathf.Min(desiredCorrectTiles, currentCorrectTiles + 1.0);
 		}
 		
@@ -392,7 +392,7 @@ function Update ()
 	if(!isVictorious())
 	{
 		// Helper variables
-		var hitInfo:RaycastHit2D;
+		var hitInfo:RaycastHit2D[];
 	    var ray: Vector2;
 	    var mousePos:Vector3;
 
@@ -406,13 +406,17 @@ function Update ()
 			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			// Cast a ray to it
 			ray = Vector2(mousePos.x, mousePos.y);
-			hitInfo = Physics2D.Raycast(ray, Vector2.zero, Mathf.Infinity);
+			hitInfo = Physics2D.RaycastAll(ray, Vector2.zero, Mathf.Infinity);
 			// If we hit an object and it has  a collider
-			if (hitInfo != null && hitInfo.collider != null)
+			//if (hitInfo != null && hitInfo.collider != null)
+			for(hit in hitInfo)
 			{
 				//Debug.Log("Message down");
 				// Send it the mouse down message
-				hitInfo.collider.gameObject.SendMessage("MouseDown", SendMessageOptions.DontRequireReceiver);
+				if(hit.collider != null)
+				{
+					hit.collider.gameObject.SendMessage("MouseDown", SendMessageOptions.DontRequireReceiver);
+				}
 			}
 		}
 		
@@ -423,13 +427,16 @@ function Update ()
 			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			ray = Vector2(mousePos.x, mousePos.y);
 			// Cast a ray to it
-			hitInfo = Physics2D.Raycast(ray, Vector2.zero, Mathf.Infinity);
+			hitInfo = Physics2D.RaycastAll(ray, Vector2.zero, Mathf.Infinity);
 			// If we hit an object and it has  a collider
-			if (hitInfo != null && hitInfo.collider != null)
+			for(hit in hitInfo)
 			{
 				//Debug.Log("Message up");
 				// Send it the mouse up message
-				hitInfo.collider.gameObject.SendMessage("MouseUp", SendMessageOptions.DontRequireReceiver);
+				if(hit.collider != null)
+				{
+					hit.collider.gameObject.SendMessage("MouseUp", SendMessageOptions.DontRequireReceiver);
+				}
 			}
 		}
 	}

@@ -106,20 +106,20 @@ public function getObjectPositionFromName(name: String):Vector2
 
 public function getEdge(From:Vector2, To:Vector2):Edge
 {
-	Debug.Log("Edge check: "+ From.x+" "+From.y+" -> "+To.x+" "+To.y);
+//	Debug.Log("Edge check: "+ From.x+" "+From.y+" -> "+To.x+" "+To.y);
 	if((isNeighbor(From, To)) && adjList.ContainsKey(From))
 	{
 		for(var edge:Edge in adjList[From])
 		{
 			if(edge.isConnectedTo(To))
 			{
-				Debug.Log("Edge exists");
+//				Debug.Log("Edge exists");
 				return edge;
 			}
 		}
 	}
 	
-	Debug.Log("No edge here");
+//	Debug.Log("No edge here");
 	return Edge(EdgeType.edgeNone, Vector2(-1, -1));
 }
 
@@ -128,7 +128,7 @@ public function isNeighbor(potentialNeighborPos:Vector2, objectPos:Vector2)
 {
 	// Each tri has 3 neighbors 2 neighbors are always constant, the left and right one
 	// Third one is below for an upright tri and below for an upside-down one
-	var lastNeighborY = 1.0;
+	var lastNeighborX = 1.0;
 	
 	/*
 		There are 3 scenarios in which our last neighbor lies in the node below
@@ -140,19 +140,20 @@ public function isNeighbor(potentialNeighborPos:Vector2, objectPos:Vector2)
 	*/
 	if( isUpright(objectPos) )
 	{	
-			lastNeighborY = -1.0;	
+			lastNeighborX = -1.0;	
 	}
+	
 
 	//Debug.Log("A: "+ objectPos.x+ " "+ objectPos.y);
 	//Debug.Log("B: "+ );
 	Debug.Log ( "Neighbor: " + ( ( objectPos == (potentialNeighborPos + Vector2(0.0, -1.0) ) ) || 
 			 ( objectPos == (potentialNeighborPos + Vector2( 0.0, 1.0) ) ) || 
-			 ( objectPos == (potentialNeighborPos + Vector2( lastNeighborY, 0.0) ) ) ) );
+			 ( objectPos == (potentialNeighborPos + Vector2( lastNeighborX, 0.0) ) ) ) );
 	
 	// Check if at least one of them is a neighbor
 	return ( ( objectPos == (potentialNeighborPos + Vector2( 0.0, 1.0) ) ) || 
 			 ( objectPos == (potentialNeighborPos + Vector2( 0.0, -1.0) ) ) || 
-			 ( objectPos == (potentialNeighborPos + Vector2( lastNeighborY, 0.0) ) ) );
+			 ( objectPos == (potentialNeighborPos + Vector2( lastNeighborX, 0.0) ) ) );
 }
 
 
@@ -162,12 +163,16 @@ public function isUpright(objectPos:Vector2):boolean
 	
 	if(startWithUprightObj)
 	{
+		// Odd row
 		if(objectPos.x % 2)
 		{
+			// Odd pos
 			return !!(objectPos.y % 2);
 		}
+		// Even row
 		else
 		{
+			// Even pos
 			return !(objectPos.y % 2);
 		}
 	}
@@ -351,11 +356,11 @@ public function ReadDataFromFile( ):void
 							// Now read the second node's position
 							var secondVert:Vector2 = Vector2(int.Parse(data[3]), int.Parse(data[4]) );
 							
-							
+							Debug.Log("Edge: ("+ firstVert.x+", "+firstVert.y+ ") "+data[2]+" ("+ secondVert.x+", "+secondVert.y+ ") " );
 							if(isNeighbor(firstVert, secondVert))
 							{
-								Debug.Log("Edge: ("+ firstVert.x+", "+firstVert.y+ ") "+data[2]+" ("+ secondVert.x+", "+secondVert.y+ ") " );
 								
+								Debug.Log("Valid edge");
 								 // If this is the first item in either adjacency list, Initialize the list
 								 if(!adjList.ContainsKey(firstVert))
 								 { 

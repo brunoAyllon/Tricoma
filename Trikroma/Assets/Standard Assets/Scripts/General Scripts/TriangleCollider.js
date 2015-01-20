@@ -4,9 +4,11 @@
 private var leftVert:Vector2;
 private var rightVert:Vector2;
 private var topVert :Vector2;
+private var isUpright:boolean;
 
 // Whoever is responsible for handling the gameplay implications of a collision
 private var gameplayController:ColorGameplay;
+
 
 // Defines a half plane based on two given vertices , then checks if a given point is inside it
 function isInsideHalfPlane(point:Vector2, halfplaneFirstVert:Vector2, halfplaneSecondVert:Vector2):boolean
@@ -24,11 +26,27 @@ function PointInsideTriangle():boolean
 	
 	// If we are inside all 3 half-planes, then we are inside the triangle
 	// Observation: Checks must be done clockwise
-	return (
-	isInsideHalfPlane(collisionPoint, topVert, rightVert ) && 
-	isInsideHalfPlane(collisionPoint, rightVert, leftVert ) &&
-	isInsideHalfPlane(collisionPoint, leftVert,  topVert )
-	);
+	
+	if(isUpright)
+	{
+		Debug.Log("Upright: "+gameObject.name);
+		return (
+		isInsideHalfPlane(collisionPoint, topVert, rightVert ) && 
+		isInsideHalfPlane(collisionPoint, rightVert, leftVert ) &&
+		isInsideHalfPlane(collisionPoint, leftVert,  topVert )
+		);
+	}
+	
+		/*Debug.Log("NOT Upright: "+gameObject.name);
+		Debug.Log("L-R: "+isInsideHalfPlane(collisionPoint, leftVert, rightVert ));
+		Debug.Log("R-B: "+isInsideHalfPlane(collisionPoint, rightVert, topVert ));
+		Debug.Log("B-L: "+isInsideHalfPlane(collisionPoint, topVert, leftVert ));*/
+		
+		return (
+		isInsideHalfPlane(collisionPoint, leftVert, rightVert ) && 
+		isInsideHalfPlane(collisionPoint, rightVert, topVert ) &&
+		isInsideHalfPlane(collisionPoint, topVert, leftVert )
+		);
 }
 
 // Upon being called by the gameplay controller, it checks if the mouse is inside the triangle, if so, it begins the color drag and drop
@@ -58,12 +76,47 @@ function Start ()
 {
 	/* First we determine the vertices of the collision triangle
 	
-		Observation: For simplicity's sake 
+		Observation: For simplicity's sake , we assume the triangle's texture aligns with the collider's boundries
 	*/
-	leftVert = Vector2(collider2D.bounds.min.x, gameObject.collider2D.bounds.min.y);
-	rightVert = Vector2(collider2D.bounds.max.x, gameObject.collider2D.bounds.min.y);
-	topVert  = Vector2(collider2D.bounds.center.x, gameObject.collider2D.bounds.max.y);
+	
+	var gridScript:CreateGrid = transform.parent.GetComponent(CreateGrid);
+	var pos:Vector2 = gridScript.getObjectPositionFromName(gameObject.name);
+	
+	isUpright = gridScript.isUpright(pos);
+	
+	if(isUpright)
+	{
+		leftVert = Vector2(collider2D.bounds.min.x, gameObject.collider2D.bounds.min.y);
+		rightVert = Vector2(collider2D.bounds.max.x, gameObject.collider2D.bounds.min.y);
+		topVert  = Vector2(collider2D.bounds.center.x, gameObject.collider2D.bounds.max.y);
+	}
+	else
+	{
+		leftVert = Vector2(collider2D.bounds.min.x, gameObject.collider2D.bounds.max.y);
+		rightVert = Vector2(collider2D.bounds.max.x, gameObject.collider2D.bounds.max.y);
+		topVert  = Vector2(collider2D.bounds.center.x, gameObject.collider2D.bounds.min.y);
+	}
+	
 	
 	// Upon creation, the game object that holds this script is made a child of the appropriate gameplay controller
-	gameplayController = transform.parent.GetComponent(ColorGameplay);
+		gameplayController = transform.parent.GetComponent(ColorGameplay);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
