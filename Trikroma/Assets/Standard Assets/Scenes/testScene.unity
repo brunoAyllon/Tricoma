@@ -285,6 +285,7 @@ MonoBehaviour:
   symbolUseDefault: Z
   defaultColor: {r: 0, g: 1, b: 0, a: 1}
   objectToReplicate: {fileID: 142354, guid: 35061b2312b98ad4d8c7f20388b59c7b, type: 2}
+  drawEdges: 1
   isAlternating: 1
   startWithUprightObj: 1
   numberOfRows: 8
@@ -321,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 636759089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

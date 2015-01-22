@@ -12,7 +12,11 @@ private var gridScript:CreateGrid  = null;
 // How many correct tiles did the grid have once we created it ?
 private var initialCorrectTiles:int;
 // How many tiles are correct at the moment ?
-private var currentCorrectTiles: int;
+/* Observation: The Perform Undo function documentation states: "This performs a undo operation. It is the same as clicking on the Edit->Undo menu."
+   However, what they don't tell you is that if the variable cannot be altered in the editor, it will not be recorded. Therefore, we make it editable (public)
+   and hide that from the Editor. In summary, sometimes, Unity can be beyond stupid. 
+*/
+@HideInInspector public var currentCorrectTiles: int;
 // How many tiles must have the correct color 
 private var desiredCorrectTiles:int;
 
@@ -176,13 +180,9 @@ public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
 	// Check for same color
 	if(gridScript.objectRenderer[nodePosition.x, nodePosition.y].material.color != newColor)
 	{
-		//Debug.Log("Different color");
-		
-		// First we check if the color has changed in any way that will affect the number of correct nodes
-		
-		++numberOfUndos;
 		Undo.RecordObject(this, "Tile Number Change");
-		
+		// First we check if the color has changed in any way that will affect the number of correct nodes
+		++numberOfUndos;		
 		// From correct to incorrect
 		if(victoryGrid[nodePosition.x, nodePosition.y].isDesiredColor(gridScript.objectRenderer[nodePosition.x, nodePosition.y].material.color))
 		{
@@ -196,15 +196,17 @@ public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
 			currentCorrectTiles = Mathf.Min(desiredCorrectTiles, currentCorrectTiles + 1.0);
 		}
 		
+		EditorUtility.SetDirty(this);
 		Undo.RecordObject(gridScript.objectRenderer[nodePosition.x, nodePosition.y].material, "Color Change");
-		
 		
 		// Finally, we change the object's color
 		gridScript.objectRenderer[nodePosition.x, nodePosition.y].material.color = newColor;	
+		EditorUtility.SetDirty(gridScript.objectRenderer[nodePosition.x, nodePosition.y].material);
+
 	}
 	
 	// For testing
-	Debug.Log(currentCorrectTiles+" / "+desiredCorrectTiles);
+	//Debug.Log(currentCorrectTiles+" / "+desiredCorrectTiles);
 	if(isVictorious())
 	{
 		Debug.Log("I win");
