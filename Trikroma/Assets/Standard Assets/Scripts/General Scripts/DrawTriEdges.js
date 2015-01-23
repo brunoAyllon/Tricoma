@@ -71,32 +71,31 @@ function Start ()
 					
 			   	 	rightObj.GetComponent(SpriteRenderer).sprite = rightSprite;
 				}
-				
-				
-				var bottomEdgeFound:Edge = gridScript.getEdge(pos, pos + Vector2(1.0, 0.0));
-				if(gridScript.isUpright(pos) && bottomEdgeFound.isValid() )
-				{
-					
-					var bottomSprite:Sprite;
-					var bottomPos:Vector2 = Vector2(0.5f, 1.4f);
-					
-					if (bottomEdgeFound.type == EdgeType.edgePlus)
-					{
-						bottomSprite = Sprite.Create(plusTexture,  Rect(0, 0, plusTexture.width, plusTexture.height), bottomPos);
-					}
-					else 
-					{
-						bottomSprite = Sprite.Create(minusTexture,  Rect(0, 0, minusTexture.width, minusTexture.height), bottomPos);
-					}
-					
-					bottomObj = new GameObject("Bottom "+pos.x+" "+pos.y);
-					
-					bottomObj.transform.position = transform.position;
-					
-					bottomObj.AddComponent(SpriteRenderer);
-					
-			   	 	bottomObj.GetComponent(SpriteRenderer).sprite = bottomSprite;
-				}
+		}
+		
+		var bottomEdgeFound:Edge = gridScript.getEdge(pos, pos + Vector2(1.0, 0.0));
+		if(gridScript.isUpright(pos) && bottomEdgeFound.isValid() )
+		{
+			
+			var bottomSprite:Sprite;
+			var bottomPos:Vector2 = Vector2(0.5f, 1.4f);
+			
+			if (bottomEdgeFound.type == EdgeType.edgePlus)
+			{
+				bottomSprite = Sprite.Create(plusTexture,  Rect(0, 0, plusTexture.width, plusTexture.height), bottomPos);
+			}
+			else 
+			{
+				bottomSprite = Sprite.Create(minusTexture,  Rect(0, 0, minusTexture.width, minusTexture.height), bottomPos);
+			}
+			
+			bottomObj = new GameObject("Bottom "+pos.x+" "+pos.y);
+			
+			bottomObj.transform.position = transform.position;
+			
+			bottomObj.AddComponent(SpriteRenderer);
+			
+	   	 	bottomObj.GetComponent(SpriteRenderer).sprite = bottomSprite;
 		}
     }
     

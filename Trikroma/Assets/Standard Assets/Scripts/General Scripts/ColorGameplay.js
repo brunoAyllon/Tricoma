@@ -33,6 +33,7 @@ private var numberOfUndos:int;
 private var numberOfRedos:int;
 
 
+
 // Holds node information
 class VictoryNode extends System.ValueType
 {
