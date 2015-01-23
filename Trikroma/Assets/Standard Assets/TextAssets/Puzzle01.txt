@@ -1,0 +1,6 @@
+Matrix Size:
+1, 2
+Color Matrix:
+FF0000, 00FF00
+Edges:
+(0, 0), + ,(0, 1)

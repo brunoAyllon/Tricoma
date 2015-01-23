@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryInputFile: {fileID: 4900000, guid: a123de7c77b728046b33094a793eac2d, type: 3}
+  currentCorrectTiles: 0
 --- !u!114 &636759091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataInputFile: {fileID: 4900000, guid: c5bb29df5299a3749a83a556348f6809, type: 3}
-  symbolUseDefault: Z
-  defaultColor: {r: 0, g: 1, b: 0, a: 1}
+  symbolUseDefault: ZZZZZZ
+  defaultColor: {r: 0, g: 1, b: 0, a: 0}
   objectToReplicate: {fileID: 142354, guid: 35061b2312b98ad4d8c7f20388b59c7b, type: 2}
   drawEdges: 1
   isAlternating: 1
@@ -430,7 +431,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 31, y: -183}
+  m_AnchoredPosition: {x: 1, y: -127}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &935224036
@@ -663,7 +664,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 323, y: -183}
+  m_AnchoredPosition: {x: 323, y: -125}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1112070469
@@ -807,7 +808,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22498052, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -183
+      value: -125
       objectReference: {fileID: 0}
     - target: {fileID: 22498052, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
       propertyPath: m_SizeDelta.x
@@ -960,11 +961,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22456052, guid: 90e91d2afe09064469da4fa316527662, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 31
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22456052, guid: 90e91d2afe09064469da4fa316527662, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -183
+      value: -127
       objectReference: {fileID: 0}
     - target: {fileID: 22456052, guid: 90e91d2afe09064469da4fa316527662, type: 2}
       propertyPath: m_SizeDelta.x
@@ -1042,7 +1043,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -227, y: -186}
+  m_AnchoredPosition: {x: -317, y: -128}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1589700546
@@ -1182,11 +1183,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22475854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -227
+      value: -317
       objectReference: {fileID: 0}
     - target: {fileID: 22475854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -186
+      value: -128
       objectReference: {fileID: 0}
     - target: {fileID: 22475854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
       propertyPath: m_SizeDelta.x
