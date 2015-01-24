@@ -221,9 +221,9 @@ public function AddColor(from:Vector2, to:Vector2)
 	{
 		// Calculate the new color
 		var newColor:Color = Color(
-		Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[from.x, from.y].material.color.r + gridScript.objectRenderer[to.x, to.y].material.color.r) * 100f) / 100f ),
-		Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[from.x, from.y].material.color.g + gridScript.objectRenderer[to.x, to.y].material.color.g) * 100f) / 100f ),
-		Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[from.x, from.y].material.color.b + gridScript.objectRenderer[to.x, to.y].material.color.b) * 100f) / 100f ) );
+		Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[to.x, to.y].material.color.r + gridScript.objectRenderer[from.x, from.y].material.color.r ) * 100f) / 100f ),
+		Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[to.x, to.y].material.color.g + gridScript.objectRenderer[from.x, from.y].material.color.g ) * 100f) / 100f ),
+		Mathf.Min(1.0, Mathf.Round( (gridScript.objectRenderer[to.x, to.y].material.color.b + gridScript.objectRenderer[from.x, from.y].material.color.b ) * 100f) / 100f ) );
 		
 		// And update the node's color
 		UpdateNodeColor(to, newColor);
@@ -237,9 +237,9 @@ public function SubColor(from:Vector2, to:Vector2)
 	{
 		// Calculate the new color
 		var newColor:Color = Color(
-		Mathf.Max(0.0, gridScript.objectRenderer[from.x,from.y].material.color.r - gridScript.objectRenderer[to.x, to.y].material.color.r),
-		Mathf.Max(0.0, gridScript.objectRenderer[from.x, from.y].material.color.g - gridScript.objectRenderer[to.x, to.y].material.color.g),
-		Mathf.Max(0.0, gridScript.objectRenderer[from.x, from.y].material.color.b - gridScript.objectRenderer[to.x, to.y].material.color.b) );
+		Mathf.Max(0.0, gridScript.objectRenderer[to.x, to.y].material.color.r - gridScript.objectRenderer[from.x,from.y].material.color.r),
+		Mathf.Max(0.0, gridScript.objectRenderer[to.x, to.y].material.color.g - gridScript.objectRenderer[from.x, from.y].material.color.g),
+		Mathf.Max(0.0, gridScript.objectRenderer[to.x, to.y].material.color.b - gridScript.objectRenderer[from.x, from.y].material.color.b) );
 		
 		// And update the node's color
 		UpdateNodeColor(to, newColor);
