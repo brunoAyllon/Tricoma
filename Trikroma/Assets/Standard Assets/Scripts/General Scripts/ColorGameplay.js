@@ -217,7 +217,7 @@ public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
 // Adds color from one node to the other
 public function AddColor(from:Vector2, to:Vector2)
 {	
-	if(gridScript.objectRenderer[from.x,from.y].material.color == Color(1.0, 1.0, 1.0))
+	if(gridScript.objectRenderer[from.x,from.y].material.color != Color(1.0, 1.0, 1.0))
 	{
 		// Calculate the new color
 		var newColor:Color = Color(
@@ -233,7 +233,7 @@ public function AddColor(from:Vector2, to:Vector2)
 // Suntracts color from 2 nodes
 public function SubColor(from:Vector2, to:Vector2)
 {	
-	if(gridScript.objectRenderer[from.x,from.y].material.color == Color(0.0, 0.0, 0.0))
+	if(gridScript.objectRenderer[from.x,from.y].material.color != Color(0.0, 0.0, 0.0))
 	{
 		// Calculate the new color
 		var newColor:Color = Color(
