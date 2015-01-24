@@ -9,6 +9,7 @@ public var dataInputFile: TextAsset;
 
 // When this string is read in thr input file, the object created will be given the default color
 public var symbolUseDefault:String;
+public var defaultIsNull:boolean;
 // Default color for created objects
 public var defaultColor = Color.green;
 
@@ -154,6 +155,11 @@ public function isNeighbor(potentialNeighborPos:Vector2, objectPos:Vector2)
 	return ( ( objectPos == (potentialNeighborPos + Vector2( 0.0, 1.0) ) ) || 
 			 ( objectPos == (potentialNeighborPos + Vector2( 0.0, -1.0) ) ) || 
 			 ( objectPos == (potentialNeighborPos + Vector2( lastNeighborX, 0.0) ) ) );
+}
+
+public function isEmptyTile(nodePosition:Vector2):boolean
+{
+	return defaultIsNull && (startingColors[nodePosition.x, nodePosition.y] == defaultColor);
 }
 
 
@@ -324,7 +330,7 @@ public function ReadDataFromFile( ):void
 						{
 							Debug.Log("Cannot read edge data, matrix size not established");
 						}
-						else
+						else if (startingColors != null)
 						{
 							// Initialize the matrix if it was not already done
 							if(!edgeMatrixInitialized)
@@ -357,7 +363,7 @@ public function ReadDataFromFile( ):void
 							var secondVert:Vector2 = Vector2(int.Parse(data[3]), int.Parse(data[4]) );
 							
 							Debug.Log("Edge: ("+ firstVert.x+", "+firstVert.y+ ") "+data[2]+" ("+ secondVert.x+", "+secondVert.y+ ") " );
-							if(isNeighbor(firstVert, secondVert))
+							if(isNeighbor(firstVert, secondVert) && !isEmptyTile(firstVert) && !isEmptyTile(secondVert))
 							{
 								
 								Debug.Log("Valid edge");
@@ -380,6 +386,10 @@ public function ReadDataFromFile( ):void
 							{
 								Debug.Log("Those nodes are not neighbors");
 							}
+						}
+						else
+						{
+							Debug.Log("Cannot Initialize edges before color matrix");
 						}
 						break;
 					// On hold for the custom texture loading stretch goal
@@ -524,22 +534,28 @@ function HexValueToRGB(hexVal:String):Color
 {
 	var rgbVal: Color;
 	
-	if(hexVal == symbolUseDefault)
+	if(hexVal == symbolUseDefault )
 	{
-		return defaultColor;
+		rgbVal = defaultColor;
+		if(defaultIsNull)
+		{
+			rgbVal.a = 0.0;	
+		}
 	}
+	else
+	{
+		// We must divide the values by 255 to clamp them to valid web safe values
 	
-	// We must divide the values by 255 to clamp them to valid web safe values
-	
-	// First 2 chars are the R value 
-	rgbVal.r = (HexToInt(hexVal[0]) + HexToInt(hexVal[1]) * 16.000)/255.0;
-	// Next 2 are the G value
-	rgbVal.g = (HexToInt(hexVal[2]) + HexToInt(hexVal[3]) * 16.000)/255.0;
-	// Last 2 are the B value
-	rgbVal.b = (HexToInt(hexVal[4]) + HexToInt(hexVal[5]) * 16.000)/255.0;
-	
-	// Alpha value of 1 by default
-	rgbVal.a = 1.0;
+		// First 2 chars are the R value 
+		rgbVal.r = (HexToInt(hexVal[0]) + HexToInt(hexVal[1]) * 16.000)/255.0;
+		// Next 2 are the G value
+		rgbVal.g = (HexToInt(hexVal[2]) + HexToInt(hexVal[3]) * 16.000)/255.0;
+		// Last 2 are the B value
+		rgbVal.b = (HexToInt(hexVal[4]) + HexToInt(hexVal[5]) * 16.000)/255.0;
+		
+		// Alpha value of 1 by default
+		rgbVal.a = 1.0;
+	}
 	
 	return rgbVal;
 }
