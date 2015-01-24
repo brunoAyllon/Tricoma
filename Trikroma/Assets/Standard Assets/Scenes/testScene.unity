@@ -284,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataInputFile: {fileID: 4900000, guid: c5bb29df5299a3749a83a556348f6809, type: 3}
   symbolUseDefault: ZZZZZZ
+  defaultIsNull: 1
   defaultColor: {r: 0, g: 1, b: 0, a: 0}
   objectToReplicate: {fileID: 142354, guid: 35061b2312b98ad4d8c7f20388b59c7b, type: 2}
   drawEdges: 1
