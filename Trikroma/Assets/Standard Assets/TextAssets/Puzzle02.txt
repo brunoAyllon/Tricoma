@@ -1,10 +1,8 @@
 Matrix Size:
-3, 3
+2, 2
 Color Matrix:
-ZZZZZZ, ZZZZZZ, ZZZZZZ
-ZZZZZZ, FF0000, ZZZZZZ
-00FF00, 000000, 0000FF
+ZZZZZZ, 0000FF
+00FF00, FF0000
 Edges:
-(1, 1), + ,(2, 1)
-(2, 0), + ,(2, 1)
-(2, 1), + ,(2, 2)
+(1,0), + ,(1,1)
+(1,1), + ,(0,1)

@@ -1,0 +1,50 @@
+COLORS:
+K = Black	
+R = Red		
+G = Green	
+B = Blue
+Y = Yellow	
+M = Magenta	
+C = Cyan	
+W = White
+X = Invalid
+
+ADDITION (Source + Dest = New Dest):
+
+K + K = K		R + K = R		G + K = G		B + K = B
+K + R = R		R + R = R		G + R = Y		B + R = M		
+K + G = G		R + G = Y		G + G = G		B + G = C
+K + B = B		R + B = M		G + B = C		B + B = B
+K + Y = Y		R + Y = Y		G + Y = Y		B + Y = W
+K + M = M		R + M = M		G + M = W 		B + M = M
+K + C = C		R + C = W		G + C = C		B + C = C
+K + W = X		R + W = X		G + W = X		B + W = X
+
+Y + K = K		M + K = M		C + K = C		W + K = X
+Y + R = Y		M + R = M		C + R = W		W + R = X		
+Y + G = Y		M + G = W		C + G = C		W + G = X
+Y + B = W		M + B = M		C + B = C		W + B = X
+Y + Y = Y		M + Y = W		C + Y = W		W + Y = X
+Y + M = W		M + M = M		C + M = W 		W + M = X
+Y + C = W		M + C = W		C + C = C		W + C = X
+Y + W = X		M + W = X		C + W = X		W + W = X
+
+SUBTRACTION (Dest - Source = New Dest):
+
+K - K = X		R - K = X		G - K = X		B - K = X
+K - R = X		R - R = K		G - R = G		B - R = B		
+K - G = X		R - G = R		G - G = K		B - G = B
+K - B = X		R - B = R		G - B = G		B - B = K
+K - Y = X		R - Y = K		G - Y = K		B - Y = B
+K - M = X		R - M = K		G - M = G 		B - M = K
+K - C = X		R - C = R		G - C = K		B - C = K
+K - W = X		R - W = K		G - W = K		B - W = K
+
+Y - K = X		M - K = X		C - K = X		W - K = X
+Y - R = G		M - R = B		C - R = C		W - R = C		
+Y - G = R		M - G = M		C - G = B		W - G = M
+Y - B = Y		M - B = R		C - B = G		W - B = Y
+Y - Y = K		M - Y = B		C - Y = B		W - Y = B
+Y - M = G		M - M = K		C - M = G 		W - M = G
+Y - C = R		M - C = R		C - C = K		W - C = R
+Y - W = K		M - W = K		C - W = K		W - W = K

@@ -1048,6 +1048,10 @@ Prefab:
       propertyPath: defaultColor.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
+      propertyPath: startWithUprightObj
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_RootGameObject: {fileID: 1440614163}
@@ -1104,7 +1108,7 @@ MonoBehaviour:
   objectToReplicate: {fileID: 142354, guid: 35061b2312b98ad4d8c7f20388b59c7b, type: 2}
   drawEdges: 1
   isAlternating: 1
-  startWithUprightObj: 1
+  startWithUprightObj: 0
   numberOfRows: 8
   numberOfColumns: 10
   defaultMaterial: {fileID: 0}
