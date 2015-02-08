@@ -39,3 +39,7 @@ EditorBuildSettings:
     path: Assets/Standard Assets/Scenes/puzzleScene13.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene14.unity
+  - enabled: 1
+    path: Assets/Standard Assets/Scenes/puzzleScene15.unity
+  - enabled: 1
+    path: Assets/Standard Assets/Scenes/puzzleScene16.unity

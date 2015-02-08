@@ -115,11 +115,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22498052, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 318
+      value: 354
       objectReference: {fileID: 0}
     - target: {fileID: 22498052, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -114
+      value: -136
       objectReference: {fileID: 0}
     - target: {fileID: 22498052, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
       propertyPath: m_SizeDelta.x
@@ -293,7 +293,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 5, y: -116}
+  m_AnchoredPosition: {x: 354, y: -96}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &243436154
@@ -429,11 +429,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22475854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -320
+      value: 354
       objectReference: {fileID: 0}
     - target: {fileID: 22475854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -118
+      value: -56
       objectReference: {fileID: 0}
     - target: {fileID: 22475854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
       propertyPath: m_SizeDelta.x
@@ -467,10 +467,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: .5
       objectReference: {fileID: 0}
-    - target: {fileID: 11475852, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
-      propertyPath: gameplayController
-      value: 
-      objectReference: {fileID: 1440614163}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
   m_RootGameObject: {fileID: 578554078}
@@ -580,7 +576,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 318, y: -114}
+  m_AnchoredPosition: {x: 354, y: -136}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &427306168
@@ -714,7 +710,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -320, y: -118}
+  m_AnchoredPosition: {x: 354, y: -56}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &578554080
@@ -729,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9bff1eb93737347a9c6fb813c9f4ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplayController: {fileID: 1440614163}
+  gameplayController: {fileID: 0}
 --- !u!114 &578554081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,11 +934,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22456052, guid: 90e91d2afe09064469da4fa316527662, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 354
       objectReference: {fileID: 0}
     - target: {fileID: 22456052, guid: 90e91d2afe09064469da4fa316527662, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -116
+      value: -96
       objectReference: {fileID: 0}
     - target: {fileID: 22456052, guid: 90e91d2afe09064469da4fa316527662, type: 2}
       propertyPath: m_SizeDelta.x
