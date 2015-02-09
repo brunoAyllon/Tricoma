@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -51,31 +51,58 @@
      <None Include="Assets\Standard Assets\TextAssets\Puzzle09.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle01.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle40.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle29.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle07.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle11.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle12.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle10.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle16.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle04.txt" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularSmooth.shader" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle18.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle13.txt" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle20.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle35.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle30.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle00.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle24.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle08.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle23.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle14.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle34.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle17.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle32.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
      <None Include="Assets\Standard Assets\TextAssets\Readme.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle19.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle33.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle02.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle22.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
      <None Include="Assets\Standard Assets\TextAssets\sampleVictoryGrid.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle27.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle06.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle36.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle25.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle05.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle21.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle28.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle38.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle39.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle37.txt" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle03.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle15.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle26.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Puzzle31.txt" />
      <None Include="Assets\Standard Assets\TextAssets\sampleGrid.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

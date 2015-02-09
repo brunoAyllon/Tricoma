@@ -32,6 +32,7 @@ private var colorManipTo:String = String.Empty;
 private var numberOfUndos:int;
 private var numberOfRedos:int;
 
+private var levelManager:GameObject;
 
 
 // Holds node information
@@ -98,6 +99,18 @@ public function ResetLevel()
 	}
 	// reset correct node count
 	currentCorrectTiles = initialCorrectTiles;
+}
+
+public function RegisterLevelManager(theLevelManager:GameObject)
+{
+	Debug.Log("Hello level manager");
+	levelManager = theLevelManager;
+}
+
+public function BroadcastVictory():void
+{
+	levelManager.SendMessage("CompleteLevel", Application.loadedLevel, SendMessageOptions.DontRequireReceiver);
+	levelManager.SendMessage("GoBackToMenu", SendMessageOptions.DontRequireReceiver);
 }
 
 // Called by the instantiated object's collider 
@@ -211,6 +224,7 @@ public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
 	if(isVictorious())
 	{
 		Debug.Log("I win");
+		BroadcastVictory();
 	}
 }
 

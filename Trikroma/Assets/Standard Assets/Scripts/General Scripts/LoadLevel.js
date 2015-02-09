@@ -1,9 +1,15 @@
 ﻿//#pragma strict
 
-//public var loadingImage:GameObject;
+public var levelToLoad:int;
 
-public function LoadLevel (levelID:int) :void
+function LoadLevel ()
+{
+	Debug.Log("Loading");
+	Application.LoadLevel(levelToLoad);
+}
+
+/*public function LoadLevel (levelID:int) :void
 {
 	//loadingImage.SetActive(true);
 	Application.LoadLevel(levelID);
-}
+}*/
