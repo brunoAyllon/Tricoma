@@ -70,6 +70,7 @@ function Start ()
 					rightObj.AddComponent(SpriteRenderer);
 					
 			   	 	rightObj.GetComponent(SpriteRenderer).sprite = rightSprite;
+			   	 	
 				}
 		}
 		

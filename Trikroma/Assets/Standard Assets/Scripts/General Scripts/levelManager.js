@@ -206,6 +206,8 @@ public function DrawLevelCompletedImage():void
 
 public function DrawTab(tabName:String):void
 {
+	Debug.Log("Tab to add listener: "+tabName);
+	
 	// Error if the tab we asked to draw doesn't exist
 	if(!tabs.ContainsKey(tabName))
 	{
@@ -439,7 +441,8 @@ function Awake ()
 				tabButton = guiTabs[i].tab.AddComponent(Button);
 			}
 			// And tell them to draw their displays when they are clicked on
-			tabButton.onClick.AddListener (function(){DrawTab(guiTabs[i].tabName);}); 
+			var tabToDraw:String = guiTabs[i].tabName;
+			tabButton.onClick.AddListener (function(){DrawTab(tabToDraw);}); 
 			// And add them to the dictionaries
 			tabs.Add(guiTabs[i].tabName, guiTabs[i]);
 		}
@@ -459,7 +462,8 @@ function Awake ()
 			buttonComponent = button.AddComponent(Button);
 		}
 		// And tell them to draw their display screens on click
-		buttonComponent.onClick.AddListener (function(){DrawButtonDisplay(button);}) ;	
+		var buttonToDraw:GameObject = button;
+		buttonComponent.onClick.AddListener (function(){DrawButtonDisplay(buttonToDraw);}) ;	
 	}
 	
 	// If the level select button doesn't have a button component, add it
