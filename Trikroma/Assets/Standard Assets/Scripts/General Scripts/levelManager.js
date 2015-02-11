@@ -10,6 +10,9 @@ import UnityEngine.UI;
 // In other words, there can be only one. Only one version of the game object that contains this script can exist at a time
 @HideInInspector static public var singletonInstance:GameObject;
 
+public var loadManagerStateFromFile:boolean;
+public var managerSaveFile:TextAsset;
+
 // The default background for the GUI
 public var GUIBackgroundObject:GameObject;
 
@@ -156,6 +159,59 @@ public var guiButtons:GameObject[];
 private var levelsToComplete:int;
 private var levelsCompleted:int;
 
+public function LoadManagerState():boolean
+{
+	if (loadManagerStateFromFile && managerSaveFile)
+	{
+		var allTheText:String[] = managerSaveFile.text.Split("\n"[0]);
+		if(allTheText.Length == 0)
+		{
+			return false;
+		}
+		
+		currentTab = allTheText[0];
+		var i:int = 1;
+		
+		for (tab in guiTabs)
+		{
+			for(button in tab.guiButtons)
+			{
+				var data:String[] = allTheText[i].Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
+				var tabName:String = data[0];
+				var sceneNumber:int = int.Parse(data[1]);
+				var state:PuzzleState = System.Enum.Parse( typeof( PuzzleState ), data[2]);
+				var leftToUnlock:int = int.Parse(data[3]);
+				var continueLevel:boolean = boolean.Parse(data[4]);
+				
+				tabs[tabName].buttons[sceneNumber].puzzleState = state;
+				tabs[tabName].buttons[sceneNumber].leftToUnlock = leftToUnlock;
+				tabs[tabName].buttons[sceneNumber].continueLevel = continueLevel;
+				++i;
+			}
+		}
+	}
+	return true;
+}
+
+public function SaveManagerState():void
+{	
+	if(managerSaveFile)
+	{
+		var path:String =  AssetDatabase.GetAssetPath(managerSaveFile);
+		var data:String = currentTab+"\n";
+		
+		for (tab in guiTabs)
+		{
+			for(button in tab.guiButtons)
+			{
+				data+= " ( "+tab.tabName+" , "+button.sceneToLoad+" , "+button.puzzleState+" , "+button.leftToUnlock +" , "+button.continueLevel+" )\n";
+			}
+		}
+		
+		System.IO.File.WriteAllText(path, data);
+	}
+}
+
 function CheckLevelsCompleted():int
 {
 	var howManyCompleted:int = 0.0;
@@ -258,20 +314,6 @@ public function DrawTab(tabName:String):void
 	}
 	else 
 	{
-		// If the tab was not initialized
-		if(tabs[tabName].buttons.Count == 0)
-		{
-			for (var i:int = 0; i < guiButtons.Length; ++i)
-			{
-				// Bind them to the correct button
-				tabs[tabName].guiButtons[i].button = guiButtons[i];
-				tabs[tabName].guiButtons[i].continueLevel = false;
-				// And add them to the dictionaries
-				tabs[tabName].buttons.Add(tabs[tabName].guiButtons[i].sceneToLoad, tabs[tabName].guiButtons[i]);
-				tabs[tabName].objectToButton.Add(guiButtons[i], tabs[tabName].guiButtons[i]);
-			}
-		}
-		
 		// Now go through every button in the tab
 		for (var button in tabs[tabName].buttons)
 		{
@@ -461,6 +503,10 @@ function OnLevelWasLoaded (level : int)
 		}
 }
 
+function OnDestroy()
+{
+	SaveManagerState();
+}
 
 function Awake () 
 {
@@ -496,6 +542,7 @@ function Awake ()
 		// Excpet for duplicates
 		if(!tabs.ContainsKey(guiTabs[i].tabName))
 		{
+			var tabName:String = guiTabs[i].tabName;
 			// Initialize its internal variables
 			guiTabs[i].buttons = new Dictionary.<int, MenuButton>();
 			guiTabs[i].objectToButton = new Dictionary.<GameObject, MenuButton>();
@@ -507,11 +554,24 @@ function Awake ()
 				tabButton = guiTabs[i].tab.AddComponent(Button);
 			}
 			// And tell them to draw their displays when they are clicked on
-			var tabToDraw:String = guiTabs[i].tabName;
-			tabButton.onClick.AddListener (function(){DrawTab(tabToDraw);}); 
+			tabButton.onClick.AddListener (function(){DrawTab(tabName);}); 
 			// And add them to the dictionaries
-			tabs.Add(guiTabs[i].tabName, guiTabs[i]);
+			tabs.Add(tabName, guiTabs[i]);
+			
+			Debug.Log(tabName);
+			// Bind the buttons to the tab
+			for (var j:int = 0; j < tabs[tabName].guiButtons.Length; ++j)
+			{
+				// Bind them to the correct button
+				tabs[tabName].guiButtons[j].button = guiButtons[j];
+				tabs[tabName].guiButtons[j].continueLevel = false;
+				// And add them to the dictionaries
+				tabs[tabName].buttons.Add(tabs[tabName].guiButtons[j].sceneToLoad, tabs[tabName].guiButtons[j]);
+				tabs[tabName].objectToButton.Add(guiButtons[j], tabs[tabName].guiButtons[j]);
+			}
 		}
+		
+		
 		// Make sure all tabs are children of our canvas
 		guiTabs[i].tab.transform.SetParent(this.transform, false);
 	}
@@ -565,6 +625,9 @@ function Awake ()
 	// And tell the script to load a new scene on click
 	continueButton.onClick.AddListener(function(){continueLevel = true; continueLoader.LoadLevel();});
 	continueLevel = false;
+	
+	// Now load the current state of the game
+	LoadManagerState();
 	
 	// Now draw the current tab and make the GUI visible
 	DrawTab(currentTab);

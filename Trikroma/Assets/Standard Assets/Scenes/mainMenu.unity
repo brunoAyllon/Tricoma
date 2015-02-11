@@ -2010,6 +2010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6561b3bd9b583489ccce881247e3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadManagerStateFromFile: 1
+  managerSaveFile: {fileID: 4900000, guid: d23a59623b9d41d4a9d09b2598d78d7b, type: 3}
   GUIBackgroundObject: {fileID: 1272587402}
   initialTabName: Tutorial
   displayBackground: {fileID: 1433162439}
@@ -2040,7 +2042,7 @@ MonoBehaviour:
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Adding Colors
-      sceneToLoad: 31
+      sceneToLoad: 1
       button: {fileID: 0}
       leftToUnlock: 0
       continueLevel: 0

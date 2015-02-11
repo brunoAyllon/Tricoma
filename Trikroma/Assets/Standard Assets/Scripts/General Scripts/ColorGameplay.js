@@ -108,7 +108,7 @@ public function ResetLevel()
 
 public function LoadSaveFile(dataFile:TextAsset):boolean
 {
-	var allTheText = saveDataInputFile.text.Split("\n"[0]);
+	var allTheText:String[] = saveDataInputFile.text.Split("\n"[0]);
 	if(allTheText.Length == 0)
 	{
 		return false;
@@ -119,7 +119,7 @@ public function LoadSaveFile(dataFile:TextAsset):boolean
 	var i:int = 1;
 	for (var colorRenderer in gridScript.objectRenderer)
 	{
-		 var data = allTheText[i].Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
+		 var data:String[] = allTheText[i].Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
 		 Debug.Log(int.Parse(data[0])+" , "+data[1]+" , "+data[2]+" , "+data[3]);
 		 colorRenderer.material.color = Color(int.Parse(data[0]), int.Parse(data[1]), int.Parse(data[2]), int.Parse(data[3]));
 		 
@@ -132,7 +132,6 @@ public function LoadSaveFile(dataFile:TextAsset):boolean
 public function SaveGameToFile(dataFile:TextAsset):void
 {
 	var path:String =  AssetDatabase.GetAssetPath(saveDataInputFile);
-	Debug.Log("The File: " + path);
 	
 	var data:String = currentCorrectTiles+"\n";
 	
@@ -142,9 +141,7 @@ public function SaveGameToFile(dataFile:TextAsset):void
 		data+= " ( "+colorToSave.r+" , "+colorToSave.g+" , "+colorToSave.b+" , "+colorToSave.a +" )\n";
 	}
 	
-	System.IO.File.WriteAllText(path, data);
-	
-	AssetDatabase.SaveAssets();
+	System.IO.File.WriteAllText(path, data);	
 }
 
 public function RegisterLevelManager(theLevelManager:GameObject)

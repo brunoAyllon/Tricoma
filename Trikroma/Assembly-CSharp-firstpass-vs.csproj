@@ -58,6 +58,7 @@
      <None Include="Assets\Standard Assets\TextAssets\Puzzle12.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle10.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle16.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\testMenuSave.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle04.txt" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularSmooth.shader" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle18.txt" />
