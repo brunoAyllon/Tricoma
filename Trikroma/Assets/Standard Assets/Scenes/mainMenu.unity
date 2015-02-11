@@ -1991,6 +1991,7 @@ RectTransform:
   - {fileID: 1788616665}
   - {fileID: 996352858}
   - {fileID: 633799220}
+  - {fileID: 1379045714}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
@@ -2015,6 +2016,7 @@ MonoBehaviour:
   displayScreen: {fileID: 702246042}
   displayCompleted: {fileID: 468112307}
   levelSelectButton: {fileID: 996352857}
+  levelContinueButton: {fileID: 1379045713}
   completionSlider: {fileID: 633799219}
   guiTabs:
   - tab: {fileID: 365491181}
@@ -2023,7 +2025,7 @@ MonoBehaviour:
     displayBackground: {fileID: 21300000, guid: fb27341ab27f7b942b2054fc78834fcb,
       type: 3}
     guiButtons:
-    - puzzleState: 3
+    - puzzleState: 1
       completeToUnlock: []
       unlockedTexture: {fileID: 21300000, guid: fc859fe556452a748911cb48200fbcb3,
         type: 3}
@@ -2038,9 +2040,10 @@ MonoBehaviour:
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Adding Colors
-      sceneToLoad: 1
+      sceneToLoad: 31
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 21300000, guid: fc859fe556452a748911cb48200fbcb3,
@@ -2059,6 +2062,7 @@ MonoBehaviour:
       sceneToLoad: 2
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 21300000, guid: fc859fe556452a748911cb48200fbcb3,
@@ -2075,6 +2079,7 @@ MonoBehaviour:
       sceneToLoad: 3
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2090,6 +2095,7 @@ MonoBehaviour:
       sceneToLoad: 4
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2105,6 +2111,7 @@ MonoBehaviour:
       sceneToLoad: 5
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2120,6 +2127,7 @@ MonoBehaviour:
       sceneToLoad: 6
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     defaultDisplayedButton: {fileID: 422057193}
   - tab: {fileID: 1225949299}
     tabName: Easy
@@ -2143,6 +2151,7 @@ MonoBehaviour:
       sceneToLoad: 7
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2158,6 +2167,7 @@ MonoBehaviour:
       sceneToLoad: 8
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2173,6 +2183,7 @@ MonoBehaviour:
       sceneToLoad: 9
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2188,6 +2199,7 @@ MonoBehaviour:
       sceneToLoad: 10
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2203,6 +2215,7 @@ MonoBehaviour:
       sceneToLoad: 11
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2218,6 +2231,7 @@ MonoBehaviour:
       sceneToLoad: 12
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     defaultDisplayedButton: {fileID: 422057193}
   - tab: {fileID: 822317005}
     tabName: Medium
@@ -2240,6 +2254,7 @@ MonoBehaviour:
       sceneToLoad: 13
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2255,6 +2270,7 @@ MonoBehaviour:
       sceneToLoad: 14
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2270,6 +2286,7 @@ MonoBehaviour:
       sceneToLoad: 15
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2285,6 +2302,7 @@ MonoBehaviour:
       sceneToLoad: 16
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2300,6 +2318,7 @@ MonoBehaviour:
       sceneToLoad: 17
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2315,6 +2334,7 @@ MonoBehaviour:
       sceneToLoad: 18
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     defaultDisplayedButton: {fileID: 422057193}
   - tab: {fileID: 1561763825}
     tabName: Hard
@@ -2337,6 +2357,7 @@ MonoBehaviour:
       sceneToLoad: 19
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2352,6 +2373,7 @@ MonoBehaviour:
       sceneToLoad: 20
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2367,6 +2389,7 @@ MonoBehaviour:
       sceneToLoad: 21
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2382,6 +2405,7 @@ MonoBehaviour:
       sceneToLoad: 22
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2397,6 +2421,7 @@ MonoBehaviour:
       sceneToLoad: 23
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
@@ -2412,6 +2437,7 @@ MonoBehaviour:
       sceneToLoad: 24
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     defaultDisplayedButton: {fileID: 422057193}
   - tab: {fileID: 1300915290}
     tabName: Secret
@@ -2419,7 +2445,7 @@ MonoBehaviour:
     displayBackground: {fileID: 21300000, guid: fb27341ab27f7b942b2054fc78834fcb,
       type: 3}
     guiButtons:
-    - puzzleState: 3
+    - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
       lockTexture: {fileID: 0}
@@ -2434,6 +2460,7 @@ MonoBehaviour:
       sceneToLoad: 0
       button: {fileID: 0}
       leftToUnlock: 0
+      continueLevel: 0
     defaultDisplayedButton: {fileID: 422057193}
   guiButtons:
   - {fileID: 422057193}
@@ -2673,6 +2700,110 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1314220617}
+--- !u!1 &1379045713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1379045714}
+  - 222: {fileID: 1379045717}
+  - 114: {fileID: 1379045716}
+  - 114: {fileID: 1379045715}
+  m_Layer: 5
+  m_Name: ContinueButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1379045714
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1379045713}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1678956063}
+  m_Father: {fileID: 1263194122}
+  m_RootOrder: 17
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 266, y: -243}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1379045715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1379045713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
+    m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
+    m_ColorMultiplier: 1
+    m_FadeDuration: .100000001
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1379045716}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1379045716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1379045713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1379045717
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1379045713}
 --- !u!1 &1433162439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3198,6 +3329,72 @@ RectTransform:
   m_AnchoredPosition: {x: -299, y: -177}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
+--- !u!1 &1678956062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1678956063}
+  - 222: {fileID: 1678956065}
+  - 114: {fileID: 1678956064}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1678956063
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1678956062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1379045714}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1678956064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1678956062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: .195999995, g: .195999995, b: .195999995, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Continue
+--- !u!222 &1678956065
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1678956062}
 --- !u!1 &1747074072
 GameObject:
   m_ObjectHideFlags: 0
