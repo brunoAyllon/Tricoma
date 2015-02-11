@@ -6,6 +6,9 @@ public var victoryInputFile:TextAsset = null;
 // Stores type and color of the victory node
 private var victoryGrid:VictoryNode[,];
 
+// File to load save data from
+public var saveDataInputFile:TextAsset;
+
 // This script RERQUIRES being attached to an object with a CreateGrid component
 private var gridScript:CreateGrid  = null;
 
@@ -99,6 +102,46 @@ public function ResetLevel()
 	}
 	// reset correct node count
 	currentCorrectTiles = initialCorrectTiles;
+}
+
+public function LoadSaveFile(dataFile:TextAsset):boolean
+{
+	var allTheText = saveDataInputFile.text.Split("\n"[0]);
+	if(allTheText.Length == 0)
+	{
+		return false;
+	}
+	
+	currentCorrectTiles = int.Parse(allTheText[0]);
+	
+	var i:int = 0;
+	for (var colorRenderer in gridScript.objectRenderer)
+	{
+		 var data = allTheText[i].Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
+		 colorRenderer.material.color = Color(int.Parse(data[0]), int.Parse(data[1]), int.Parse(data[2]), int.Parse(data[3]));
+		 
+		 i+= 3;
+	}
+	
+	return true;
+}
+
+public function SaveGameToFile(dataFile:TextAsset):void
+{
+	var path:String =  AssetDatabase.GetAssetPath(saveDataInputFile);
+	Debug.Log("The File: " + path);
+	
+	var data:String = currentCorrectTiles+"\n";
+	
+	for (var colorRenderer in gridScript.objectRenderer)
+	{
+		var colorToSave:Color = colorRenderer.material.color;
+		data+= " ( "+colorToSave.r+" , "+colorToSave.g+" , "+colorToSave.b+" , "+colorToSave.a +" )\n";
+	}
+	
+	System.IO.File.WriteAllText(path, data);
+	
+	AssetDatabase.SaveAssets();
 }
 
 public function RegisterLevelManager(theLevelManager:GameObject)
@@ -401,12 +444,21 @@ function Start ()
 		
 		// Now read the victory file
 		ReadVictoryDataFromFile();
+		LoadSaveFile(saveDataInputFile);
 	}
 	else
 	{
 		Debug.LogError("ColorGameplay could not find an instance of CreateGrid or perhaps victoryInputFile");
 	}
 	
+}
+
+function OnDestroy()
+{
+	if(saveDataInputFile != null)
+	{
+		SaveGameToFile(saveDataInputFile);
+	}
 }
 
 function Update () 

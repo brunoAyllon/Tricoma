@@ -40,6 +40,8 @@ public var levelSelectButton:GameObject;
 // What button are currently displaying
 private var displayedButton:GameObject;
 
+public var completionSlider:GameObject;
+
 
 // Enum used to determine the current state of a puzzle
 enum PuzzleState
@@ -144,6 +146,25 @@ private var tabs:Dictionary.<String, MenuTab>;
 
 // Interface for reading all the input data, Unity will not display dictionaries because reasons
 public var guiButtons:GameObject[];
+
+private var levelsToComplete:int;
+private var levelsCompleted:int;
+
+function CheckLevelsCompleted():int
+{
+	var howManyCompleted:int = 0.0;
+	for(var tab in tabs)
+	{
+		for(button in tab.Value.guiButtons)
+		{
+			if(button.puzzleState == PuzzleState.Puzzle_Completed)
+			{
+				++howManyCompleted;
+			}
+		}
+	}
+	return howManyCompleted;
+}
 
 // Makes the GUI visible or invisible
 function VisibleGUI(value:boolean):void
@@ -374,6 +395,8 @@ public function CompleteLevel(sceneID:int)
 	{
 		tabs[listener.tabName].buttons[listener.sceneItLoads].CompleteRequirement();
 	}
+	
+	++completionSlider.GetComponent(Slider).value;
 }
 
 // Activates when a new scene is loaded
@@ -508,6 +531,22 @@ function Awake ()
 			}
 		}
 	}
+	
+	levelsToComplete = 0.0;
+	for(var tab in guiTabs)
+	{
+		for(button in tab.guiButtons)
+		{
+			++levelsToComplete;
+		}
+	}
+	
+	levelsCompleted = CheckLevelsCompleted();
+	
+	var slider:Slider = completionSlider.GetComponent(Slider);
+	slider.minValue = 0;
+	slider.maxValue = levelsToComplete;
+	slider.value = levelsCompleted;
 }
 
 function Update () 
