@@ -183,6 +183,7 @@ public function LoadManagerState():boolean
 				var leftToUnlock:int = int.Parse(data[3]);
 				var continueLevel:boolean = boolean.Parse(data[4]);
 				
+				Debug.Log("Tab to update: "+tabName);
 				tabs[tabName].buttons[sceneNumber].puzzleState = state;
 				tabs[tabName].buttons[sceneNumber].leftToUnlock = leftToUnlock;
 				tabs[tabName].buttons[sceneNumber].continueLevel = continueLevel;
@@ -300,7 +301,7 @@ public function DrawLevelCompletedImage():void
 
 public function DrawTab(tabName:String):void
 {
-	Debug.Log("Tab to add listener: "+tabName);
+	Debug.Log("Tab to draw: "+tabName);
 	
 	// Error if the tab we asked to draw doesn't exist
 	if(!tabs.ContainsKey(tabName))
@@ -314,7 +315,7 @@ public function DrawTab(tabName:String):void
 	}
 	else 
 	{
-		// Now go through every button in the tab
+		// Go through every button in the tab
 		for (var button in tabs[tabName].buttons)
 		{
 			// And update its sprite and text components
@@ -357,6 +358,9 @@ public function DrawTab(tabName:String):void
 		{
 			guiBackground.sprite = tabs[tabName].tabBackground;
 		}
+		
+		currentTab = tabName;
+		
 		// Lastly, draw the button display
 		DrawButtonDisplay(tabs[tabName].defaultDisplayedButton);
 	}
@@ -367,6 +371,7 @@ public function DrawButtonDisplay(button:GameObject)
 	// If the button we will display exists
 	if(button != null)
 	{
+		Debug.Log("I am tab "+currentTab);
 		displayedButton = button;
 		
 		// And if it has a text component
@@ -482,6 +487,30 @@ public function ContinueLevel(sceneID:int):void
 	tabs[currentTab].buttons[sceneID].continueLevel = true;
 }
 
+public function BindGUITab(tabButton:Button, tabToDraw:String):void
+{
+	tabButton.onClick.AddListener (function(){DrawTab(tabToDraw);});
+}
+
+public function BindGUIButton(button:GameObject):void
+{
+	button.GetComponent(Button).onClick.AddListener (function(){DrawButtonDisplay(button);}) ;
+}
+
+public function BindGUITabButtons(tabName:String):void
+{
+	// Fill the button's dictionary
+	for (var i:int = 0; i < tabs[tabName].guiButtons.Length; ++i)
+	{
+		// Bind them to the correct button
+		tabs[tabName].guiButtons[i].button = guiButtons[i];
+		tabs[tabName].guiButtons[i].continueLevel = false;
+		// And add them to the dictionaries
+		tabs[tabName].buttons.Add(tabs[tabName].guiButtons[i].sceneToLoad, tabs[tabName].guiButtons[i]);
+		tabs[tabName].objectToButton.Add(guiButtons[i], tabs[tabName].guiButtons[i]);
+	}
+}
+
 // Activates when a new scene is loaded
 function OnLevelWasLoaded (level : int) 
 {
@@ -539,7 +568,7 @@ function Awake ()
 	for (var i:int = 0; i < guiTabs.Length; ++i)
 	{
 	
-		// Excpet for duplicates
+		// Except for duplicates
 		if(!tabs.ContainsKey(guiTabs[i].tabName))
 		{
 			var tabName:String = guiTabs[i].tabName;
@@ -554,23 +583,13 @@ function Awake ()
 				tabButton = guiTabs[i].tab.AddComponent(Button);
 			}
 			// And tell them to draw their displays when they are clicked on
-			tabButton.onClick.AddListener (function(){DrawTab(tabName);}); 
+			BindGUITab(tabButton, tabName); 
 			// And add them to the dictionaries
 			tabs.Add(tabName, guiTabs[i]);
 			
-			Debug.Log(tabName);
-			// Bind the buttons to the tab
-			for (var j:int = 0; j < tabs[tabName].guiButtons.Length; ++j)
-			{
-				// Bind them to the correct button
-				tabs[tabName].guiButtons[j].button = guiButtons[j];
-				tabs[tabName].guiButtons[j].continueLevel = false;
-				// And add them to the dictionaries
-				tabs[tabName].buttons.Add(tabs[tabName].guiButtons[j].sceneToLoad, tabs[tabName].guiButtons[j]);
-				tabs[tabName].objectToButton.Add(guiButtons[j], tabs[tabName].guiButtons[j]);
-			}
+			BindGUITabButtons(tabName);
 		}
-		
+		Debug.Log(tabName);
 		
 		// Make sure all tabs are children of our canvas
 		guiTabs[i].tab.transform.SetParent(this.transform, false);
@@ -587,9 +606,7 @@ function Awake ()
 		{
 			buttonComponent = button.AddComponent(Button);
 		}
-		// And tell them to draw their display screens on click
-		var buttonToDraw:GameObject = button;
-		buttonComponent.onClick.AddListener (function(){DrawButtonDisplay(buttonToDraw);}) ;	
+		BindGUIButton(button);	
 	}
 	
 	// If the level select button doesn't have a button component, add it
