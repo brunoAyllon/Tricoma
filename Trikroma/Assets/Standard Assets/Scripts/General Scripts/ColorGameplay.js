@@ -37,6 +37,8 @@ private var numberOfRedos:int;
 
 private var levelManager:GameObject;
 
+private var shouldLoadSave:boolean;
+
 
 // Holds node information
 class VictoryNode extends System.ValueType
@@ -106,7 +108,7 @@ public function ResetLevel()
 
 public function LoadSaveFile(dataFile:TextAsset):boolean
 {
-	var allTheText = saveDataInputFile.text.Split("\n"[0]);
+	var allTheText:String[] = saveDataInputFile.text.Split("\n"[0]);
 	if(allTheText.Length == 0)
 	{
 		return false;
@@ -114,13 +116,14 @@ public function LoadSaveFile(dataFile:TextAsset):boolean
 	
 	currentCorrectTiles = int.Parse(allTheText[0]);
 	
-	var i:int = 0;
+	var i:int = 1;
 	for (var colorRenderer in gridScript.objectRenderer)
 	{
-		 var data = allTheText[i].Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
+		 var data:String[] = allTheText[i].Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
+		 Debug.Log(int.Parse(data[0])+" , "+data[1]+" , "+data[2]+" , "+data[3]);
 		 colorRenderer.material.color = Color(int.Parse(data[0]), int.Parse(data[1]), int.Parse(data[2]), int.Parse(data[3]));
 		 
-		 i+= 3;
+		 ++i;
 	}
 	
 	return true;
@@ -129,7 +132,6 @@ public function LoadSaveFile(dataFile:TextAsset):boolean
 public function SaveGameToFile(dataFile:TextAsset):void
 {
 	var path:String =  AssetDatabase.GetAssetPath(saveDataInputFile);
-	Debug.Log("The File: " + path);
 	
 	var data:String = currentCorrectTiles+"\n";
 	
@@ -139,9 +141,7 @@ public function SaveGameToFile(dataFile:TextAsset):void
 		data+= " ( "+colorToSave.r+" , "+colorToSave.g+" , "+colorToSave.b+" , "+colorToSave.a +" )\n";
 	}
 	
-	System.IO.File.WriteAllText(path, data);
-	
-	AssetDatabase.SaveAssets();
+	System.IO.File.WriteAllText(path, data);	
 }
 
 public function RegisterLevelManager(theLevelManager:GameObject)
@@ -150,10 +150,26 @@ public function RegisterLevelManager(theLevelManager:GameObject)
 	levelManager = theLevelManager;
 }
 
-public function BroadcastVictory():void
+public function LoadSave(value:boolean):void
 {
-	levelManager.SendMessage("CompleteLevel", Application.loadedLevel, SendMessageOptions.DontRequireReceiver);
-	levelManager.SendMessage("GoBackToMenu", SendMessageOptions.DontRequireReceiver);
+		shouldLoadSave = value;
+}
+
+public function NotifyVictory():void
+{
+	if(levelManager != null)
+	{
+		levelManager.SendMessage("CompleteLevel", Application.loadedLevel, SendMessageOptions.DontRequireReceiver);
+		levelManager.SendMessage("GoBackToMenu", SendMessageOptions.DontRequireReceiver);
+	}
+}
+
+public function NotifyLevelIncomplete():void
+{
+	if(levelManager != null)
+	{
+		levelManager.SendMessage("ContinueLevel", Application.loadedLevel, SendMessageOptions.DontRequireReceiver);	
+	}
 }
 
 // Called by the instantiated object's collider 
@@ -183,26 +199,6 @@ public function EndColorManip(colliderName:String)
 		
 		var edgeFound:Edge = gridScript.getEdge(To, From);
 		
-		/*if(!gridScript.adjList.ContainsKey(To))
-		{
-			Debug.Log("No key here");
-		}
-		
-		// If the adjacency list exists and the nodes are neighbors
-		if((gridScript.isNeighbor(From, To)) && gridScript.adjList.ContainsKey(To))
-		{
-			Debug.Log("Hello Mr. Key");
-			// Find the edge and its type
-			for(var edge:Edge in gridScript.adjList[To])
-			{
-				if(edge.isConnectedTo(From))
-				{
-					isConnected = true;
-					operationType = edge.type;
-				}
-			}
-			
-		}*/
 		// If the edge is not connected, we have an error
 		if(!edgeFound.isValid())
 		{
@@ -262,12 +258,10 @@ public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void
 
 	}
 	
-	// For testing
-	//Debug.Log(currentCorrectTiles+" / "+desiredCorrectTiles);
 	if(isVictorious())
 	{
 		Debug.Log("I win");
-		BroadcastVictory();
+		NotifyVictory();
 	}
 }
 
@@ -384,47 +378,6 @@ public function ReadVictoryDataFromFile()
 		
 		initialCorrectTiles = currentCorrectTiles;
 	}
-	
-	// For my own paranoia's sake, I am keeping the old version of the code around
-	
-	/*
-	// First read all the data
-	var allTheText = victoryInputFile.text.Split("\n"[0]);
-	
-	// Initialize the node vector
-	victoryGrid = new VictoryNode[gridScript.numberOfRows, gridScript.numberOfColumns];
-	for(var node in victoryGrid)
-	{
-		// Initialize the color to the default color, such as transparent, white, black, etc
-		node.typeOfNode = VictoryNodeType.Node_Invalid;
-		node.desiredColor= gridScript.defaultColor;
-	}
-	
-	// Now read the color values from file
-	var currentRow =  new Array();
-	
-	for (var i = 0.0; i < gridScript.numberOfRows; ++i)
-	{
-		currentRow = allTheText[i + 1.0].Replace(" ", "").Split(','[0]);
-		for(var j = 0.0; j < gridScript.numberOfColumns; ++j)
-		{
-			// Transform the strings into RGB format
-			var rgbColor = gridScript.HexValueToRGB(currentRow[j].ToString());
-			// And store them
-			victoryGrid[i, j].desiredColor = rgbColor;
-			if( rgbColor != gridScript.defaultColor)
-			{
-				victoryGrid[i, j].typeOfNode = VictoryNodeType.Node_Normal;
-				++desiredCorrectTiles;
-				if(victoryGrid[i, j].isDesiredColor(gridScript.objectRenderer[i, j].material.color))
-				{
-					++currentCorrectTiles;
-				}
-			}
-		}
-	}
-	
-	initialCorrectTiles = currentCorrectTiles;*/
 }
 
 
@@ -444,7 +397,11 @@ function Start ()
 		
 		// Now read the victory file
 		ReadVictoryDataFromFile();
-		LoadSaveFile(saveDataInputFile);
+		
+		if(shouldLoadSave)
+		{
+			LoadSaveFile(saveDataInputFile);
+		}
 	}
 	else
 	{
@@ -455,9 +412,10 @@ function Start ()
 
 function OnDestroy()
 {
-	if(saveDataInputFile != null)
+	if(!isVictorious() && saveDataInputFile != null)
 	{
 		SaveGameToFile(saveDataInputFile);
+		NotifyLevelIncomplete();
 	}
 }
 
