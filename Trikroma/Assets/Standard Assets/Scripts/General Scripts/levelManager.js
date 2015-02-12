@@ -10,6 +10,9 @@ import UnityEngine.UI;
 // In other words, there can be only one. Only one version of the game object that contains this script can exist at a time
 @HideInInspector static public var singletonInstance:GameObject;
 
+public var loadManagerStateFromFile:boolean;
+public var managerSaveFile:TextAsset;
+
 // The default background for the GUI
 public var GUIBackgroundObject:GameObject;
 
@@ -36,6 +39,9 @@ Observation: If you drop in an object that does not have a button and level sele
 the script is smart enough to add one 
 */
 public var levelSelectButton:GameObject;
+
+public var levelContinueButton:GameObject;
+private var continueLevel:boolean;
 
 // What button are currently displaying
 private var displayedButton:GameObject;
@@ -115,9 +121,12 @@ class MenuButton
 	@HideInInspector public var button:GameObject;
 	// Used to list all objects
 	@HideInInspector public var listenForCompletion:ArrayList;
-	
+	 
 	// How many stages must still be finished to change button state from hidden to unlocked
 	@HideInInspector public var leftToUnlock:int;
+	
+	
+	@HideInInspector public var continueLevel:boolean;
 	
 	// Message sent when completing a stage needed to unlock the button 
 	public function CompleteRequirement()
@@ -149,6 +158,60 @@ public var guiButtons:GameObject[];
 
 private var levelsToComplete:int;
 private var levelsCompleted:int;
+
+public function LoadManagerState():boolean
+{
+	if (loadManagerStateFromFile && managerSaveFile)
+	{
+		var allTheText:String[] = managerSaveFile.text.Split("\n"[0]);
+		if(allTheText.Length == 0)
+		{
+			return false;
+		}
+		
+		currentTab = allTheText[0];
+		var i:int = 1;
+		
+		for (tab in guiTabs)
+		{
+			for(button in tab.guiButtons)
+			{
+				var data:String[] = allTheText[i].Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
+				var tabName:String = data[0];
+				var sceneNumber:int = int.Parse(data[1]);
+				var state:PuzzleState = System.Enum.Parse( typeof( PuzzleState ), data[2]);
+				var leftToUnlock:int = int.Parse(data[3]);
+				var continueLevel:boolean = boolean.Parse(data[4]);
+				
+				Debug.Log("Tab to update: "+tabName);
+				tabs[tabName].buttons[sceneNumber].puzzleState = state;
+				tabs[tabName].buttons[sceneNumber].leftToUnlock = leftToUnlock;
+				tabs[tabName].buttons[sceneNumber].continueLevel = continueLevel;
+				++i;
+			}
+		}
+	}
+	return true;
+}
+
+public function SaveManagerState():void
+{	
+	if(managerSaveFile)
+	{
+		var path:String =  AssetDatabase.GetAssetPath(managerSaveFile);
+		var data:String = currentTab+"\n";
+		
+		for (tab in guiTabs)
+		{
+			for(button in tab.guiButtons)
+			{
+				data+= " ( "+tab.tabName+" , "+button.sceneToLoad+" , "+button.puzzleState+" , "+button.leftToUnlock +" , "+button.continueLevel+" )\n";
+			}
+		}
+		
+		System.IO.File.WriteAllText(path, data);
+	}
+}
 
 function CheckLevelsCompleted():int
 {
@@ -182,11 +245,7 @@ function VisibleGUI(value:boolean):void
 	// If we are making the GUI visible
 	if (value == true)
 	{
-		// We if the select button must be drawn
-		DrawLevelSelectButton();
-		// As well as the level complete image
-		DrawLevelCompletedImage();
-		// Then we update the button display
+		// Update the button display
 		DrawButtonDisplay(displayedButton);
 	}
 }
@@ -210,6 +269,21 @@ public function DrawLevelSelectButton():boolean
 	
 }
 
+public function DrawLevelContinueButton():boolean
+{
+	
+	if(tabs[currentTab].objectToButton[displayedButton].continueLevel)
+	{
+		levelContinueButton.SetActive(true);
+		return true;
+	}
+	else
+	{
+		levelContinueButton.SetActive(false);
+		return false;
+	}
+}
+
 public function DrawLevelCompletedImage():void
 {
 	// If the level is complete
@@ -227,7 +301,7 @@ public function DrawLevelCompletedImage():void
 
 public function DrawTab(tabName:String):void
 {
-	Debug.Log("Tab to add listener: "+tabName);
+	Debug.Log("Tab to draw: "+tabName);
 	
 	// Error if the tab we asked to draw doesn't exist
 	if(!tabs.ContainsKey(tabName))
@@ -241,20 +315,7 @@ public function DrawTab(tabName:String):void
 	}
 	else 
 	{
-		// If the tab was not initialized
-		if(tabs[tabName].buttons.Count == 0)
-		{
-			for (var i:int = 0; i < guiButtons.Length; ++i)
-			{
-				// Bind them to the correct button
-				tabs[tabName].guiButtons[i].button = guiButtons[i];
-				// And add them to the dictionaries
-				tabs[tabName].buttons.Add(tabs[tabName].guiButtons[i].sceneToLoad, tabs[tabName].guiButtons[i]);
-				tabs[tabName].objectToButton.Add(guiButtons[i], tabs[tabName].guiButtons[i]);
-			}
-		}
-		
-		// Now go through every button in the tab
+		// Go through every button in the tab
 		for (var button in tabs[tabName].buttons)
 		{
 			// And update its sprite and text components
@@ -289,16 +350,17 @@ public function DrawTab(tabName:String):void
 		var displayBackground:Image = displayBackground.GetComponent(Image);
 		if(displayBackground != null)
 		{
-			Debug.Log("Changing display background " + tabName);
 			displayBackground.sprite = tabs[tabName].displayBackground;
 		}
 		// And do the same for the gui background
 		var guiBackground:Image = GUIBackgroundObject.GetComponent(Image);
 		if(displayBackground != null)
 		{
-			Debug.Log("Changing GUI background " + tabName);
 			guiBackground.sprite = tabs[tabName].tabBackground;
 		}
+		
+		currentTab = tabName;
+		
 		// Lastly, draw the button display
 		DrawButtonDisplay(tabs[tabName].defaultDisplayedButton);
 	}
@@ -309,6 +371,7 @@ public function DrawButtonDisplay(button:GameObject)
 	// If the button we will display exists
 	if(button != null)
 	{
+		Debug.Log("I am tab "+currentTab);
 		displayedButton = button;
 		
 		// And if it has a text component
@@ -322,6 +385,7 @@ public function DrawButtonDisplay(button:GameObject)
 		
 		// If it is completed, draw the level complete image
 		DrawLevelCompletedImage();
+		
 		
 		// Now choose what image to display based on the puzzle's current state
 		var buttonData:MenuButton = tabs[currentTab].objectToButton[button];
@@ -351,6 +415,13 @@ public function DrawButtonDisplay(button:GameObject)
 			levelLoader.levelToLoad = tabs[currentTab].objectToButton[button].sceneToLoad;
 		}
 		
+		if(DrawLevelContinueButton())
+		{
+			// Update what scene will be loaded
+			var continueLoader:LoadLevel = levelContinueButton.GetComponent(LoadLevel);
+			continueLoader.levelToLoad = tabs[currentTab].objectToButton[button].sceneToLoad;
+		}
+		
 	}
 }
 
@@ -364,6 +435,15 @@ public function BroadcastLevelManagersExistance():void
 	}
 }
 
+public function LoadSaveFile()
+{
+	var listeners : ColorGameplay[] = FindObjectsOfType(ColorGameplay) as ColorGameplay[];
+	for (var listener : ColorGameplay in listeners) 
+	{
+		listener.gameObject.SendMessage("LoadSave", continueLevel, SendMessageOptions.DontRequireReceiver);
+	}
+}
+
 // Load the scene in which the main menu was originally created
 public function GoBackToMenu()
 {
@@ -371,13 +451,13 @@ public function GoBackToMenu()
 }
 
 // Functions to update the current button's image and state, expected to be called from other scripts
-public function UnlockLevel(sceneID:int)
+public function UnlockLevel(sceneID:int):void
 {
 	tabs[currentTab].buttons[sceneID].puzzleState = PuzzleState.Puzzle_Unlocked;
 	tabs[currentTab].buttons[sceneID].button.GetComponent(Image).sprite = tabs[currentTab].buttons[sceneID].unlockedTexture;
 }
 
-public function LockLevel(sceneID:int)
+public function LockLevel(sceneID:int):void
 {
 	tabs[currentTab].buttons[sceneID].puzzleState = PuzzleState.Puzzle_Locked;
 	tabs[currentTab].buttons[sceneID].button.GetComponent(Image).sprite = tabs[currentTab].buttons[sceneID].lockTexture;
@@ -389,16 +469,46 @@ public function HideLevel(sceneID:int)
 	tabs[currentTab].buttons[sceneID].button.GetComponent(Image).sprite = tabs[currentTab].buttons[sceneID].hiddenTexture;
 }
 
-public function CompleteLevel(sceneID:int)
+public function CompleteLevel(sceneID:int):void
 {	
 	tabs[currentTab].buttons[sceneID].puzzleState = PuzzleState.Puzzle_Completed;
 	tabs[currentTab].buttons[sceneID].button.GetComponent(Image).sprite = tabs[currentTab].buttons[sceneID].completedTexture;
+	tabs[currentTab].buttons[sceneID].continueLevel = false;
 	for( var listener:Receiver in tabs[currentTab].buttons[sceneID].listenForCompletion)
 	{
 		tabs[listener.tabName].buttons[listener.sceneItLoads].CompleteRequirement();
 	}
 	
 	++completionSlider.GetComponent(Slider).value;
+}
+
+public function ContinueLevel(sceneID:int):void
+{
+	tabs[currentTab].buttons[sceneID].continueLevel = true;
+}
+
+public function BindGUITab(tabButton:Button, tabToDraw:String):void
+{
+	tabButton.onClick.AddListener (function(){DrawTab(tabToDraw);});
+}
+
+public function BindGUIButton(button:GameObject):void
+{
+	button.GetComponent(Button).onClick.AddListener (function(){DrawButtonDisplay(button);}) ;
+}
+
+public function BindGUITabButtons(tabName:String):void
+{
+	// Fill the button's dictionary
+	for (var i:int = 0; i < tabs[tabName].guiButtons.Length; ++i)
+	{
+		// Bind them to the correct button
+		tabs[tabName].guiButtons[i].button = guiButtons[i];
+		tabs[tabName].guiButtons[i].continueLevel = false;
+		// And add them to the dictionaries
+		tabs[tabName].buttons.Add(tabs[tabName].guiButtons[i].sceneToLoad, tabs[tabName].guiButtons[i]);
+		tabs[tabName].objectToButton.Add(guiButtons[i], tabs[tabName].guiButtons[i]);
+	}
 }
 
 // Activates when a new scene is loaded
@@ -417,9 +527,15 @@ function OnLevelWasLoaded (level : int)
 			// And inform the gameplay controller where to inform that the stage was completed
 			BroadcastLevelManagersExistance();
 			VisibleGUI(false);
+			LoadSaveFile();
+			continueLevel = false; 
 		}
 }
 
+function OnDestroy()
+{
+	SaveManagerState();
+}
 
 function Awake () 
 {
@@ -452,9 +568,10 @@ function Awake ()
 	for (var i:int = 0; i < guiTabs.Length; ++i)
 	{
 	
-		// Excpet for duplicates
+		// Except for duplicates
 		if(!tabs.ContainsKey(guiTabs[i].tabName))
 		{
+			var tabName:String = guiTabs[i].tabName;
 			// Initialize its internal variables
 			guiTabs[i].buttons = new Dictionary.<int, MenuButton>();
 			guiTabs[i].objectToButton = new Dictionary.<GameObject, MenuButton>();
@@ -466,11 +583,14 @@ function Awake ()
 				tabButton = guiTabs[i].tab.AddComponent(Button);
 			}
 			// And tell them to draw their displays when they are clicked on
-			var tabToDraw:String = guiTabs[i].tabName;
-			tabButton.onClick.AddListener (function(){DrawTab(tabToDraw);}); 
+			BindGUITab(tabButton, tabName); 
 			// And add them to the dictionaries
-			tabs.Add(tabToDraw, guiTabs[i]);
+			tabs.Add(tabName, guiTabs[i]);
+			
+			BindGUITabButtons(tabName);
 		}
+		Debug.Log(tabName);
+		
 		// Make sure all tabs are children of our canvas
 		guiTabs[i].tab.transform.SetParent(this.transform, false);
 	}
@@ -486,9 +606,7 @@ function Awake ()
 		{
 			buttonComponent = button.AddComponent(Button);
 		}
-		// And tell them to draw their display screens on click
-		var buttonToDraw:GameObject = button;
-		buttonComponent.onClick.AddListener (function(){DrawButtonDisplay(buttonToDraw);}) ;	
+		BindGUIButton(button);	
 	}
 	
 	// If the level select button doesn't have a button component, add it
@@ -506,6 +624,27 @@ function Awake ()
 	}
 	// And tell the script to load a new scene on click
 	selectButton.onClick.AddListener(function(){levelLoader.LoadLevel();});
+	
+	
+	
+	var continueButton:Button = levelContinueButton.GetComponent(Button);
+	if(continueButton == null)
+	{
+		continueButton = levelContinueButton.AddComponent(Button);
+	}
+	
+	// Also add a level loader component in case none can be found
+	var continueLoader:LoadLevel = levelContinueButton.GetComponent(LoadLevel);
+	if(continueLoader == null)
+	{
+		continueLoader = levelContinueButton.AddComponent(LoadLevel);
+	}
+	// And tell the script to load a new scene on click
+	continueButton.onClick.AddListener(function(){continueLevel = true; continueLoader.LoadLevel();});
+	continueLevel = false;
+	
+	// Now load the current state of the game
+	LoadManagerState();
 	
 	// Now draw the current tab and make the GUI visible
 	DrawTab(currentTab);
