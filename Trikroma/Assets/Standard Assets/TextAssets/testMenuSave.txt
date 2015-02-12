@@ -1,5 +1,5 @@
-Easy
- ( Tutorial , 1 , Puzzle_Unlocked , 0 , False )
+Tutorial
+ ( Tutorial , 31 , Puzzle_Completed , 0 , False )
  ( Tutorial , 2 , Puzzle_Locked , 0 , False )
  ( Tutorial , 3 , Puzzle_Locked , 0 , False )
  ( Tutorial , 4 , Puzzle_Locked , 0 , False )
@@ -23,9 +23,4 @@ Easy
  ( Hard , 22 , Puzzle_Locked , 0 , False )
  ( Hard , 23 , Puzzle_Locked , 0 , False )
  ( Hard , 24 , Puzzle_Locked , 0 , False )
- ( Hard , 19 , Puzzle_Locked , 0 , False )
- ( Hard , 20 , Puzzle_Locked , 0 , False )
- ( Hard , 21 , Puzzle_Locked , 0 , False )
- ( Hard , 22 , Puzzle_Locked , 0 , False )
- ( Hard , 23 , Puzzle_Locked , 0 , False )
- ( Hard , 24 , Puzzle_Locked , 0 , False )
+ ( Secret , 0 , Puzzle_Locked , 0 , False )
