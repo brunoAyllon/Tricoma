@@ -1,7 +1,7 @@
 Matrix Size:
 2, 1
 Color Matrix:
-000000,
+FF0000,
 0000FF
 Edges:
 (0,0), + ,(1,0)

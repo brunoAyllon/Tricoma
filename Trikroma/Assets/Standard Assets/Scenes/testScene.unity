@@ -107,7 +107,7 @@ RectTransform:
   - {fileID: 1589700545}
   - {fileID: 243662197}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -475,7 +475,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &615075636
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &615075637
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -1585,9 +1585,9 @@ Transform:
   m_GameObject: {fileID: 615075636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
-  m_Father: {fileID: 636759093}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &636759089
 GameObject:
@@ -1620,7 +1620,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryInputFile: {fileID: 4900000, guid: a123de7c77b728046b33094a793eac2d, type: 3}
   saveDataInputFile: {fileID: 4900000, guid: c551aa254172af241b3991e3edb741c2, type: 3}
-  particleSystemObject: {fileID: 0}
+  particleSystemObject: {fileID: 615075636}
+  particleColorAdjustment: {r: 0, g: 0, b: 0, a: 0}
   currentCorrectTiles: 0
 --- !u!114 &636759091
 MonoBehaviour:
@@ -1640,9 +1641,9 @@ MonoBehaviour:
   defaultColor: {r: 0, g: 1, b: 0, a: 0}
   objectToReplicate: {fileID: 142354, guid: 35061b2312b98ad4d8c7f20388b59c7b, type: 2}
   drawEdges: 1
-  centertoBottomBoundry: 15
-  centertoLeftBoundry: 0
-  centertoRightBoundry: 0
+  centerToBottomBoundry: 0
+  centerToLeftBoundry: 0
+  centerToRightBoundry: 0
   isAlternating: 1
   startWithUprightObj: 1
   numberOfRows: 8
@@ -1680,10 +1681,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
-  m_Children:
-  - {fileID: 615075639}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &668819385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,7 +1973,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &1100858454
 MonoBehaviour:
   m_ObjectHideFlags: 0

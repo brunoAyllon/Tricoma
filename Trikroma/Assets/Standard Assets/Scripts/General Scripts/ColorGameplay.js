@@ -10,6 +10,7 @@ private var victoryGrid:VictoryNode[,];
 public var saveDataInputFile:TextAsset;
 
 public var particleSystemObject:GameObject;
+public var particleColorAdjustment:Color;
 
 // This script RERQUIRES being attached to an object with a CreateGrid component
 private var gridScript:CreateGrid  = null;
@@ -42,6 +43,7 @@ private var levelManager:GameObject;
 private var shouldLoadSave:boolean;
 
 private var insideValidNode:boolean;
+private var validNodePos:Vector2;
 //private var particle
 
 
@@ -113,40 +115,47 @@ public function ResetLevel()
 
 public function LoadSaveFile(dataFile:TextAsset):boolean
 {
-	var allTheText:String[] = saveDataInputFile.text.Split("\n"[0]);
-	if(allTheText.Length == 0)
+	if ( saveDataInputFile != null )
 	{
-		return false;
+		var allTheText:String[] = saveDataInputFile.text.Split("\n"[0]);
+		if(allTheText.Length == 0)
+		{
+			return false;
+		}
+		
+		currentCorrectTiles = int.Parse(allTheText[0]);
+		
+		var i:int = 1;
+		for (var colorRenderer in gridScript.objectRenderer)
+		{
+			 var data:String[] = allTheText[i].Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
+			 Debug.Log(int.Parse(data[0])+" , "+data[1]+" , "+data[2]+" , "+data[3]);
+			 colorRenderer.material.color = Color(int.Parse(data[0]), int.Parse(data[1]), int.Parse(data[2]), int.Parse(data[3]));
+			 
+			 ++i;
+		}
+		
+		return true;
 	}
-	
-	currentCorrectTiles = int.Parse(allTheText[0]);
-	
-	var i:int = 1;
-	for (var colorRenderer in gridScript.objectRenderer)
-	{
-		 var data:String[] = allTheText[i].Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
-		 Debug.Log(int.Parse(data[0])+" , "+data[1]+" , "+data[2]+" , "+data[3]);
-		 colorRenderer.material.color = Color(int.Parse(data[0]), int.Parse(data[1]), int.Parse(data[2]), int.Parse(data[3]));
-		 
-		 ++i;
-	}
-	
-	return true;
+	return false;
 }
 
 public function SaveGameToFile(dataFile:TextAsset):void
 {
-	var path:String =  AssetDatabase.GetAssetPath(saveDataInputFile);
-	
-	var data:String = currentCorrectTiles+"\n";
-	
-	for (var colorRenderer in gridScript.objectRenderer)
+	if ( saveDataInputFile != null )
 	{
-		var colorToSave:Color = colorRenderer.material.color;
-		data+= " ( "+colorToSave.r+" , "+colorToSave.g+" , "+colorToSave.b+" , "+colorToSave.a +" )\n";
+		var path:String =  AssetDatabase.GetAssetPath(saveDataInputFile);
+		
+		var data:String = currentCorrectTiles+"\n";
+		
+		for (var colorRenderer in gridScript.objectRenderer)
+		{
+			var colorToSave:Color = colorRenderer.material.color;
+			data+= " ( "+colorToSave.r+" , "+colorToSave.g+" , "+colorToSave.b+" , "+colorToSave.a +" )\n";
+		}
+		
+		System.IO.File.WriteAllText(path, data);	
 	}
-	
-	System.IO.File.WriteAllText(path, data);	
 }
 
 public function RegisterLevelManager(theLevelManager:GameObject)
@@ -183,7 +192,10 @@ public function StartColorManip(colliderName:String)
 	// Register which node we are taking the color from
 	colorManipFrom = colliderName;
 	Debug.Log("From: "+colorManipFrom);
-	particleSystemObject.SetActive(true);
+	if(particleSystemObject != null)
+	{
+		particleSystemObject.SetActive(true);
+	}
 }
 
 // Called by the instantiated object's collider 
@@ -231,32 +243,69 @@ public function EndColorManip(colliderName:String)
 	colorManipFrom = String.Empty;
 	colorManipTo = String.Empty;
 	
-	particleSystemObject.SetActive(false);
+	if(particleSystemObject != null)
+	{
+		particleSystemObject.SetActive(false);
+		SetParticlesColor(Color.black);
+	}
 }
 
-public function AddColorToParticleSystem(nodeName:String):void
+public function GetParticlesColor():Color
 {
-	/*
-		var ps: ParticleSystem;
-		var psColor: Color;
-		 
-		function Start () 
+	if(particleSystemObject != null)
+	{
+		return particleSystemObject.GetComponent (ParticleSystem).startColor;
+	}
+	
+	return Color.black;
+}
+
+public function SetParticlesColor(newColor:Color):void
+{
+	if(particleSystemObject != null)
+	{
+		particleSystemObject.GetComponent (ParticleSystem).startColor = newColor;
+	}
+}
+
+public function StartParticleManipulation(nodeName:String):void
+{
+	Debug.Log("From "+colorManipFrom);
+	Debug.Log("Hello "+nodeName);
+	var position:Vector2 = gridScript.getObjectPositionFromName(nodeName);
+	if(particleSystemObject != null && !gridScript.isEmptyTile(position))
+	{
+		if (nodeName == colorManipFrom)
 		{
-		    ps = GetComponent (ParticleSystem);
+			Debug.Log("Hello particles begin");
+			SetParticlesColor(gridScript.objectRenderer[position.x, position.y].material.color);
 		}
-		 
-		 function Update () 
-		 {
-		     psColor = Color.Lerp(Color.blue, Color.red, Time.time/5);
-		     ps.startColor = psColor;
-		 }
-
-	*/
+		else
+		{
+			Debug.Log("Hello particles neighbor");
+			var From:Vector2   = gridScript.getObjectPositionFromName(colorManipFrom);
+			var To:  Vector2   = gridScript.getObjectPositionFromName(nodeName);
+		
+			var edgeFound:Edge = gridScript.getEdge(To, From);
+			
+			if(edgeFound.isValid())
+			{
+				insideValidNode = true;
+				validNodePos = position;
+				SetParticlesColor(GetParticlesColor() + gridScript.objectRenderer[position.x, position.y].material.color);
+			}
+		}
+	}
 }
 
-public function SubtractColorFromParticleSystem(nodeName:String):void
+public function EndParticleManipulation(nodeName:String):void
 {
-
+	if(particleSystemObject != null && insideValidNode)
+	{
+		var position:Vector2 = gridScript.getObjectPositionFromName(nodeName);
+		insideValidNode = false;
+		SetParticlesColor(GetParticlesColor() - gridScript.objectRenderer[position.x, position.y].material.color);
+	}
 }
 
 // Changes the node color, updates metrics and checks for victory condition
@@ -454,6 +503,12 @@ function OnDestroy()
 
 function Update () 
 {
+
+	if(particleSystemObject != null)
+	{
+		particleSystemObject.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+	}
+	
 	// If we haven't finished the level
 	if(!isVictorious())
 	{

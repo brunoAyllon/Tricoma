@@ -97,6 +97,7 @@ public function getObjectPositionFromName(name: String):Vector2
 	// Sanity check
 	if(name != null)
 	{
+		Debug.Log(name);
 		// Split into 3 fileds: object name, x coordinate and y coordinate
 		var iAndj = name.Split(' '[0]);
 		
@@ -162,6 +163,11 @@ public function isNeighbor(potentialNeighborPos:Vector2, objectPos:Vector2)
 
 public function isEmptyTile(nodePosition:Vector2):boolean
 {
+	if (!defaultIsNull)
+	{
+		return false;
+	}
+	
 	return defaultIsNull && (startingColors[nodePosition.x, nodePosition.y] == defaultColor);
 }
 

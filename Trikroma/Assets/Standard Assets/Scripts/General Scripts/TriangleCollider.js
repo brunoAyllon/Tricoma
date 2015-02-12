@@ -9,6 +9,8 @@ private var isUpright:boolean;
 // Whoever is responsible for handling the gameplay implications of a collision
 private var gameplayController:ColorGameplay;
 
+static private var colorManipulationActive:boolean;
+
 
 // Defines a half plane based on two given vertices , then checks if a given point is inside it
 function isInsideHalfPlane(point:Vector2, halfplaneFirstVert:Vector2, halfplaneSecondVert:Vector2):boolean
@@ -58,6 +60,7 @@ function MouseDown()
 		Debug.Log("Down: "+gameObject.name);
 		// Tells the gameplay controller to start the logic for changing triangle collors, this phase represents selecting the triangle from which we will add / subtract color
 		gameplayController.StartColorManip(gameObject.name);
+		colorManipulationActive = true;
 	}
 }
 
@@ -68,24 +71,30 @@ function MouseUp()
 		//Debug.Log("Up: "+GetInstanceID());
 		Debug.Log("Up: "+gameObject.name);
 		gameplayController.EndColorManip(gameObject.name);
+		colorManipulationActive = false;
 	}
 }
 
-function OnCollisionStay():void
+function OnMouseOver():void
 {
-	if(PointInsideTriangle())
+	if (colorManipulationActive)
 	{
-		gameplayController.AddColorToParticleSystem(gameObject.name);
-	}
-	else
-	{
-		gameplayController.SubtractColorFromParticleSystem(gameObject.name);
+		if(PointInsideTriangle())
+		{
+			gameplayController.StartParticleManipulation(gameObject.name);
+		}
+		else
+		{
+			gameplayController.EndParticleManipulation(gameObject.name);
+		}
 	}
 }
 
 // Happens only once, when the script is created. Essentially used to setup variables
 function Start () 
 {
+	colorManipulationActive = false;
+
 	/* First we determine the vertices of the collision triangle
 	
 		Observation: For simplicity's sake , we assume the triangle's texture aligns with the collider's boundries
