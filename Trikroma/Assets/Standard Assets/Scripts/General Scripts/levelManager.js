@@ -289,12 +289,14 @@ public function DrawTab(tabName:String):void
 		var displayBackground:Image = displayBackground.GetComponent(Image);
 		if(displayBackground != null)
 		{
+			Debug.Log("Changing display background " + tabName);
 			displayBackground.sprite = tabs[tabName].displayBackground;
 		}
 		// And do the same for the gui background
 		var guiBackground:Image = GUIBackgroundObject.GetComponent(Image);
 		if(displayBackground != null)
 		{
+			Debug.Log("Changing GUI background " + tabName);
 			guiBackground.sprite = tabs[tabName].tabBackground;
 		}
 		// Lastly, draw the button display
@@ -467,7 +469,7 @@ function Awake ()
 			var tabToDraw:String = guiTabs[i].tabName;
 			tabButton.onClick.AddListener (function(){DrawTab(tabToDraw);}); 
 			// And add them to the dictionaries
-			tabs.Add(guiTabs[i].tabName, guiTabs[i]);
+			tabs.Add(tabToDraw, guiTabs[i]);
 		}
 		// Make sure all tabs are children of our canvas
 		guiTabs[i].tab.transform.SetParent(this.transform, false);
