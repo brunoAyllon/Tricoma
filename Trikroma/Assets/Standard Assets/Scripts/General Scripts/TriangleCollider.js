@@ -71,6 +71,18 @@ function MouseUp()
 	}
 }
 
+function OnCollisionStay():void
+{
+	if(PointInsideTriangle())
+	{
+		gameplayController.AddColorToParticleSystem(gameObject.name);
+	}
+	else
+	{
+		gameplayController.SubtractColorFromParticleSystem(gameObject.name);
+	}
+}
+
 // Happens only once, when the script is created. Essentially used to setup variables
 function Start () 
 {

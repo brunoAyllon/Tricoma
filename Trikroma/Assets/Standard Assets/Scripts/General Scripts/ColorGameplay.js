@@ -9,6 +9,8 @@ private var victoryGrid:VictoryNode[,];
 // File to load save data from
 public var saveDataInputFile:TextAsset;
 
+public var particleSystemObject:GameObject;
+
 // This script RERQUIRES being attached to an object with a CreateGrid component
 private var gridScript:CreateGrid  = null;
 
@@ -38,6 +40,9 @@ private var numberOfRedos:int;
 private var levelManager:GameObject;
 
 private var shouldLoadSave:boolean;
+
+private var insideValidNode:boolean;
+//private var particle
 
 
 // Holds node information
@@ -178,6 +183,7 @@ public function StartColorManip(colliderName:String)
 	// Register which node we are taking the color from
 	colorManipFrom = colliderName;
 	Debug.Log("From: "+colorManipFrom);
+	particleSystemObject.SetActive(true);
 }
 
 // Called by the instantiated object's collider 
@@ -217,14 +223,41 @@ public function EndColorManip(colliderName:String)
 					SubColor(From, To);
 					break;
 			}
+			
 		}
 	}
 	
 	// Reset the values
 	colorManipFrom = String.Empty;
 	colorManipTo = String.Empty;
+	
+	particleSystemObject.SetActive(false);
 }
 
+public function AddColorToParticleSystem(nodeName:String):void
+{
+	/*
+		var ps: ParticleSystem;
+		var psColor: Color;
+		 
+		function Start () 
+		{
+		    ps = GetComponent (ParticleSystem);
+		}
+		 
+		 function Update () 
+		 {
+		     psColor = Color.Lerp(Color.blue, Color.red, Time.time/5);
+		     ps.startColor = psColor;
+		 }
+
+	*/
+}
+
+public function SubtractColorFromParticleSystem(nodeName:String):void
+{
+
+}
 
 // Changes the node color, updates metrics and checks for victory condition
 public function UpdateNodeColor(nodePosition:Vector2, newColor:Color):void

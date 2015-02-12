@@ -2010,7 +2010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6561b3bd9b583489ccce881247e3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadManagerStateFromFile: 1
+  loadManagerStateFromFile: 0
   managerSaveFile: {fileID: 4900000, guid: d23a59623b9d41d4a9d09b2598d78d7b, type: 3}
   GUIBackgroundObject: {fileID: 1272587402}
   initialTabName: Tutorial
@@ -2441,8 +2441,8 @@ MonoBehaviour:
       leftToUnlock: 0
       continueLevel: 0
     defaultDisplayedButton: {fileID: 422057193}
-  - tab: {fileID: 1300915290}
-    tabName: Secret
+  - tab: {fileID: 1561763825}
+    tabName: Hard
     tabBackground: {fileID: 21300000, guid: 9238b8d3d59453d49ab297a9f363bb3d, type: 3}
     displayBackground: {fileID: 21300000, guid: fb27341ab27f7b942b2054fc78834fcb,
       type: 3}
@@ -2450,7 +2450,7 @@ MonoBehaviour:
     - puzzleState: 0
       completeToUnlock: []
       unlockedTexture: {fileID: 0}
-      lockTexture: {fileID: 0}
+      lockTexture: {fileID: 21300000, guid: 71bf549576eb76f40ba28c2a927d1368, type: 3}
       completedTexture: {fileID: 0}
       hiddenTexture: {fileID: 0}
       displayUnlockedTexture: {fileID: 0}
@@ -2458,8 +2458,88 @@ MonoBehaviour:
       displayCompletedTexture: {fileID: 0}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
-      puzzleName: ?????
-      sceneToLoad: 0
+      puzzleName: ???
+      sceneToLoad: 19
+      button: {fileID: 0}
+      leftToUnlock: 0
+      continueLevel: 0
+    - puzzleState: 0
+      completeToUnlock: []
+      unlockedTexture: {fileID: 0}
+      lockTexture: {fileID: 21300000, guid: 71bf549576eb76f40ba28c2a927d1368, type: 3}
+      completedTexture: {fileID: 0}
+      hiddenTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 0}
+      displayLockTexture: {fileID: 0}
+      displayCompletedTexture: {fileID: 0}
+      displayHiddenTexture: {fileID: 0}
+      buttonText: {fileID: 0}
+      puzzleName: Tangrams
+      sceneToLoad: 20
+      button: {fileID: 0}
+      leftToUnlock: 0
+      continueLevel: 0
+    - puzzleState: 0
+      completeToUnlock: []
+      unlockedTexture: {fileID: 0}
+      lockTexture: {fileID: 21300000, guid: 71bf549576eb76f40ba28c2a927d1368, type: 3}
+      completedTexture: {fileID: 0}
+      hiddenTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 0}
+      displayLockTexture: {fileID: 0}
+      displayCompletedTexture: {fileID: 0}
+      displayHiddenTexture: {fileID: 0}
+      buttonText: {fileID: 0}
+      puzzleName: Clover
+      sceneToLoad: 21
+      button: {fileID: 0}
+      leftToUnlock: 0
+      continueLevel: 0
+    - puzzleState: 0
+      completeToUnlock: []
+      unlockedTexture: {fileID: 0}
+      lockTexture: {fileID: 21300000, guid: 71bf549576eb76f40ba28c2a927d1368, type: 3}
+      completedTexture: {fileID: 0}
+      hiddenTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 0}
+      displayLockTexture: {fileID: 0}
+      displayCompletedTexture: {fileID: 0}
+      displayHiddenTexture: {fileID: 0}
+      buttonText: {fileID: 0}
+      puzzleName: Balance
+      sceneToLoad: 22
+      button: {fileID: 0}
+      leftToUnlock: 0
+      continueLevel: 0
+    - puzzleState: 0
+      completeToUnlock: []
+      unlockedTexture: {fileID: 0}
+      lockTexture: {fileID: 21300000, guid: 71bf549576eb76f40ba28c2a927d1368, type: 3}
+      completedTexture: {fileID: 0}
+      hiddenTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 0}
+      displayLockTexture: {fileID: 0}
+      displayCompletedTexture: {fileID: 0}
+      displayHiddenTexture: {fileID: 0}
+      buttonText: {fileID: 0}
+      puzzleName: Magnetischism
+      sceneToLoad: 23
+      button: {fileID: 0}
+      leftToUnlock: 0
+      continueLevel: 0
+    - puzzleState: 0
+      completeToUnlock: []
+      unlockedTexture: {fileID: 0}
+      lockTexture: {fileID: 21300000, guid: 71bf549576eb76f40ba28c2a927d1368, type: 3}
+      completedTexture: {fileID: 0}
+      hiddenTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 0}
+      displayLockTexture: {fileID: 0}
+      displayCompletedTexture: {fileID: 0}
+      displayHiddenTexture: {fileID: 0}
+      buttonText: {fileID: 0}
+      puzzleName: Snowflake
+      sceneToLoad: 24
       button: {fileID: 0}
       leftToUnlock: 0
       continueLevel: 0
