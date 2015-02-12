@@ -1620,6 +1620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryInputFile: {fileID: 4900000, guid: a123de7c77b728046b33094a793eac2d, type: 3}
   saveDataInputFile: {fileID: 4900000, guid: c551aa254172af241b3991e3edb741c2, type: 3}
+  particleSystemObject: {fileID: 0}
   currentCorrectTiles: 0
 --- !u!114 &636759091
 MonoBehaviour:
@@ -1639,6 +1640,9 @@ MonoBehaviour:
   defaultColor: {r: 0, g: 1, b: 0, a: 0}
   objectToReplicate: {fileID: 142354, guid: 35061b2312b98ad4d8c7f20388b59c7b, type: 2}
   drawEdges: 1
+  centertoBottomBoundry: 15
+  centertoLeftBoundry: 0
+  centertoRightBoundry: 0
   isAlternating: 1
   startWithUprightObj: 1
   numberOfRows: 8

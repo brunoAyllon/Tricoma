@@ -3,9 +3,9 @@
 public var plusTexture:Texture2D;
 public var minusTexture:Texture2D;
 
-public var fromBottomBoundry:Vector2;
-public var fromLeftBoundry:Vector2;
-public var fromRightBoundry:Vector2;
+public var toBottomBoundry:int;
+public var toLeftBoundry:int;
+public var toRightBoundry:int;
 
 private var bottomObj:GameObject;
 private var leftObj:GameObject;
@@ -31,11 +31,11 @@ function Start ()
 					var leftPos:Vector2 = Vector2(1.0f, 0.5f);
 					if (leftEdgeFound.type == EdgeType.edgePlus)
 					{
-						leftSprite = Sprite.Create(plusTexture,  Rect(0, 0, plusTexture.width, plusTexture.height), leftPos);
+						leftSprite = Sprite.Create(plusTexture,  Rect(-toLeftBoundry, 0, plusTexture.width, plusTexture.height), leftPos);
 					}
 					else 
 					{
-						leftSprite = Sprite.Create(minusTexture,  Rect(0, 0, minusTexture.width, minusTexture.height), leftPos);
+						leftSprite = Sprite.Create(minusTexture,  Rect(-toLeftBoundry, 0, minusTexture.width, minusTexture.height), leftPos);
 					}
 					
 					leftObj = new GameObject("Left "+pos.x+" "+pos.y);
@@ -56,11 +56,11 @@ function Start ()
 					var rightPos:Vector2 = Vector2(0.0f, 0.5f);
 					if (rightEdgeFound.type == EdgeType.edgePlus)
 					{
-						rightSprite = Sprite.Create(plusTexture,  Rect(0, 0, plusTexture.width, plusTexture.height), rightPos);
+						rightSprite = Sprite.Create(plusTexture,  Rect(toRightBoundry, 0, plusTexture.width, plusTexture.height), rightPos);
 					}
 					else 
 					{
-						rightSprite = Sprite.Create(minusTexture,  Rect(0, 0, minusTexture.width, minusTexture.height), rightPos);
+						rightSprite = Sprite.Create(minusTexture,  Rect(toRightBoundry, 0, minusTexture.width, minusTexture.height), rightPos);
 					}
 					
 					rightObj = new GameObject("right "+pos.x+" "+pos.y);
@@ -83,11 +83,11 @@ function Start ()
 			
 			if (bottomEdgeFound.type == EdgeType.edgePlus)
 			{
-				bottomSprite = Sprite.Create(plusTexture,  Rect(0, 0, plusTexture.width, plusTexture.height), bottomPos);
+				bottomSprite = Sprite.Create(plusTexture,  Rect(0, -toBottomBoundry, plusTexture.width, plusTexture.height), bottomPos);
 			}
 			else 
 			{
-				bottomSprite = Sprite.Create(minusTexture,  Rect(0, 0, minusTexture.width, minusTexture.height), bottomPos);
+				bottomSprite = Sprite.Create(minusTexture,  Rect(0, -toBottomBoundry, minusTexture.width, minusTexture.height), bottomPos);
 			}
 			
 			bottomObj = new GameObject("Bottom "+pos.x+" "+pos.y);

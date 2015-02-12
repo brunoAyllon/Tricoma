@@ -17,6 +17,9 @@ public var defaultColor = Color.green;
 public var objectToReplicate:GameObject;
 
 public var drawEdges:boolean;
+public var centerToBottomBoundry:int;
+public var centerToLeftBoundry:int;
+public var centerToRightBoundry:int;
 
 // On hold for the custom texture loading stretch goal
 /*private var useCustomSprites:boolean;
@@ -232,23 +235,6 @@ public function ReadDataFromFile( ):void
 		{
 			dataParseMode = DataParse.nodeColor;
 		}
-		
-		// On hold for the custom texture loading stretch goal
-		/* else if(data[0].Contains("SPRITEFILES:"))
-		{
-			if(!spriteFileArrayInitialized)
-			{
-				loadedSprites = new Array();
-				spriteFileArrayInitialized = true;
-			}
-			useCustomSprites = true;
-			dataParseMode = DataParse.spriteFiles;
-		}
-		else if(data[0].Contains("SPRITEMATRIX:"))
-		{
-			dataParseMode = DataParse.nodeSprite;
-		}*/
-		
 		
 		else if(data[0].Contains("MATRIXSIZE:"))
 		{
@@ -615,6 +601,14 @@ function CreateGrid()
 			// Give it the appropriate color and store the renderer so we can change it later
 			objectRenderer[i, j] = newObject.GetComponent(SpriteRenderer);
 			objectRenderer[i, j].material.color = startingColors[i, j];
+			
+			var edgePos:DrawTriEdges = newObject.GetComponent(DrawTriEdges);
+			if(edgePos != null)
+			{
+				edgePos.toBottomBoundry = centerToBottomBoundry;
+				edgePos.toLeftBoundry   = centerToLeftBoundry;
+				edgePos.toRightBoundry  = centerToRightBoundry;
+			}
 			
 			// And setup the position of the next object
 			if(isAlternating)
