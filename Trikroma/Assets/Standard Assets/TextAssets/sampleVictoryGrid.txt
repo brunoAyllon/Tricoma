@@ -1,3 +1,0 @@
-Color Matrix:
-0000FF,
-0000FF

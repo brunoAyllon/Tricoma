@@ -1,4 +1,4 @@
-Hard
+Tutorial
  ( Tutorial , 1 , Puzzle_Unlocked , 0 , False )
  ( Tutorial , 2 , Puzzle_Locked , 0 , False )
  ( Tutorial , 3 , Puzzle_Locked , 0 , False )
