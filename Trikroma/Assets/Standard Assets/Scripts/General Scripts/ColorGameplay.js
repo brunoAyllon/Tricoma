@@ -5,9 +5,14 @@
 public var victoryInputFile:TextAsset = null;
 // Stores type and color of the victory node
 private var victoryGrid:VictoryNode[,];
+private var hintGrid:HintNode[,];
 
 // File to load save data from
 public var saveDataInputFile:TextAsset;
+
+// File to load hint data from
+public var hintDataInputFile:TextAsset;
+public var hintObjectToReplicate:GameObject;
 
 public var particleSystemObject:GameObject;
 public var particleColorAdjustment:Color;
@@ -44,8 +49,12 @@ private var shouldLoadSave:boolean;
 
 private var insideValidNode:boolean;
 private var validNodePos:Vector2;
-//private var particle
 
+class HintNode 
+{
+	public var hintColor:Color;
+	public var hintObject:GameObject;
+}
 
 // Holds node information
 class VictoryNode extends System.ValueType
@@ -138,6 +147,101 @@ public function LoadSaveFile(dataFile:TextAsset):boolean
 		return true;
 	}
 	return false;
+}
+
+public function DrawHintTiles(value:boolean):void
+{
+	for (var node:HintNode in hintGrid)
+	{
+		node.hintObject.SetActive(value);
+	}
+}
+
+public function LoadHintFile():void
+{
+	if ( hintDataInputFile && hintObjectToReplicate)
+	{
+		if (hintGrid == null)
+		{
+			hintGrid = new HintNode[gridScript.numberOfRows, gridScript.numberOfColumns];
+			
+		}
+			
+		for(var currentRow = 0.0; currentRow < gridScript.numberOfRows; ++currentRow)
+		{
+			// Now read the color values from file
+			for(var currentColumn = 0.0; currentColumn < gridScript.numberOfColumns; ++currentColumn)
+			{	
+				hintGrid[currentRow, currentColumn].hintColor = Color.black;
+				hintGrid[currentRow, currentColumn].hintColor.a = 0;
+				
+				var rotationAngle:Quaternion;
+				
+				if(gridScript.isUpright(Vector2(currentRow, currentColumn)) )
+				{
+					rotationAngle = Quaternion.identity;
+				}
+				else
+				{
+					rotationAngle =  Quaternion.AngleAxis(180, Vector3.right);
+				}
+				
+				var positionToDraw:Vector3 = gridScript.objectRenderer[currentRow, currentColumn].gameObject.transform.position;
+				hintGrid[currentRow, currentColumn].hintObject = Instantiate(hintObjectToReplicate, positionToDraw, rotationAngle) as GameObject;
+				hintGrid[currentRow, currentColumn].hintObject.transform.parent = gridScript.objectRenderer[currentRow, currentColumn].gameObject.transform;
+			}
+		}
+		
+		var dataParseMode:DataParse = DataParse.None;
+		var colorMatrixLine:int = -1.0;
+		
+		var allTheText = hintDataInputFile.text.Split("\n"[0]);
+		
+		// For each line
+		for (currentLine in allTheText)
+		{	
+			var data:String[] = currentLine.ToUpper().Replace(" ", "").Replace("(", "").Replace(")", "").Split(','[0]);
+			
+			// Choose parse mode
+			if(data[0].Contains("COLORMATRIX:"))
+			{
+				dataParseMode = DataParse.nodeColor;
+			}
+			
+			// In case the user did not switch what kind of data he is parsing in
+			else
+			{
+				switch (dataParseMode)
+				{
+					// Invalid line
+					case DataParse.None:
+						Debug.Log("Invalid file format");
+						break;
+					
+					// 	If we already have the number of rows and columns in the grid, read the data 
+					case DataParse.nodeColor:
+						if(gridScript.numberOfRows < 0 ||  gridScript.numberOfColumns < 0)
+						{
+							Debug.Log("Matrix size not established");
+						}
+						
+						for(var i = 0.0; i < gridScript.numberOfRows; ++i)
+						{
+							// Now read the color values from file
+							for(var j = 0.0; j < gridScript.numberOfColumns; ++j)
+							{
+								// Trasform the strings into RGB format
+								var rgbColor = gridScript.HexValueToRGB(data[j]);
+								// And store them
+								hintGrid[colorMatrixLine, j].hintColor= rgbColor;
+							}
+						}
+						
+						break;
+				}
+			}			
+		}
+	}
 }
 
 public function SaveGameToFile(dataFile:TextAsset):void
@@ -479,6 +583,7 @@ function Start ()
 		
 		// Now read the victory file
 		ReadVictoryDataFromFile();
+		LoadHintFile();
 		
 		if(shouldLoadSave)
 		{
