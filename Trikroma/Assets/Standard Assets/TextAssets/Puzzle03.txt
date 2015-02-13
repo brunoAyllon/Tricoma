@@ -1,9 +1,0 @@
-Matrix Size:
-2, 3
-Color Matrix:
-ZZZZZZ, FF0000, ZZZZZZ
-0000FF, 000000, 00FF00
-Edges:
-(1,0), + ,(1,1)
-(1,1), + ,(0,1)
-(1,1), + ,(1,2)
