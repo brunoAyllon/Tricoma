@@ -5,7 +5,7 @@ public var maxZoom:float;
 public var zoomRatio:float;
 
 // Receives the mouse position in world coordinates and moves towards / away from it at a given ratio
-public function cameraZoom(zoomPoint:Vector3, zoomRate:float)
+public function MouseCameraZoom(zoomPoint:Vector3, zoomRate:float)
 {
 	// New position = (desired position - current position)/ half-size when in orthographic mode   * zoomRate
 	transform.position += (zoomPoint - transform.position)/gameObject.camera.orthographicSize * zoomRate;
@@ -15,6 +15,42 @@ public function cameraZoom(zoomPoint:Vector3, zoomRate:float)
 	gameObject.camera.orthographicSize = Mathf.Clamp(gameObject.camera.orthographicSize -zoomRate , Mathf.Max(minZoom, 1.0), maxZoom);
 }
 
+public function PinchZoom(zoomRate:float)
+{
+	// Store both touches.
+	var touchZero = Input.GetTouch(0);
+	var touchOne = Input.GetTouch(1);
+
+	// Find the position in the previous frame of each touch.
+	var touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+	var touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+	// Find the magnitude of the vector (the distance) between the touches in each frame.
+	var prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+	var touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+
+	// Find the difference in the distances between each frame.
+	var deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+	// If the camera is orthographic...
+	if (camera.isOrthoGraphic)
+	{
+	    // ... change the orthographic size based on the change in distance between the touches.
+	    gameObject.camera.orthographicSize += deltaMagnitudeDiff * zoomRate;
+
+	    // Make sure the orthographic size never drops below zero.
+	   gameObject. camera.orthographicSize = Mathf.Max(camera.orthographicSize, 0.1f);
+	}
+	else
+	{
+	    // Otherwise change the field of view based on the change in distance between the touches.
+	    camera.fieldOfView += deltaMagnitudeDiff * zoomRate;
+
+	    // Clamp the field of view to make sure it's between 0 and 180.
+	    camera.fieldOfView = Mathf.Clamp(camera.fieldOfView, 0.1f, 179.9f);
+	} 
+}
+
 function Start () 
 {
 	
@@ -22,23 +58,19 @@ function Start ()
 
 function Update () 
 {
+	 // Pinch zoom
 	 if (Input.touchCount == 2)
 	 {
-	 	// Store both touches.
-        var touchZero:Touch = Input.GetTouch(0);
-        var touchOne :Touch = Input.GetTouch(1);
-
-
+		PinchZoom(zoomRatio);
 	 }
-	
 	// Zoom in
-	if( Input.GetAxis("Mouse ScrollWheel") > 0)
+	else if( Input.GetAxis("Mouse ScrollWheel") > 0)
 	{
-		cameraZoom(gameObject.camera.ScreenToWorldPoint(Input.mousePosition), zoomRatio);
+		MouseCameraZoom(gameObject.camera.ScreenToWorldPoint(Input.mousePosition), zoomRatio);
 	}
 	// Zoom out
 	else if ( Input.GetAxis("Mouse ScrollWheel") < 0)
 	{
-		cameraZoom(gameObject.camera.ScreenToWorldPoint(Input.mousePosition), -zoomRatio);	
+		MouseCameraZoom(gameObject.camera.ScreenToWorldPoint(Input.mousePosition), -zoomRatio);	
 	}
 }
