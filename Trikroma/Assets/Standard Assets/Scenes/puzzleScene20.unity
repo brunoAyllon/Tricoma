@@ -2062,7 +2062,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: dataInputFile

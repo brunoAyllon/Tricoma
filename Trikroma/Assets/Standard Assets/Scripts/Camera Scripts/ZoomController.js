@@ -40,7 +40,7 @@ public function PinchZoom(zoomRate:float)
 	    gameObject.camera.orthographicSize += deltaMagnitudeDiff * zoomRate;
 
 	    // Make sure the orthographic size never drops below zero.
-	   gameObject. camera.orthographicSize = Mathf.Max(camera.orthographicSize, 0.1f);
+	   gameObject. camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, Mathf.Max(minZoom, 1.0), maxZoom);
 	}
 	else
 	{
