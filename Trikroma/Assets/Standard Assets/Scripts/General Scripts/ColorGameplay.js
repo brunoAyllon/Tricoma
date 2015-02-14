@@ -13,6 +13,7 @@ public var saveDataInputFile:TextAsset;
 // File to load hint data from
 public var hintDataInputFile:TextAsset;
 public var hintObjectToReplicate:GameObject;
+private var drawHint:boolean;
 
 public var particleSystemObject:GameObject;
 public var particleColorAdjustment:Color;
@@ -50,9 +51,8 @@ private var shouldLoadSave:boolean;
 private var insideValidNode:boolean;
 private var validNodePos:Vector2;
 
-class HintNode 
+class HintNode extends System.ValueType
 {
-	public var hintColor:Color;
 	public var hintObject:GameObject;
 }
 
@@ -149,6 +149,12 @@ public function LoadSaveFile(dataFile:TextAsset):boolean
 	return false;
 }
 
+public function ToggleDrawHint():void
+{
+	drawHint = !drawHint;
+	DrawHintTiles(drawHint);
+}
+
 public function DrawHintTiles(value:boolean):void
 {
 	for (var node:HintNode in hintGrid)
@@ -164,7 +170,6 @@ public function LoadHintFile():void
 		if (hintGrid == null)
 		{
 			hintGrid = new HintNode[gridScript.numberOfRows, gridScript.numberOfColumns];
-			
 		}
 			
 		for(var currentRow = 0.0; currentRow < gridScript.numberOfRows; ++currentRow)
@@ -172,30 +177,19 @@ public function LoadHintFile():void
 			// Now read the color values from file
 			for(var currentColumn = 0.0; currentColumn < gridScript.numberOfColumns; ++currentColumn)
 			{	
-				hintGrid[currentRow, currentColumn].hintColor = Color.black;
-				hintGrid[currentRow, currentColumn].hintColor.a = 0;
+				Debug.Log(currentRow+" , "+currentColumn);
 				
-				var rotationAngle:Quaternion;
-				
-				if(gridScript.isUpright(Vector2(currentRow, currentColumn)) )
-				{
-					rotationAngle = Quaternion.identity;
-				}
-				else
-				{
-					rotationAngle =  Quaternion.AngleAxis(180, Vector3.right);
-				}
-				
-				var positionToDraw:Vector3 = gridScript.objectRenderer[currentRow, currentColumn].gameObject.transform.position;
-				hintGrid[currentRow, currentColumn].hintObject = Instantiate(hintObjectToReplicate, positionToDraw, rotationAngle) as GameObject;
-				hintGrid[currentRow, currentColumn].hintObject.transform.parent = gridScript.objectRenderer[currentRow, currentColumn].gameObject.transform;
+				var positionToDraw:Vector3 = Vector3(0.0, 0.0, 0.0);
+				hintGrid[currentRow, currentColumn].hintObject = Instantiate(hintObjectToReplicate, positionToDraw, Quaternion.identity) as GameObject;
+				hintGrid[currentRow, currentColumn].hintObject.transform.SetParent( gridScript.objectRenderer[currentRow, currentColumn].gameObject.transform, false);
+				hintGrid[currentRow, currentColumn].hintObject.name = "Desired Color";
 			}
 		}
-		
 		var dataParseMode:DataParse = DataParse.None;
-		var colorMatrixLine:int = -1.0;
 		
 		var allTheText = hintDataInputFile.text.Split("\n"[0]);
+		
+		var currentRoadRead:int = 0;
 		
 		// For each line
 		for (currentLine in allTheText)
@@ -225,22 +219,29 @@ public function LoadHintFile():void
 							Debug.Log("Matrix size not established");
 						}
 						
-						for(var i = 0.0; i < gridScript.numberOfRows; ++i)
+						else
 						{
+							
 							// Now read the color values from file
-							for(var j = 0.0; j < gridScript.numberOfColumns; ++j)
+							for(var j:int = 0.0; j < gridScript.numberOfColumns; ++j)
 							{
 								// Trasform the strings into RGB format
 								var rgbColor = gridScript.HexValueToRGB(data[j]);
 								// And store them
-								hintGrid[colorMatrixLine, j].hintColor= rgbColor;
+								var renderer:SpriteRenderer = hintGrid[currentRoadRead, j].hintObject.GetComponent(SpriteRenderer);
+								if(renderer)
+								{
+									renderer.color = rgbColor;
+								}
 							}
 						}
-						
+						++currentRoadRead;
 						break;
 				}
 			}			
 		}
+		
+		DrawHintTiles(false);
 	}
 }
 
@@ -571,6 +572,7 @@ function Start ()
 {	
 	numberOfUndos = 0;
 	numberOfRedos = 0;
+	drawHint = false;
 
 	// Check if we have the required script
 	gridScript = transform.GetComponent(CreateGrid);
@@ -583,6 +585,7 @@ function Start ()
 		
 		// Now read the victory file
 		ReadVictoryDataFromFile();
+		
 		LoadHintFile();
 		
 		if(shouldLoadSave)

@@ -4,6 +4,7 @@ public var minZoom:float;
 public var maxZoom:float;
 public var zoomRatio:float;
 
+
 // Receives the mouse position in world coordinates and moves towards / away from it at a given ratio
 public function MouseCameraZoom(zoomPoint:Vector3, zoomRate:float)
 {

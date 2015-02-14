@@ -97,7 +97,7 @@ public function getObjectPositionFromName(name: String):Vector2
 	// Sanity check
 	if(name != null)
 	{
-		Debug.Log(name);
+//		Debug.Log(name);
 		// Split into 3 fileds: object name, x coordinate and y coordinate
 		var iAndj = name.Split(' '[0]);
 		
@@ -151,9 +151,9 @@ public function isNeighbor(potentialNeighborPos:Vector2, objectPos:Vector2)
 
 	//Debug.Log("A: "+ objectPos.x+ " "+ objectPos.y);
 	//Debug.Log("B: "+ );
-	Debug.Log ( "Neighbor: " + ( ( objectPos == (potentialNeighborPos + Vector2(0.0, -1.0) ) ) || 
+/*	Debug.Log ( "Neighbor: " + ( ( objectPos == (potentialNeighborPos + Vector2(0.0, -1.0) ) ) || 
 			 ( objectPos == (potentialNeighborPos + Vector2( 0.0, 1.0) ) ) || 
-			 ( objectPos == (potentialNeighborPos + Vector2( lastNeighborX, 0.0) ) ) ) );
+			 ( objectPos == (potentialNeighborPos + Vector2( lastNeighborX, 0.0) ) ) ) );*/
 	
 	// Check if at least one of them is a neighbor
 	return ( ( objectPos == (potentialNeighborPos + Vector2( 0.0, 1.0) ) ) || 
