@@ -1,12 +1,13 @@
-﻿#pragma strict
+#pragma strict
 
 import UnityEngine.UI;
 
-private var instance:soundManager;
+private static var instance:GameObject;
 
+public var invisibleByDefault:boolean;
 
-public var musicVolume:int;
-public var soundEffectVolume:int;
+public var musicVolume:float;
+public var soundEffectVolume:float;
 public var muteMusic:boolean;
 public var muteSoundEffects:boolean;
 
@@ -34,20 +35,22 @@ function Start ()
 {
 	if(instance == null)
 	{
-		instance = this;
+		instance = gameObject;
 	}
-	else
+	else if (instance != gameObject)
 	{
 		Destroy(gameObject);
 		return;
 	}
 	
-	DontDestroyOnLoad(this.gameObject);
+	DontDestroyOnLoad(gameObject);
 	
 	musicMuter               = MusicMuteButton.GetComponent(Muter);
 	soundEffectsMuter        = SoundEffectsMuteButton.GetComponent(Muter);
 	musicSlider              = MusicVolumeSlider.GetComponent(Slider);
 	soundEffectsSlider       = SoundEffectsVolumeSlider.GetComponent(Slider);
+	
+	drawManagerScreen(!invisibleByDefault);
 }
 
 function Update () 

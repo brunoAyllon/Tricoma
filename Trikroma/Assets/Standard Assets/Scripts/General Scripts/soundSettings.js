@@ -6,29 +6,45 @@ public var componentType:AudioType;
 private var soundComponent:AudioSource;
 private var soundData:soundManager;
 
+private var drawSoundMenu:boolean;
 
+public function DrawSoundOptions()
+{
+	if(soundData)
+	{
+		drawSoundMenu = !drawSoundMenu;
+		soundData.drawManagerScreen(drawSoundMenu);
+	}
+}
 
 function Start () 
 {
 	soundComponent = gameObject.GetComponent(AudioSource);
-	soundData = FindObjectsOfType(soundManager)[0];
+	var soundManagers:soundManager[] = FindObjectsOfType(soundManager);
+	if(soundManagers.Length > 0)
+	{
+		soundData = FindObjectsOfType(soundManager)[0];
+	}
+	audio.Play();
 }
 
 function Update () 
 {
-	
-	switch(componentType)
+	drawSoundMenu = false;
+	if(soundData != null)
 	{
-		case (AudioType.Sound_Effect): 
-		
-			soundComponent.mute   = soundData.muteSoundEffects;
-			soundComponent.volume = soundData.soundEffectVolume;
-			break;
+		switch(componentType)
+		{
+			case (AudioType.Sound_Effect): 
 			
-		case (AudioType.Music):
-			soundComponent.mute   = soundData.muteMusic;
-			soundComponent.volume = soundData.musicVolume;
-			break;
+				soundComponent.mute   = soundData.muteSoundEffects;
+				soundComponent.volume = soundData.soundEffectVolume;
+				break;
+				
+			case (AudioType.Music):
+				soundComponent.mute   = soundData.muteMusic;
+				soundComponent.volume = soundData.musicVolume;
+				break;
+		}
 	}
-	
 }

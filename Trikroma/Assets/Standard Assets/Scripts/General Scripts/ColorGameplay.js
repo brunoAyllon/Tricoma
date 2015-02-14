@@ -13,6 +13,7 @@ public var saveDataInputFile:TextAsset;
 // File to load hint data from
 public var hintDataInputFile:TextAsset;
 public var hintObjectToReplicate:GameObject;
+public var drawHintsByDefault:boolean;
 private var drawHint:boolean;
 
 public var particleSystemObject:GameObject;
@@ -241,7 +242,7 @@ public function LoadHintFile():void
 			}			
 		}
 		
-		DrawHintTiles(false);
+		DrawHintTiles(drawHintsByDefault);
 	}
 }
 
@@ -572,7 +573,7 @@ function Start ()
 {	
 	numberOfUndos = 0;
 	numberOfRedos = 0;
-	drawHint = false;
+	drawHint = drawHintsByDefault;
 
 	// Check if we have the required script
 	gridScript = transform.GetComponent(CreateGrid);
