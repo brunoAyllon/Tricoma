@@ -662,6 +662,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 175854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
   m_RootGameObject: {fileID: 578554078}
@@ -1057,6 +1061,10 @@ Prefab:
       propertyPath: puzzleToReset
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 198052, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
   m_RootGameObject: {fileID: 427306166}
@@ -1596,6 +1604,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 156052, guid: 90e91d2afe09064469da4fa316527662, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90e91d2afe09064469da4fa316527662, type: 2}
   m_RootGameObject: {fileID: 209195608}
@@ -2143,6 +2155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryInputFile: {fileID: 4900000, guid: 89e3546b6252f6241955e965aaacc10a, type: 3}
   saveDataInputFile: {fileID: 0}
+  hintDataInputFile: {fileID: 0}
+  hintObjectToReplicate: {fileID: 0}
   particleSystemObject: {fileID: 0}
   particleColorAdjustment: {r: 0, g: 0, b: 0, a: 0}
   currentCorrectTiles: 0
@@ -2493,6 +2507,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 131692, guid: ee80c8b4b63cfed49a8df476d84c4cb2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee80c8b4b63cfed49a8df476d84c4cb2, type: 2}
   m_RootGameObject: {fileID: 2086642878}
@@ -2857,6 +2875,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 136270, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
   m_RootGameObject: {fileID: 1518464787}
@@ -3014,6 +3036,10 @@ Prefab:
     - target: {fileID: 11434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
       propertyPath: m_FontData.m_FontStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134470, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
@@ -3815,6 +3841,10 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 41
       objectReference: {fileID: 0}
+    - target: {fileID: 155400, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
   m_RootGameObject: {fileID: 382533672}
@@ -3903,6 +3933,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 131746, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
   m_RootGameObject: {fileID: 1972760996}

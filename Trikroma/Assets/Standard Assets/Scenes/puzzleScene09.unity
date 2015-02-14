@@ -204,7 +204,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '#008'
+  m_Text: '#009'
 --- !u!222 &200354508
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -662,6 +662,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 175854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
   m_RootGameObject: {fileID: 578554078}
@@ -1057,6 +1061,10 @@ Prefab:
       propertyPath: puzzleToReset
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 198052, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
   m_RootGameObject: {fileID: 427306166}
@@ -1420,7 +1428,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1439,7 +1447,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 884935101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.60000002, y: .5, z: -10}
+  m_LocalPosition: {x: -3.20000005, y: .5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1596,6 +1604,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 156052, guid: 90e91d2afe09064469da4fa316527662, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90e91d2afe09064469da4fa316527662, type: 2}
   m_RootGameObject: {fileID: 209195608}
@@ -1849,10 +1861,10 @@ Prefab:
     - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: dataInputFile
       value: 
-      objectReference: {fileID: 4900000, guid: fbcae2c8b0ab5ef47b327581af9ef33e, type: 3}
+      objectReference: {fileID: 4900000, guid: 56d491b48552aca41ba332cb36c339d1, type: 3}
     - target: {fileID: 186912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: m_Name
-      value: Puzzle08
+      value: Puzzle09
       objectReference: {fileID: 0}
     - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: defaultColor.r
@@ -1877,7 +1889,7 @@ Prefab:
     - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: victoryInputFile
       value: 
-      objectReference: {fileID: 4900000, guid: 707e56a2fd91af449a511a4794f9a918, type: 3}
+      objectReference: {fileID: 4900000, guid: f30f194d8c149a244a306dac570bae6f, type: 3}
     - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: startWithUprightObj
       value: 0
@@ -1978,8 +1990,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -24, y: -21}
-  m_SizeDelta: {x: 274, y: 41}
+  m_AnchoredPosition: {x: -40, y: -21}
+  m_SizeDelta: {x: 420, y: 41}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1261619039
 MonoBehaviour:
@@ -1997,7 +2009,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -2007,7 +2019,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'GOAL: Turn the White TRI into Blue, turn the Black TRI into Red.'
+  m_Text: 'GOAL: Color the Phoenix Red and Yellow.'
 --- !u!222 &1261619040
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2131,7 +2143,7 @@ GameObject:
   - 114: {fileID: 1440614165}
   - 114: {fileID: 1440614164}
   m_Layer: 0
-  m_Name: Puzzle08
+  m_Name: Puzzle09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2149,8 +2161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d167c8f6898ce124993ec004cb31bf7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoryInputFile: {fileID: 4900000, guid: 707e56a2fd91af449a511a4794f9a918, type: 3}
+  victoryInputFile: {fileID: 4900000, guid: f30f194d8c149a244a306dac570bae6f, type: 3}
   saveDataInputFile: {fileID: 0}
+  hintDataInputFile: {fileID: 0}
+  hintObjectToReplicate: {fileID: 0}
   particleSystemObject: {fileID: 0}
   particleColorAdjustment: {r: 0, g: 0, b: 0, a: 0}
   currentCorrectTiles: 0
@@ -2166,7 +2180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1af30c131355114a8d7e506d684f873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataInputFile: {fileID: 4900000, guid: fbcae2c8b0ab5ef47b327581af9ef33e, type: 3}
+  dataInputFile: {fileID: 4900000, guid: 56d491b48552aca41ba332cb36c339d1, type: 3}
   symbolUseDefault: ZZZZZZ
   defaultIsNull: 1
   defaultColor: {r: .303146631, g: .463235319, b: .303146631, a: 0}
@@ -2501,6 +2515,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 131692, guid: ee80c8b4b63cfed49a8df476d84c4cb2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee80c8b4b63cfed49a8df476d84c4cb2, type: 2}
   m_RootGameObject: {fileID: 2086642878}
@@ -2865,6 +2883,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 136270, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
   m_RootGameObject: {fileID: 1518464787}
@@ -3022,6 +3044,10 @@ Prefab:
     - target: {fileID: 11434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
       propertyPath: m_FontData.m_FontStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134470, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
@@ -3193,7 +3219,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lozenge
+  m_Text: Firebird
 --- !u!222 &1919604164
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3793,27 +3819,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11455402, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_Text
-      value: '#008'
+      value: '#009'
       objectReference: {fileID: 0}
     - target: {fileID: 11455404, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_Text
-      value: Lozenge
+      value: Firebird
       objectReference: {fileID: 0}
     - target: {fileID: 11455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_Text
-      value: 'GOAL: Turn the White TRI into Blue, turn the Black TRI into Red.'
+      value: 'GOAL: Color the Phoenix Red and Yellow.'
       objectReference: {fileID: 0}
     - target: {fileID: 22455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -24
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 22455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 274
+      value: 420
       objectReference: {fileID: 0}
     - target: {fileID: 11455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_FontData.m_FontSize
-      value: 16
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 22455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -3822,6 +3848,10 @@ Prefab:
     - target: {fileID: 22455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_SizeDelta.y
       value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 155400, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
@@ -3911,6 +3941,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 131746, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
   m_RootGameObject: {fileID: 1972760996}

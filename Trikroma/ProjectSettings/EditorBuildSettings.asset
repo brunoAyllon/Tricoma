@@ -22,9 +22,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene07.unity
   - enabled: 1
-    path: Assets/Standard Assets/Scenes/puzzleScene08.unity
-  - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene09.unity
+  - enabled: 1
+    path: Assets/Standard Assets/Scenes/puzzleScene08.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene10.unity
   - enabled: 1
@@ -48,7 +48,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene17.unity
   - enabled: 1
-    path: Assets/Standard Assets/Scenes/puzzleScene20.unity
+    path: Assets/Standard Assets/Scenes/puzzleScene20A.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene21.unity
   - enabled: 1

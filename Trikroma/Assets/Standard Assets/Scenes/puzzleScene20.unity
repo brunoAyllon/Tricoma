@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1092, y: 768}
@@ -620,7 +620,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22475854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 159
+      value: 156
       objectReference: {fileID: 0}
     - target: {fileID: 22475854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -662,6 +662,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 175854, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af019ee8915ad7040a06472e5013ca05, type: 2}
   m_RootGameObject: {fileID: 578554078}
@@ -1057,6 +1061,10 @@ Prefab:
       propertyPath: puzzleToReset
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 198052, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d7cf94f1abb668f42b665fd2b9bfbf6b, type: 2}
   m_RootGameObject: {fileID: 427306166}
@@ -1097,7 +1105,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 159, y: -248}
+  m_AnchoredPosition: {x: 156, y: -248}
   m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &578554080
@@ -1267,7 +1275,6 @@ GameObject:
   - 222: {fileID: 799780727}
   - 114: {fileID: 799780726}
   - 114: {fileID: 799780725}
-  - 114: {fileID: 799780728}
   m_Layer: 5
   m_Name: Button_A
   m_TagString: Untagged
@@ -1361,18 +1368,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 799780723}
---- !u!114 &799780728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 799780723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hint: I am text
 --- !u!1 &884935101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,7 +1447,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 884935101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.20000005, y: .550000012, z: -10}
+  m_LocalPosition: {x: -2.25, y: .550000012, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1609,6 +1604,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 156052, guid: 90e91d2afe09064469da4fa316527662, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90e91d2afe09064469da4fa316527662, type: 2}
   m_RootGameObject: {fileID: 209195608}
@@ -1788,7 +1787,7 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -91, y: -250}
+  m_AnchoredPosition: {x: -97, y: -248}
   m_SizeDelta: {x: 384, y: 96}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1094145495
@@ -1903,14 +1902,6 @@ Prefab:
       propertyPath: centerToRightBoundry
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
-      propertyPath: hintDataInputFile
-      value: 
-      objectReference: {fileID: 4900000, guid: d426818d4692b3e4f849b9aeb41f8080, type: 3}
-    - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
-      propertyPath: hintObjectToReplicate
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_RootGameObject: {fileID: 1440614163}
@@ -1999,8 +1990,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -40, y: -21}
-  m_SizeDelta: {x: 420, y: 41}
+  m_AnchoredPosition: {x: -34.2000008, y: -21}
+  m_SizeDelta: {x: 282.299988, y: 41}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1261619039
 MonoBehaviour:
@@ -2028,7 +2019,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'GOAL: Create a Cyan Kite, Magenta Line, Yellow Trapezoid and White Triangle.'
+  m_Text: 'GOAL: Make a Cyan Kite, Yellow Trapezoid and a Magenta Line.'
 --- !u!222 &1261619040
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2047,7 +2038,6 @@ GameObject:
   - 222: {fileID: 1419064505}
   - 114: {fileID: 1419064504}
   - 114: {fileID: 1419064503}
-  - 114: {fileID: 1419064506}
   m_Layer: 5
   m_Name: Button_B
   m_TagString: Untagged
@@ -2141,18 +2131,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1419064501}
---- !u!114 &1419064506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1419064501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hint: And I am what I am
 --- !u!1 &1440614163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,7 +2163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryInputFile: {fileID: 4900000, guid: d426818d4692b3e4f849b9aeb41f8080, type: 3}
   saveDataInputFile: {fileID: 0}
-  hintDataInputFile: {fileID: 4900000, guid: d426818d4692b3e4f849b9aeb41f8080, type: 3}
+  hintDataInputFile: {fileID: 0}
   hintObjectToReplicate: {fileID: 0}
   particleSystemObject: {fileID: 0}
   particleColorAdjustment: {r: 0, g: 0, b: 0, a: 0}
@@ -2537,6 +2515,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 131692, guid: ee80c8b4b63cfed49a8df476d84c4cb2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee80c8b4b63cfed49a8df476d84c4cb2, type: 2}
   m_RootGameObject: {fileID: 2086642878}
@@ -2901,6 +2883,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 136270, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
   m_RootGameObject: {fileID: 1518464787}
@@ -3013,11 +2999,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22434470, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -91
+      value: -97
       objectReference: {fileID: 0}
     - target: {fileID: 22434470, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -250
+      value: -248
       objectReference: {fileID: 0}
     - target: {fileID: 22434470, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
       propertyPath: m_SizeDelta.x
@@ -3058,6 +3044,10 @@ Prefab:
     - target: {fileID: 11434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
       propertyPath: m_FontData.m_FontStyle
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134470, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
@@ -3837,15 +3827,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_Text
-      value: 'GOAL: Create a Cyan Kite, Magenta Line, Yellow Trapezoid and White Triangle.'
+      value: 'GOAL: Make a Cyan Kite, Yellow Trapezoid and a Magenta Line.'
       objectReference: {fileID: 0}
     - target: {fileID: 22455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -40
+      value: -34.2000008
       objectReference: {fileID: 0}
     - target: {fileID: 22455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 420
+      value: 282.299988
       objectReference: {fileID: 0}
     - target: {fileID: 11455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_FontData.m_FontSize
@@ -3858,6 +3848,10 @@ Prefab:
     - target: {fileID: 22455406, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
       propertyPath: m_SizeDelta.y
       value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 155400, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cdaaadd2cbfff6b4cb5da588e48bc1e6, type: 2}
@@ -3947,6 +3941,10 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 131746, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
   m_RootGameObject: {fileID: 1972760996}

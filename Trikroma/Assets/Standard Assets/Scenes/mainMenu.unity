@@ -872,7 +872,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 336, y: -11}
+  m_AnchoredPosition: {x: 336, y: -126}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &468112309
@@ -938,7 +938,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 609d9975785322b4e8ff4870d5dfb87d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fbde2a154e3870f459499487dc505976, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &495515147
 Transform:
@@ -1203,8 +1203,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 272, y: 59}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 268, y: 29}
+  m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &702246044
 MonoBehaviour:
@@ -1538,7 +1538,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -1909,7 +1909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 0, g: .227450982, b: 1, a: 1}
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2199,10 +2199,11 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 38208a0c4f0e6dd46bf749984f5d7742,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 21300000, guid: a0d98e3a6c42dd64793359fa293676b8,
+      displayUnlockedTexture: {fileID: 21300000, guid: 48c97093d9a84f04bb9cc58baeea439f,
         type: 3}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 21300000, guid: 5e0fe995197cf054593d67994b0a75e0,
+      displayLockTexture: {fileID: 21300000, guid: 48c97093d9a84f04bb9cc58baeea439f,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 48c97093d9a84f04bb9cc58baeea439f,
         type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
@@ -2219,10 +2220,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 0050bc170718ba843a1444dd19b9b7e9,
         type: 3}
       hiddenTexture: {fileID: 21300000, guid: 05050da0a25daf645a85f5b4d18c656c, type: 3}
-      displayUnlockedTexture: {fileID: 21300000, guid: 0c16b90c761dee9458a00a89a5a4fd43,
+      displayUnlockedTexture: {fileID: 21300000, guid: 8660a93b7a5c38e46bb47f8f802d15ef,
         type: 3}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayLockTexture: {fileID: 21300000, guid: 8660a93b7a5c38e46bb47f8f802d15ef,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 8660a93b7a5c38e46bb47f8f802d15ef,
+        type: 3}
       displayHiddenTexture: {fileID: 21300000, guid: 05050da0a25daf645a85f5b4d18c656c,
         type: 3}
       buttonText: {fileID: 0}
@@ -2239,9 +2242,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 398fc8fddb517334e8afca7fe3b73508,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 0935c6b2dc54aa643b0dc7e9a7b2e5b3,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 0935c6b2dc54aa643b0dc7e9a7b2e5b3,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 0935c6b2dc54aa643b0dc7e9a7b2e5b3,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Primary Colors
@@ -2257,9 +2263,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 06ed06409a7b0c64fbf1eaf678b24504,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 216870e138778994d91a1a69336ba0ea,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 216870e138778994d91a1a69336ba0ea,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 216870e138778994d91a1a69336ba0ea,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Secondary Colors
@@ -2275,9 +2284,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 6d34f1deabf952e438f360d098f1460f,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 89fc9821e219dd64da20de92b02eb54b,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 89fc9821e219dd64da20de92b02eb54b,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 89fc9821e219dd64da20de92b02eb54b,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Black & White
@@ -2293,9 +2305,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 58b3284360712a649a9f06cbad130720,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 4703802110b550a4cafcc5de494a5257,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 4703802110b550a4cafcc5de494a5257,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 4703802110b550a4cafcc5de494a5257,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Using the HUD
@@ -2318,9 +2333,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 8ce67d071ae2bca4ca6fed5dd6d13236,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 384d7303e786f564990c6cf648e37242,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 384d7303e786f564990c6cf648e37242,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 384d7303e786f564990c6cf648e37242,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Pinwheel
@@ -2336,9 +2354,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 0acfdefe8285a774287c08c62971aa2e,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 5dea4fe540ec6dc428d84fb72ce057ef,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 5dea4fe540ec6dc428d84fb72ce057ef,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 5dea4fe540ec6dc428d84fb72ce057ef,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Lozenge
@@ -2354,9 +2375,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 305e17c277cab5d4a922e7ff1a0eb58c,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 02f794b54abb31f4bb8695c8fbaf4fdc,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 02f794b54abb31f4bb8695c8fbaf4fdc,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 02f794b54abb31f4bb8695c8fbaf4fdc,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Firebird
@@ -2372,9 +2396,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: fe36911898f76164ea24edcc78232c46,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: dbf4b87ee8e36694eb6eb9d951e7a287,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: dbf4b87ee8e36694eb6eb9d951e7a287,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: dbf4b87ee8e36694eb6eb9d951e7a287,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Ridgeback
@@ -2390,9 +2417,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 7a590318844c6fd4cbf0b891fc190495,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 2c2a2aa4be4aff845939f0feab460b30,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 2c2a2aa4be4aff845939f0feab460b30,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 2c2a2aa4be4aff845939f0feab460b30,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Hourglass
@@ -2408,9 +2438,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 350e29904232b724b994dbaf2fe49757,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 24564cb5cce7a7e40ac237841db05473,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 24564cb5cce7a7e40ac237841db05473,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 24564cb5cce7a7e40ac237841db05473,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Arrow
@@ -2433,9 +2466,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 06938dba5adff2840aa0297171210ce0,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 8842daf3b61eafc46b47e87799efe550,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 8842daf3b61eafc46b47e87799efe550,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 8842daf3b61eafc46b47e87799efe550,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Rainbow
@@ -2451,9 +2487,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: b4bae0f02542fc044965cd3f03f568d3,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 71533b29afc91674fa8581a66212be80,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 71533b29afc91674fa8581a66212be80,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 71533b29afc91674fa8581a66212be80,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Caduceus
@@ -2469,9 +2508,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: df72405c67a214c43943634878affb79,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 3990cc6b757cd244e84e319ecb90e650,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 3990cc6b757cd244e84e319ecb90e650,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 3990cc6b757cd244e84e319ecb90e650,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Lotus Field
@@ -2487,9 +2529,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: ba676c1938f5be44b9e2547ff3121fe2,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: ad6ce419dfcb1a94f8130940037ea5dd,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: ad6ce419dfcb1a94f8130940037ea5dd,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: ad6ce419dfcb1a94f8130940037ea5dd,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Triskelion
@@ -2505,9 +2550,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 2a653b4d682c8d14ea5e39938dffba63,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 27e0b0f33ccf11242aac4bd28a208f78,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 27e0b0f33ccf11242aac4bd28a208f78,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 27e0b0f33ccf11242aac4bd28a208f78,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Imp
@@ -2523,9 +2571,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 116bbda6dbe7c3240ad6f15073f94f94,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: e24d62f6d76d4b84098c7e20d0c87068,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: e24d62f6d76d4b84098c7e20d0c87068,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: e24d62f6d76d4b84098c7e20d0c87068,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Bermuda
@@ -2548,9 +2599,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: b089c4e2f621a2449a9785cd0d3b0f0a,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 184fc900bf0642948a70f8062de7e2c0,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 184fc900bf0642948a70f8062de7e2c0,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 184fc900bf0642948a70f8062de7e2c0,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: ???
@@ -2566,9 +2620,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 3f27ef78096aab746baa014806aa08a9,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 507b2df352280144fa1c25b0a925b58e,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 507b2df352280144fa1c25b0a925b58e,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 507b2df352280144fa1c25b0a925b58e,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Tangrams
@@ -2584,9 +2641,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: a4cf5191e1f63d341bba265c5b2ea958,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 45b6fd34d8f340e4c8d94f635a056867,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 45b6fd34d8f340e4c8d94f635a056867,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 45b6fd34d8f340e4c8d94f635a056867,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Clover
@@ -2602,9 +2662,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: de8d56854c9a3ed4b9b2fc788c4fffb6,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 1c4c5f97c582e9d468b4d3675e42a74a,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 1c4c5f97c582e9d468b4d3675e42a74a,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 1c4c5f97c582e9d468b4d3675e42a74a,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Balance
@@ -2620,12 +2683,15 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: a64da7de13c0bcf4da694555c9befe2a,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: d683ef9af65757e4ba3f32ffc589d0d4,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: d683ef9af65757e4ba3f32ffc589d0d4,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: d683ef9af65757e4ba3f32ffc589d0d4,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
-      puzzleName: Magnetischism
+      puzzleName: Magnetic Schism
       sceneToLoad: 23
       button: {fileID: 0}
       leftToUnlock: 0
@@ -2638,9 +2704,12 @@ MonoBehaviour:
       completedTexture: {fileID: 21300000, guid: 157da845cb6ac1b49bd23e072234bb68,
         type: 3}
       hiddenTexture: {fileID: 0}
-      displayUnlockedTexture: {fileID: 0}
-      displayLockTexture: {fileID: 0}
-      displayCompletedTexture: {fileID: 0}
+      displayUnlockedTexture: {fileID: 21300000, guid: 9e2894ebba0233941b660aabdc274055,
+        type: 3}
+      displayLockTexture: {fileID: 21300000, guid: 9e2894ebba0233941b660aabdc274055,
+        type: 3}
+      displayCompletedTexture: {fileID: 21300000, guid: 9e2894ebba0233941b660aabdc274055,
+        type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
       puzzleName: Snowflake
@@ -3331,7 +3400,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -4085,8 +4154,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -3, y: 70}
-  m_SizeDelta: {x: 154, y: 42}
+  m_AnchoredPosition: {x: -.000730514526, y: 79}
+  m_SizeDelta: {x: 111.309998, y: 64}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2070215746
 MonoBehaviour:
@@ -4103,7 +4172,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
