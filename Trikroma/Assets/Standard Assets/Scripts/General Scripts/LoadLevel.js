@@ -8,8 +8,10 @@ function LoadLevel ()
 	Application.LoadLevel(levelToLoad);
 }
 
-/*public function LoadLevel (levelID:int) :void
+/*
+public function LoadLevel (levelID:int) :void
 {
 	//loadingImage.SetActive(true);
 	Application.LoadLevel(levelID);
-}*/
+}
+*/

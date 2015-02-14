@@ -2607,7 +2607,7 @@ MonoBehaviour:
         type: 3}
       displayHiddenTexture: {fileID: 0}
       buttonText: {fileID: 0}
-      puzzleName: ???
+      puzzleName: Cell Portal
       sceneToLoad: 19
       button: {fileID: 0}
       leftToUnlock: 0

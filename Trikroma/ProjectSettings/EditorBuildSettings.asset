@@ -22,15 +22,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene07.unity
   - enabled: 1
-    path: Assets/Standard Assets/Scenes/puzzleScene09.unity
-  - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene08.unity
+  - enabled: 1
+    path: Assets/Standard Assets/Scenes/puzzleScene09.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene10.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene11.unity
-  - enabled: 1
-    path: Assets/Standard Assets/Scenes/puzzleScene12.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene12.unity
   - enabled: 1
@@ -42,32 +40,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene16.unity
   - enabled: 1
+    path: Assets/Standard Assets/Scenes/puzzleScene17.unity
+  - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene18.unity
   - enabled: 1
-    path: Assets/Standard Assets/Scenes/puzzleScene17.unity
+    path: Assets/Standard Assets/Scenes/puzzleScene19.unity
   - enabled: 1
-    path: Assets/Standard Assets/Scenes/puzzleScene17.unity
-  - enabled: 1
-    path: Assets/Standard Assets/Scenes/puzzleScene20A.unity
+    path: Assets/Standard Assets/Scenes/puzzleScene20.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene21.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene22.unity
   - enabled: 1
-    path: Assets/Standard Assets/Scenes/puzzleScene24.unity
-  - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene23.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene24.unity
-  - enabled: 0
-    path: Assets/Standard Assets/Scenes/puzzleScene26.unity
-  - enabled: 0
-    path: Assets/Standard Assets/Scenes/puzzleScene27.unity
-  - enabled: 0
-    path: Assets/Standard Assets/Scenes/puzzleScene28.unity
-  - enabled: 0
-    path: Assets/Standard Assets/Scenes/puzzleScene29.unity
-  - enabled: 0
-    path: Assets/Standard Assets/Scenes/testScene.unity
-  - enabled: 0
-    path: Assets/Standard Assets/Scenes/puzzleScene30.unity
