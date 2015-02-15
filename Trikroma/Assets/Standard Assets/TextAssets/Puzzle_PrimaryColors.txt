@@ -1,5 +1,5 @@
 Matrix Size:
-3, 3
+2, 3
 Color Matrix:
 0000FF, FF0000, 00FF00
 FF0000, 00FF00, 0000FF
