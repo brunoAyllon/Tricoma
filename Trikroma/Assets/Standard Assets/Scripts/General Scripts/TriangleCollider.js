@@ -28,7 +28,6 @@ function PointInsideTriangle():boolean
 	
 	// If we are inside all 3 half-planes, then we are inside the triangle
 	// Observation: Checks must be done clockwise
-	
 	if(isUpright)
 	{
 		Debug.Log("Upright: "+gameObject.name);
@@ -38,20 +37,15 @@ function PointInsideTriangle():boolean
 		isInsideHalfPlane(collisionPoint, leftVert,  topVert )
 		);
 	}
-	
-		/*Debug.Log("NOT Upright: "+gameObject.name);
-		Debug.Log("L-R: "+isInsideHalfPlane(collisionPoint, leftVert, rightVert ));
-		Debug.Log("R-B: "+isInsideHalfPlane(collisionPoint, rightVert, topVert ));
-		Debug.Log("B-L: "+isInsideHalfPlane(collisionPoint, topVert, leftVert ));*/
 		
-		return (
-		isInsideHalfPlane(collisionPoint, leftVert, rightVert ) && 
-		isInsideHalfPlane(collisionPoint, rightVert, topVert ) &&
-		isInsideHalfPlane(collisionPoint, topVert, leftVert )
-		);
+	return (
+	isInsideHalfPlane(collisionPoint, leftVert, rightVert ) && 
+	isInsideHalfPlane(collisionPoint, rightVert, topVert ) &&
+	isInsideHalfPlane(collisionPoint, topVert, leftVert )
+	);
 }
 
-// Upon being called by the gameplay controller, it checks if the mouse is inside the triangle, if so, it begins the color drag and drop
+// If the mouse is clicked on this object
 function MouseDown()
 {
 	// If the point is inside the triangle
@@ -66,25 +60,32 @@ function MouseDown()
 
 function MouseUp() 
 {
+	// If the point is inside the triangle
 	if(PointInsideTriangle())
 	{
-		//Debug.Log("Up: "+GetInstanceID());
+		// Tell the gameplay controller  to finish manipulating traingles, which means either giving up on manipulating the color or commiting to it
 		Debug.Log("Up: "+gameObject.name);
 		gameplayController.EndColorManip(gameObject.name);
 		colorManipulationActive = false;
 	}
 }
 
+// If the mouse hovering over this game object
 function OnMouseOver():void
 {
+	// And we are manipulating colors
 	if (colorManipulationActive)
 	{
+		// And we are inside the triangle
 		if(PointInsideTriangle())
 		{
+			// Add this object's color to the paticles' being drawn
 			gameplayController.StartParticleManipulation(gameObject.name);
 		}
+		// Otherwise, if we have left the triangle or are not inside it
 		else
 		{
+			// Remove this object's color to the paticles' being drawn (or not add it at all, the gameplay controller will figure that out)
 			gameplayController.EndParticleManipulation(gameObject.name);
 		}
 	}
@@ -93,6 +94,7 @@ function OnMouseOver():void
 // Happens only once, when the script is created. Essentially used to setup variables
 function Start () 
 {
+	// We start with no gameplay going on
 	colorManipulationActive = false;
 
 	/* First we determine the vertices of the collision triangle
@@ -105,6 +107,7 @@ function Start ()
 	
 	isUpright = gridScript.isUpright(pos);
 	
+	// Determine the traingle's vertices' positions based on whether it is upright or not
 	if(isUpright)
 	{
 		leftVert = Vector2(collider2D.bounds.min.x, gameObject.collider2D.bounds.min.y);

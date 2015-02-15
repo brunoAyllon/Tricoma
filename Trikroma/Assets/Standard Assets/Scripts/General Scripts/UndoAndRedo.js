@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var gameplayController:GameObject;
+public var gameplayController:GameObject;
 
 function Start () 
 {
@@ -18,6 +18,7 @@ public function UndoMove():void
 	gameplayController.SendMessage("UndoMove");
 }
 
+// Redoes the last move the player made
 public function RedoMove():void
 {
 	gameplayController.SendMessage("RedoMove");

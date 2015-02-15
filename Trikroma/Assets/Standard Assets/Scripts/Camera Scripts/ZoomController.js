@@ -64,12 +64,12 @@ function Update ()
 	 {
 		PinchZoom(zoomRatio);
 	 }
-	// Zoom in
+	// Mouse zoom in
 	else if( Input.GetAxis("Mouse ScrollWheel") > 0)
 	{
 		MouseCameraZoom(gameObject.camera.ScreenToWorldPoint(Input.mousePosition), zoomRatio);
 	}
-	// Zoom out
+	// Mouse zoom out
 	else if ( Input.GetAxis("Mouse ScrollWheel") < 0)
 	{
 		MouseCameraZoom(gameObject.camera.ScreenToWorldPoint(Input.mousePosition), -zoomRatio);	
