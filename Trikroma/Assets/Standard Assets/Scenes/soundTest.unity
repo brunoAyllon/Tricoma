@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5eefe0298e5be045b7b5658ab4531f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invisibleByDefault: 1
   musicVolume: 0
   soundEffectVolume: 0
   muteMusic: 0

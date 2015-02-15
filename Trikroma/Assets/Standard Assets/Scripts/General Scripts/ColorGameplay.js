@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+public var completionObject:GameObject;
+
 //
 // What file should we read the victory coditions from ?
 public var victoryInputFile:TextAsset = null;
@@ -121,6 +123,14 @@ public function ResetLevel()
 	}
 	// reset correct node count
 	currentCorrectTiles = initialCorrectTiles;
+}
+
+public function LevelIsComplete(value:boolean):void
+{
+	if(completionObject)
+	{
+		completionObject.SetActive(value);
+	}
 }
 
 public function LoadSaveFile(dataFile:TextAsset):boolean
@@ -280,8 +290,9 @@ public function NotifyVictory():void
 	if(levelManager != null)
 	{
 		levelManager.SendMessage("CompleteLevel", Application.loadedLevel, SendMessageOptions.DontRequireReceiver);
-		levelManager.SendMessage("GoBackToMenu", SendMessageOptions.DontRequireReceiver);
 	}
+	Debug.Log("COMPLETE");
+	LevelIsComplete(true);
 }
 
 public function NotifyLevelIncomplete():void

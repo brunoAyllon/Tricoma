@@ -444,6 +444,15 @@ public function LoadSaveFile()
 	}
 }
 
+public function NotifyCompletion(level:int)
+{
+	var listeners : ColorGameplay[] = FindObjectsOfType(ColorGameplay) as ColorGameplay[];
+	for (var listener : ColorGameplay in listeners) 
+	{		
+			listener.LevelIsComplete((tabs[currentTab].buttons[level].puzzleState == PuzzleState.Puzzle_Completed));
+	}
+}
+
 // Load the scene in which the main menu was originally created
 public function GoBackToMenu()
 {
@@ -530,6 +539,7 @@ function OnLevelWasLoaded (level : int)
 			LoadSaveFile();
 			continueLevel = false; 
 		}
+		NotifyCompletion(level);
 }
 
 function OnDestroy()

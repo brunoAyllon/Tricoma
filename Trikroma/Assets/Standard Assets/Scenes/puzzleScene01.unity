@@ -2072,6 +2072,10 @@ Prefab:
       propertyPath: centerToRightBoundry
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
+      propertyPath: completionObject
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_RootGameObject: {fileID: 1440614163}
@@ -2355,10 +2359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d167c8f6898ce124993ec004cb31bf7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completionObject: {fileID: 0}
   victoryInputFile: {fileID: 4900000, guid: fe1d71f9ea4661d4abc3dc0f2ec2e135, type: 3}
   saveDataInputFile: {fileID: 0}
   hintDataInputFile: {fileID: 0}
   hintObjectToReplicate: {fileID: 0}
+  drawHintsByDefault: 0
   particleSystemObject: {fileID: 0}
   particleColorAdjustment: {r: 0, g: 0, b: 0, a: 0}
   currentCorrectTiles: 0
