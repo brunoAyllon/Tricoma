@@ -17,7 +17,7 @@ public var defaultColor = Color.green;
 public var objectToReplicate:GameObject;
 
 public var drawEdges:boolean;
-public var layerOfEdges:int;
+public var sortingOrderOfEdges:int;
 public var centerToBottomBoundry:int;
 public var centerToLeftBoundry:int;
 public var centerToRightBoundry:int;

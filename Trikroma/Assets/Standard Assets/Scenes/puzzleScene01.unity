@@ -2107,6 +2107,10 @@ Prefab:
       propertyPath: drawHintsByDefault
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
+      propertyPath: sortingOrderOfEdges
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_RootGameObject: {fileID: 1440614163}
@@ -2150,7 +2154,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: ad5c6b6fd30657247ac6ae23a799e509, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: .862745106}
+  m_Color: {r: 1, g: 1, b: 1, a: .90196079}
 --- !u!4 &1215227908
 Transform:
   m_ObjectHideFlags: 0
@@ -2418,6 +2422,7 @@ MonoBehaviour:
   defaultColor: {r: .303146631, g: .463235319, b: .303146631, a: 0}
   objectToReplicate: {fileID: 142354, guid: 35061b2312b98ad4d8c7f20388b59c7b, type: 2}
   drawEdges: 1
+  sortingOrderOfEdges: 5
   centerToBottomBoundry: 10
   centerToLeftBoundry: 10
   centerToRightBoundry: 10

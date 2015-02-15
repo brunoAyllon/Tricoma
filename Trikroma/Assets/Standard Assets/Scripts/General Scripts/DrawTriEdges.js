@@ -47,18 +47,17 @@ function Start ()
 					
 					// Now initialize the left game object
 					leftObj = new GameObject("Left "+pos.x+" "+pos.y);
-					// And set the layer we are drawing the edge in
-					leftObj.layer = gridScript.layerOfEdges;
+					
 					
 					// Place it at the center of the current object
 					// Observation: Sprite coordinates are relative to its parent game object, hence why we placed the object at the same center as the triangle
 					leftObj.transform.position = transform.position;
 					
 					// Add a sprite renderer to it
-					leftObj.AddComponent(SpriteRenderer);
-					
+					var leftRenderer:SpriteRenderer = leftObj.AddComponent(SpriteRenderer);
+					leftRenderer.sortingOrder = gridScript.sortingOrderOfEdges;
 					// And tell it to render the sprite we created
-			   	 	leftObj.GetComponent(SpriteRenderer).sprite = leftSprite;
+			   	 	leftRenderer.sprite = leftSprite;
 				}
 			
 				// If it has a valid right edge
@@ -80,18 +79,17 @@ function Start ()
 					
 					// Now initialize the right game object
 					rightObj = new GameObject("right "+pos.x+" "+pos.y);
-					// And set the layer we are drawing the edge in
-					rightObj.layer = gridScript.layerOfEdges;
 					
 					// Place it at the center of the current object
 					// Observation: Sprite coordinates are relative to its parent game object, hence why we placed the object at the same center as the triangle
 					rightObj.transform.position = transform.position;
 					
 					// Add a sprite renderer to it
-					rightObj.AddComponent(SpriteRenderer);
+					var rightRenderer:SpriteRenderer = rightObj.AddComponent(SpriteRenderer);
+					rightRenderer.sortingOrder = gridScript.sortingOrderOfEdges;
 					
 					// And tell it to render the sprite we created
-			   	 	rightObj.GetComponent(SpriteRenderer).sprite = rightSprite;
+			   	 	rightRenderer.sprite = rightSprite;
 			   	 	
 				}
 		}
@@ -120,14 +118,12 @@ function Start ()
 			// Place it at the center of the current object
 			// Observation: Sprite coordinates are relative to its parent game object, hence why we placed the object at the same center as the triangle
 			bottomObj.transform.position = transform.position;
-			// And set the layer we are drawing the edge in
-			leftObj.layer = gridScript.layerOfEdges;
 			
 			// Add a sprite renderer to it
-			bottomObj.AddComponent(SpriteRenderer);
-			
+			var bottomRenderer:SpriteRenderer = bottomObj.AddComponent(SpriteRenderer);
+			bottomRenderer.sortingOrder =  gridScript.sortingOrderOfEdges;
 			// And tell it to render the sprite we created
-	   	 	bottomObj.GetComponent(SpriteRenderer).sprite = bottomSprite;
+	   	 	bottomRenderer.sprite = bottomSprite;
 		}
     }
     
