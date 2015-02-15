@@ -4,7 +4,7 @@
 import UnityEngine.UI;
 
 // Should we mute ?
-private var mute:boolean;
+public var mute:boolean;
 
 // Getter
 public function isMute():boolean

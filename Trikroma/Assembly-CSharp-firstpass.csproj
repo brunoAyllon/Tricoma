@@ -93,6 +93,7 @@
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Triskelion.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Tangrams.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
+     <None Include="Assets\Standard Assets\TextAssets\testSoundSaveFile.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Pinwheel.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_SecondaryColors.txt" />

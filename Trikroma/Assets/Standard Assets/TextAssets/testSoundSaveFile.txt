@@ -1,0 +1,8 @@
+Music Volume: 
+0.6642857
+Music Mute: 
+False
+Sound Effects Volume: 
+0.4
+Sound Effects Mute: 
+False
