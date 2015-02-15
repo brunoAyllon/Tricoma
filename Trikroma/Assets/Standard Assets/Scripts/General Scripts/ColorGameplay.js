@@ -1,12 +1,13 @@
 ﻿#pragma strict
 
+// The objectv we draw when the puzzle is completed
 public var completionObject:GameObject;
 
-//
 // What file should we read the victory coditions from ?
 public var victoryInputFile:TextAsset = null;
 // Stores type and color of the victory node
 private var victoryGrid:VictoryNode[,];
+// All the hint nodes that will be displayed
 private var hintGrid:HintNode[,];
 
 // File to load save data from
@@ -14,11 +15,16 @@ public var saveDataInputFile:TextAsset;
 
 // File to load hint data from
 public var hintDataInputFile:TextAsset;
+// The prefab of the hint object we are going to use
 public var hintObjectToReplicate:GameObject;
+// Should we show the hints by default ?
 public var drawHintsByDefault:boolean;
+// Should we draw the hints ? Used for the draw hint toggle
 private var drawHint:boolean;
 
+// The particle system used to show the results of adding and subtracting colors
 public var particleSystemObject:GameObject;
+// Added to the particle color to distinguish it from the tile itself
 public var particleColorAdjustment:Color;
 
 // This script RERQUIRES being attached to an object with a CreateGrid component
@@ -47,15 +53,21 @@ private var colorManipTo:String = String.Empty;
 private var numberOfUndos:int;
 private var numberOfRedos:int;
 
+// Stores a reference to the level manager
 private var levelManager:GameObject;
 
+// Should we load the current state of the game from the file
 private var shouldLoadSave:boolean;
 
+// Are we manipulating a valid node 
 private var insideValidNode:boolean;
+// What is the position of this node
 private var validNodePos:Vector2;
 
+// Stores data of hint nodes
 class HintNode extends System.ValueType
 {
+	// The game object that represents the node
 	public var hintObject:GameObject;
 }
 
@@ -89,6 +101,7 @@ class VictoryNode extends System.ValueType
 // Activated by message, undoes a player move
 public function UndoMove():void
 {
+	// If there are still undos left
 	if(numberOfUndos)
 	{
 		Undo.PerformUndo();
@@ -100,6 +113,7 @@ public function UndoMove():void
 // Activated by message, redoes a player move
 public function RedoMove():void
 {
+	// If there are still redos left
 	if(numberOfRedos)
 	{
 		Undo.PerformRedo();
@@ -127,6 +141,7 @@ public function ResetLevel()
 
 public function LevelIsComplete(value:boolean):void
 {
+	// If the level is complete, draw the completion object
 	if(completionObject)
 	{
 		completionObject.SetActive(value);
@@ -135,14 +150,17 @@ public function LevelIsComplete(value:boolean):void
 
 public function LoadSaveFile(dataFile:TextAsset):boolean
 {
+	// If we have a valid save file
 	if ( saveDataInputFile != null )
 	{
+		// Check if it is not empty
 		var allTheText:String[] = saveDataInputFile.text.Split("\n"[0]);
 		if(allTheText.Length == 0)
 		{
 			return false;
 		}
 		
+		// Now read the data from the files
 		currentCorrectTiles = int.Parse(allTheText[0]);
 		
 		var i:int = 1;
@@ -160,14 +178,18 @@ public function LoadSaveFile(dataFile:TextAsset):boolean
 	return false;
 }
 
+// Called by the hint button
 public function ToggleDrawHint():void
 {
+	// Toggle the button state
 	drawHint = !drawHint;
+	// Draws the button or makes it invisible
 	DrawHintTiles(drawHint);
 }
 
 public function DrawHintTiles(value:boolean):void
 {
+	// Make the hint tiles visible
 	for (var node:HintNode in hintGrid)
 	{
 		node.hintObject.SetActive(value);
@@ -176,13 +198,16 @@ public function DrawHintTiles(value:boolean):void
 
 public function LoadHintFile():void
 {
+	// If we have a valid hint file and hint object
 	if ( hintDataInputFile && hintObjectToReplicate)
 	{
+		// If the hint grid was not initialized, do so
 		if (hintGrid == null)
 		{
 			hintGrid = new HintNode[gridScript.numberOfRows, gridScript.numberOfColumns];
 		}
 			
+		// Now go through the grid
 		for(var currentRow = 0.0; currentRow < gridScript.numberOfRows; ++currentRow)
 		{
 			// Now read the color values from file
@@ -190,12 +215,18 @@ public function LoadHintFile():void
 			{	
 				Debug.Log(currentRow+" , "+currentColumn);
 				
+				// Draw the hint object in the same position as the parent
 				var positionToDraw:Vector3 = Vector3(0.0, 0.0, 0.0);
+				// Now create the object
 				hintGrid[currentRow, currentColumn].hintObject = Instantiate(hintObjectToReplicate, positionToDraw, Quaternion.identity) as GameObject;
+				// And make it a child of the respective tile
 				hintGrid[currentRow, currentColumn].hintObject.transform.SetParent( gridScript.objectRenderer[currentRow, currentColumn].gameObject.transform, false);
+				// And give it a name so it is easy to find it in the inspector
 				hintGrid[currentRow, currentColumn].hintObject.name = "Desired Color";
 			}
 		}
+		
+		// Start parsing the data
 		var dataParseMode:DataParse = DataParse.None;
 		
 		var allTheText = hintDataInputFile.text.Split("\n"[0]);
@@ -258,18 +289,20 @@ public function LoadHintFile():void
 
 public function SaveGameToFile(dataFile:TextAsset):void
 {
+	// If we have a valid file
 	if ( saveDataInputFile != null )
 	{
+		// Get the path to it
 		var path:String =  AssetDatabase.GetAssetPath(saveDataInputFile);
-		
+		// Record the number of correct tiles
 		var data:String = currentCorrectTiles+"\n";
-		
+		// And their colors
 		for (var colorRenderer in gridScript.objectRenderer)
 		{
 			var colorToSave:Color = colorRenderer.material.color;
 			data+= " ( "+colorToSave.r+" , "+colorToSave.g+" , "+colorToSave.b+" , "+colorToSave.a +" )\n";
 		}
-		
+		// And write them all to the file
 		System.IO.File.WriteAllText(path, data);	
 	}
 }
@@ -287,16 +320,19 @@ public function LoadSave(value:boolean):void
 
 public function NotifyVictory():void
 {
+	// Tell the level manager that the level is complete
 	if(levelManager != null)
 	{
 		levelManager.SendMessage("CompleteLevel", Application.loadedLevel, SendMessageOptions.DontRequireReceiver);
 	}
 	Debug.Log("COMPLETE");
+	// And draw the level complete object
 	LevelIsComplete(true);
 }
 
 public function NotifyLevelIncomplete():void
 {
+	// Tell the level manager that the level is not completed yet
 	if(levelManager != null)
 	{
 		levelManager.SendMessage("ContinueLevel", Application.loadedLevel, SendMessageOptions.DontRequireReceiver);	
@@ -367,6 +403,7 @@ public function EndColorManip(colliderName:String)
 	}
 }
 
+// Getter for the particle color
 public function GetParticlesColor():Color
 {
 	if(particleSystemObject != null)
@@ -377,11 +414,18 @@ public function GetParticlesColor():Color
 	return Color.black;
 }
 
+// Setter for the particle color
 public function SetParticlesColor(newColor:Color):void
 {
 	if(particleSystemObject != null)
 	{
-		particleSystemObject.GetComponent (ParticleSystem).startColor = newColor;
+		var newParticleColor = newColor;
+		// Make sure the values are in a valid color range
+		newParticleColor.r = Mathf.Clamp(newParticleColor.r, 0.0, 1.0);
+		newParticleColor.g = Mathf.Clamp(newParticleColor.g, 0.0, 1.0);
+		newParticleColor.b = Mathf.Clamp(newParticleColor.b, 0.0, 1.0);
+		// And assign the new color
+		particleSystemObject.GetComponent (ParticleSystem).startColor = newParticleColor;
 	}
 }
 
@@ -409,7 +453,18 @@ public function StartParticleManipulation(nodeName:String):void
 			{
 				insideValidNode = true;
 				validNodePos = position;
-				SetParticlesColor(GetParticlesColor() + gridScript.objectRenderer[position.x, position.y].material.color);
+				
+				// Finally, call the appropriate color operation
+				switch (edgeFound.type)
+				{	
+					case EdgeType.edgePlus:
+						SetParticlesColor(GetParticlesColor() + gridScript.objectRenderer[position.x, position.y].material.color);
+						break;
+						
+					case EdgeType.edgeMinus:
+						SetParticlesColor(GetParticlesColor() - gridScript.objectRenderer[position.x, position.y].material.color);
+						break;
+				}
 			}
 		}
 	}
@@ -575,6 +630,7 @@ public function ReadVictoryDataFromFile()
 			}
 		}
 		
+		// Now set the number of tiles that are currently correct
 		initialCorrectTiles = currentCorrectTiles;
 	}
 }
@@ -582,6 +638,7 @@ public function ReadVictoryDataFromFile()
 
 function Start () 
 {	
+	// Initialize variables
 	numberOfUndos = 0;
 	numberOfRedos = 0;
 	drawHint = drawHintsByDefault;
@@ -598,8 +655,10 @@ function Start ()
 		// Now read the victory file
 		ReadVictoryDataFromFile();
 		
+		// Now load the hint file
 		LoadHintFile();
 		
+		// Then load the save file, if the option is selected
 		if(shouldLoadSave)
 		{
 			LoadSaveFile(saveDataInputFile);
@@ -612,20 +671,25 @@ function Start ()
 	
 }
 
+// When this object is destroyed
 function OnDestroy()
 {
+	// If the player has not completed the level
 	if(!isVictorious() && saveDataInputFile != null)
 	{
+		// Save the current state of the level
 		SaveGameToFile(saveDataInputFile);
+		//And tell the level manager we haven't completed the level
 		NotifyLevelIncomplete();
 	}
 }
 
 function Update () 
 {
-
+	// If the particle system is assigned
 	if(particleSystemObject != null)
 	{
+		// Move the particle system to the mouse's position
 		particleSystemObject.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 	}
 	
