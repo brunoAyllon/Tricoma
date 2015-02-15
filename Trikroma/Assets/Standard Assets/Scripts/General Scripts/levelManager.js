@@ -156,22 +156,29 @@ private var tabs:Dictionary.<String, MenuTab>;
 // Interface for reading all the input data, Unity will not display dictionaries because reasons
 public var guiButtons:GameObject[];
 
+// The total number of levels to finish in order to achieve 100% completion status
 private var levelsToComplete:int;
+// How many levels have we completed so far ?
 private var levelsCompleted:int;
 
+// Load manager data from file
 public function LoadManagerState():boolean
 {
 	if (loadManagerStateFromFile && managerSaveFile)
 	{
+		// Get all the data in the file and split it by lines
 		var allTheText:String[] = managerSaveFile.text.Split("\n"[0]);
+		// If the file is empty, return false
 		if(allTheText.Length == 0)
 		{
 			return false;
 		}
 		
+		// Otherwise, get the current tab being displayed
 		currentTab = allTheText[0];
 		var i:int = 1;
 		
+		// And read all the data for each tab
 		for (tab in guiTabs)
 		{
 			for(button in tab.guiButtons)
@@ -196,10 +203,18 @@ public function LoadManagerState():boolean
 
 public function SaveManagerState():void
 {	
+	// If we have a valid save file
 	if(managerSaveFile)
 	{
+		// Get the file path
 		var path:String =  AssetDatabase.GetAssetPath(managerSaveFile);
+		// Write the current string
 		var data:String = currentTab+"\n";
+		
+		/*
+		 And store data on each file in the format (name of the tab the button belongs to, scene the button loads, state of the puzzle, how many levels left to unlock it, 
+		 did the user finish it or do we need to continue it? 
+		*/
 		
 		for (tab in guiTabs)
 		{
@@ -209,10 +224,12 @@ public function SaveManagerState():void
 			}
 		}
 		
+		// And write all the data to the file
 		System.IO.File.WriteAllText(path, data);
 	}
 }
 
+// Count how many levels are completed so far
 function CheckLevelsCompleted():int
 {
 	var howManyCompleted:int = 0.0;
@@ -269,6 +286,8 @@ public function DrawLevelSelectButton():boolean
 	
 }
 
+// If the selected level was not finished, draw the continue button
+// Observation: Continue might be drawn on a completed puzzle if the user replayed it and stopped half-way
 public function DrawLevelContinueButton():boolean
 {
 	
@@ -284,6 +303,7 @@ public function DrawLevelContinueButton():boolean
 	}
 }
 
+// Draw the level complete image if the puzzle was completed
 public function DrawLevelCompletedImage():void
 {
 	// If the level is complete
@@ -339,6 +359,7 @@ public function DrawTab(tabName:String):void
 				break;
 			}
 			
+			// And draw its associated text, if any exists
 			var buttonText:Text = button.Value.button.GetComponent(Text);
 			if(buttonText != null)
 			{
@@ -359,6 +380,7 @@ public function DrawTab(tabName:String):void
 			guiBackground.sprite = tabs[tabName].tabBackground;
 		}
 		
+		// And set it as our current tab being displayed
 		currentTab = tabName;
 		
 		// Lastly, draw the button display
@@ -371,7 +393,6 @@ public function DrawButtonDisplay(button:GameObject)
 	// If the button we will display exists
 	if(button != null)
 	{
-		Debug.Log("I am tab "+currentTab);
 		displayedButton = button;
 		
 		// And if it has a text component
@@ -425,7 +446,7 @@ public function DrawButtonDisplay(button:GameObject)
 	}
 }
 
-// Notify all puzzles of the existance of the 
+// Notify all gameplay controllers of the existance of the level manager
 public function BroadcastLevelManagersExistance():void
 {
 	var listeners : ColorGameplay[] = FindObjectsOfType(ColorGameplay) as ColorGameplay[];
@@ -435,6 +456,7 @@ public function BroadcastLevelManagersExistance():void
 	}
 }
 
+// Tells the gameplay controller if we are continuing a level or not
 public function LoadSaveFile()
 {
 	var listeners : ColorGameplay[] = FindObjectsOfType(ColorGameplay) as ColorGameplay[];
@@ -444,12 +466,14 @@ public function LoadSaveFile()
 	}
 }
 
+
 public function NotifyCompletion(level:int)
 {
+	// Notify the gameplay controllers if this scene was previously completed
 	var listeners : ColorGameplay[] = FindObjectsOfType(ColorGameplay) as ColorGameplay[];
 	for (var listener : ColorGameplay in listeners) 
 	{		
-			listener.LevelIsComplete((tabs[currentTab].buttons[level].puzzleState == PuzzleState.Puzzle_Completed));
+		listener.LevelIsComplete((tabs[currentTab].buttons[level].puzzleState == PuzzleState.Puzzle_Completed));
 	}
 }
 
@@ -478,6 +502,7 @@ public function HideLevel(sceneID:int)
 	tabs[currentTab].buttons[sceneID].button.GetComponent(Image).sprite = tabs[currentTab].buttons[sceneID].hiddenTexture;
 }
 
+// Called by the gameplay controller to notify the level manager that a puzzle was complete
 public function CompleteLevel(sceneID:int):void
 {	
 	tabs[currentTab].buttons[sceneID].puzzleState = PuzzleState.Puzzle_Completed;
@@ -491,21 +516,25 @@ public function CompleteLevel(sceneID:int):void
 	++completionSlider.GetComponent(Slider).value;
 }
 
+// Setter for the continue level variable of a scene
 public function ContinueLevel(sceneID:int):void
 {
 	tabs[currentTab].buttons[sceneID].continueLevel = true;
 }
 
+// Used in order to make a button draw a specific tab
 public function BindGUITab(tabButton:Button, tabToDraw:String):void
 {
 	tabButton.onClick.AddListener (function(){DrawTab(tabToDraw);});
 }
 
+// Used in order to make a button draw a specific button display
 public function BindGUIButton(button:GameObject):void
 {
 	button.GetComponent(Button).onClick.AddListener (function(){DrawButtonDisplay(button);}) ;
 }
 
+// Binds the buttons of a specific tab
 public function BindGUITabButtons(tabName:String):void
 {
 	// Fill the button's dictionary
@@ -523,7 +552,7 @@ public function BindGUITabButtons(tabName:String):void
 // Activates when a new scene is loaded
 function OnLevelWasLoaded (level : int) 
 {
-		// If it isn't the main menu's original scene, hide the menu
+		// If it is the main menu's original scene, we draw it
 		if (level == originalLevel) 
 		{
 			Debug.Log("GUI enabled");
@@ -533,17 +562,22 @@ function OnLevelWasLoaded (level : int)
 		else
 		{
 			Debug.Log("GUI disabled");
-			// And inform the gameplay controller where to inform that the stage was completed
+			// And inform the gameplay controller of our existence
 			BroadcastLevelManagersExistance();
+			// Make the GUI invisible
 			VisibleGUI(false);
+			// Tell the gameplay controller if we are continuing a level or not
 			LoadSaveFile();
+			// And set the continue button not to draw
 			continueLevel = false; 
 		}
+		// And notify the gameplay controller if the level was previously completed
 		NotifyCompletion(level);
 }
 
 function OnDestroy()
 {
+	// Save the game's current state
 	SaveManagerState();
 }
 
@@ -573,6 +607,16 @@ function Awake ()
 	currentTab = initialTabName;
 	// Initialize the tab dictionary
 	tabs = new Dictionary.<String, MenuTab >();
+	
+	/*
+	Observation: int order to bind the on click behavior to a certain button , we must pass in a function with no parameters, so in order to tell a button to call DrawButtonDisplay with a
+	specific scene ID, for example, we must wrap the callback inside a lambda. Since we are inside a loop, instead of passing the scene id by value, Javascript decides to keep the temporary
+	variable around and pass a reference to it for all the lambdas, so by the end of the loop, all of them would have a reference to the same scene id, so all would only draw the display
+	of the last scene. In order for each callback to record its own parameter, we wrap it again inside a function with parameters, thus ensuring each input is passed in by value. So to
+	reiterate, in order to bind a function with parameters to a button in the script side, we need a callback wrapped inside a a function wrapped inside a lamda. -_-'
+	
+	Who tough this was clever language architecture in the first place ?
+	*/
 	
 	// Go through every tab
 	for (var i:int = 0; i < guiTabs.Length; ++i)
@@ -636,7 +680,7 @@ function Awake ()
 	selectButton.onClick.AddListener(function(){levelLoader.LoadLevel();});
 	
 	
-	
+	// Add a button component to the continue button if none can be found
 	var continueButton:Button = levelContinueButton.GetComponent(Button);
 	if(continueButton == null)
 	{
@@ -683,6 +727,7 @@ function Awake ()
 		}
 	}
 	
+	// Count the number of levels to complete
 	levelsToComplete = 0.0;
 	for(var tab in guiTabs)
 	{
@@ -692,8 +737,10 @@ function Awake ()
 		}
 	}
 	
+	// And the number of levels completed
 	levelsCompleted = CheckLevelsCompleted();
 	
+	// Lastly, initialize the completion slider
 	var slider:Slider = completionSlider.GetComponent(Slider);
 	slider.minValue = 0;
 	slider.maxValue = levelsToComplete;

@@ -32,6 +32,7 @@ private var gridScript:CreateGrid  = null;
 
 // How many correct tiles did the grid have once we created it ?
 private var initialCorrectTiles:int;
+
 // How many tiles are correct at the moment ?
 /* Observation: The Perform Undo function documentation states: "This performs a undo operation. It is the same as clicking on the Edit->Undo menu."
    However, what they don't tell you is that if the variable cannot be altered in the editor, it will not be recorded. Therefore, we make it editable (public)
@@ -61,8 +62,6 @@ private var shouldLoadSave:boolean;
 
 // Are we manipulating a valid node 
 private var insideValidNode:boolean;
-// What is the position of this node
-private var validNodePos:Vector2;
 
 // Stores data of hint nodes
 class HintNode extends System.ValueType
@@ -451,8 +450,8 @@ public function StartParticleManipulation(nodeName:String):void
 			
 			if(edgeFound.isValid())
 			{
+				// Set the particle manipulation as active
 				insideValidNode = true;
-				validNodePos = position;
 				
 				// Finally, call the appropriate color operation
 				switch (edgeFound.type)
@@ -474,9 +473,30 @@ public function EndParticleManipulation(nodeName:String):void
 {
 	if(particleSystemObject != null && insideValidNode)
 	{
-		var position:Vector2 = gridScript.getObjectPositionFromName(nodeName);
+		// Set the particle manipulation as inactive
 		insideValidNode = false;
-		SetParticlesColor(GetParticlesColor() - gridScript.objectRenderer[position.x, position.y].material.color);
+		
+		// Check if there is a valid edge to the node
+		var From:Vector2   = gridScript.getObjectPositionFromName(colorManipFrom);
+		var To:  Vector2   = gridScript.getObjectPositionFromName(nodeName);
+		var edgeFound:Edge = gridScript.getEdge(To, From);
+			
+		if(edgeFound.isValid())
+		{	
+			// Call the appropriate color reversal operation
+			switch (edgeFound.type)
+			{	
+				case EdgeType.edgePlus:
+					SetParticlesColor(GetParticlesColor() - gridScript.objectRenderer[To.x, To.y].material.color);
+					break;
+					
+				case EdgeType.edgeMinus:
+					SetParticlesColor(GetParticlesColor() + gridScript.objectRenderer[To.x, To.y].material.color);
+					break;
+			}
+		}
+		
+		
 	}
 }
 

@@ -441,11 +441,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5eefe0298e5be045b7b5658ab4531f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invisibleByDefault: 1
+  invisibleByDefault: 0
   musicVolume: 0
   soundEffectVolume: 0
   muteMusic: 0
   muteSoundEffects: 0
+  LoadSoundSettingsFromFile: 1
+  soundSettingsInputFile: {fileID: 4900000, guid: aa3c41295f5ad594ca6f5c51e33b5696,
+    type: 3}
   MusicMuteButton: {fileID: 1099387209}
   SoundEffectsMuteButton: {fileID: 1876384051}
   MusicVolumeSlider: {fileID: 1552324355}
@@ -974,6 +977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed16fffd49cc67a4982ecc1b492e5b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mute: 0
 --- !u!114 &1099387212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1675,6 +1679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed16fffd49cc67a4982ecc1b492e5b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mute: 0
 --- !u!114 &1876384054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1781,7 +1786,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: ad5c6b6fd30657247ac6ae23a799e509, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: .862745106}
+  m_Color: {r: 1, g: 1, b: 1, a: .90196079}
 --- !u!4 &1936775434
 Transform:
   m_ObjectHideFlags: 0
