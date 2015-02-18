@@ -66,9 +66,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plusTexture: {fileID: 2800000, guid: cd74c7df6582b3a4b90520d11354ca14, type: 3}
   minusTexture: {fileID: 2800000, guid: 718a46b70068b73478711194e20d7fd4, type: 3}
-  fromBottomBoundry: {x: 0, y: 0}
-  fromLeftBoundry: {x: 0, y: 0}
-  fromRightBoundry: {x: 0, y: 0}
+  toBottomBoundry: 0
+  toLeftBoundry: 0
+  toRightBoundry: 0
 --- !u!212 &21242354
 SpriteRenderer:
   m_ObjectHideFlags: 1
