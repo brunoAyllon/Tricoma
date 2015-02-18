@@ -177,6 +177,7 @@ public function isUpright(objectPos:Vector2):boolean
 {
 	//return ( ( startWithUprightObj && ( !(objectPos.y % 2) ) )|| (!startWithUprightObj && !!(objectPos. % 2)) );
 	
+	Debug.Log("Is "+objectPos + " upright ?");
 	if(startWithUprightObj)
 	{
 		// Odd row

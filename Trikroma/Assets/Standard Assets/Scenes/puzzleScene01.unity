@@ -2111,6 +2111,10 @@ Prefab:
       propertyPath: sortingOrderOfEdges
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
+      propertyPath: timeToreturnToMenu
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_RootGameObject: {fileID: 1440614163}
@@ -2395,6 +2399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completionObject: {fileID: 1093366646}
+  timeToreturnToMenu: 5
   victoryInputFile: {fileID: 4900000, guid: fe1d71f9ea4661d4abc3dc0f2ec2e135, type: 3}
   saveDataInputFile: {fileID: 0}
   hintDataInputFile: {fileID: 4900000, guid: 283b853a151297c418d447e0be47e8a9, type: 3}

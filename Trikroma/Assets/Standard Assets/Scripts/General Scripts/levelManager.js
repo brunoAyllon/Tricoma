@@ -47,6 +47,8 @@ private var continueLevel:boolean;
 private var displayedButton:GameObject;
 
 public var completionSlider:GameObject;
+public var completionText:String;
+private var sliderTextComponent:Text;
 
 
 // Enum used to determine the current state of a puzzle
@@ -139,8 +141,6 @@ class MenuButton
 		{
 			// Unlock the button
 			puzzleState = PuzzleState.Puzzle_Unlocked;
-			// And change its sprite (cheaper than calling the Draw Display function
-			button.GetComponent(Image).sprite = unlockedTexture;
 		}
 	}
 }
@@ -244,6 +244,15 @@ function CheckLevelsCompleted():int
 		}
 	}
 	return howManyCompleted;
+}
+
+private function UpdateCompletionText()
+{
+	Debug.Log( levelsCompleted +" / "+ levelsToComplete);
+	if(sliderTextComponent)
+	{
+		sliderTextComponent.text = completionText +" "+ (levelsCompleted / levelsToComplete)+"%";
+	}
 }
 
 // Makes the GUI visible or invisible
@@ -513,7 +522,9 @@ public function CompleteLevel(sceneID:int):void
 		tabs[listener.tabName].buttons[listener.sceneItLoads].CompleteRequirement();
 	}
 	
-	++completionSlider.GetComponent(Slider).value;
+	++levelsCompleted;
+	completionSlider.GetComponent(Slider).value = levelsCompleted;
+	UpdateCompletionText();
 }
 
 // Setter for the continue level variable of a scene
@@ -607,6 +618,8 @@ function Awake ()
 	currentTab = initialTabName;
 	// Initialize the tab dictionary
 	tabs = new Dictionary.<String, MenuTab >();
+	
+	 sliderTextComponent = GetComponentInChildren(Text);
 	
 	/*
 	Observation: int order to bind the on click behavior to a certain button , we must pass in a function with no parameters, so in order to tell a button to call DrawButtonDisplay with a
@@ -745,6 +758,8 @@ function Awake ()
 	slider.minValue = 0;
 	slider.maxValue = levelsToComplete;
 	slider.value = levelsCompleted;
+	
+	UpdateCompletionText();
 }
 
 function Update () 

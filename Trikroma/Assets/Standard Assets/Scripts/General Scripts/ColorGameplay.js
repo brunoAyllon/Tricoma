@@ -2,6 +2,7 @@
 
 // The objectv we draw when the puzzle is completed
 public var completionObject:GameObject;
+public var timeToreturnToMenu:float;
 
 // What file should we read the victory coditions from ?
 public var victoryInputFile:TextAsset = null;
@@ -62,6 +63,7 @@ private var shouldLoadSave:boolean;
 
 // Are we manipulating a valid node 
 private var insideValidNode:boolean;
+private var validNodeName:String;
 
 // Stores data of hint nodes
 class HintNode extends System.ValueType
@@ -317,12 +319,14 @@ public function LoadSave(value:boolean):void
 		shouldLoadSave = value;
 }
 
-public function NotifyVictory():void
+public function NotifyVictory()
 {
 	// Tell the level manager that the level is complete
 	if(levelManager != null)
 	{
 		levelManager.SendMessage("CompleteLevel", Application.loadedLevel, SendMessageOptions.DontRequireReceiver);
+		yield WaitForSeconds(timeToreturnToMenu);
+		levelManager.SendMessage("GoBackToMenu", SendMessageOptions.DontRequireReceiver);
 	}
 	Debug.Log("COMPLETE");
 	// And draw the level complete object
@@ -389,6 +393,8 @@ public function EndColorManip(colliderName:String)
 			}
 			
 		}
+		
+		
 	}
 	
 	// Reset the values
@@ -452,6 +458,7 @@ public function StartParticleManipulation(nodeName:String):void
 			{
 				// Set the particle manipulation as active
 				insideValidNode = true;
+				validNodeName = nodeName;
 				
 				// Finally, call the appropriate color operation
 				switch (edgeFound.type)
@@ -471,7 +478,7 @@ public function StartParticleManipulation(nodeName:String):void
 
 public function EndParticleManipulation(nodeName:String):void
 {
-	if(particleSystemObject != null && insideValidNode)
+	if(particleSystemObject != null && insideValidNode && validNodeName == nodeName )
 	{
 		// Set the particle manipulation as inactive
 		insideValidNode = false;
@@ -662,6 +669,11 @@ function Start ()
 	numberOfUndos = 0;
 	numberOfRedos = 0;
 	drawHint = drawHintsByDefault;
+	
+	if(particleSystemObject!= null)
+	{
+		particleSystemObject.SetActive(false);
+	}
 
 	// Check if we have the required script
 	gridScript = transform.GetComponent(CreateGrid);
