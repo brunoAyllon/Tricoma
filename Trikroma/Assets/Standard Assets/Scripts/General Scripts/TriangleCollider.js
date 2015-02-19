@@ -28,15 +28,25 @@ function PointInsideTriangle():boolean
 	
 	// If we are inside all 3 half-planes, then we are inside the triangle
 	// Observation: Checks must be done clockwise
+	
 	if(isUpright)
 	{
-		Debug.Log("Upright: "+gameObject.name);
+		
 		return (
 		isInsideHalfPlane(collisionPoint, topVert, rightVert ) && 
 		isInsideHalfPlane(collisionPoint, rightVert, leftVert ) &&
 		isInsideHalfPlane(collisionPoint, leftVert,  topVert )
 		);
 	}
+	
+	//Debug.Log("L-R: " + isInsideHalfPlane(collisionPoint, leftVert, rightVert ) );
+	//Debug.Log("R-B: " + isInsideHalfPlane(collisionPoint, rightVert, topVert  ) );
+	//Debug.Log("B-L: " + isInsideHalfPlane(collisionPoint, topVert, leftVert ) );
+	/*Debug.Log("Not Upright:"+ (
+	isInsideHalfPlane(collisionPoint, leftVert, rightVert ) && 
+	isInsideHalfPlane(collisionPoint, rightVert, topVert ) &&
+	isInsideHalfPlane(collisionPoint, topVert, leftVert )
+	) );*/
 		
 	return (
 	isInsideHalfPlane(collisionPoint, leftVert, rightVert ) && 
@@ -54,6 +64,7 @@ function MouseDown()
 		Debug.Log("Down: "+gameObject.name);
 		// Tells the gameplay controller to start the logic for changing triangle collors, this phase represents selecting the triangle from which we will add / subtract color
 		gameplayController.StartColorManip(gameObject.name);
+		gameplayController.StartParticleManipulation(gameObject.name);
 		colorManipulationActive = true;
 	}
 }
@@ -80,12 +91,14 @@ function OnMouseOver():void
 		if(PointInsideTriangle())
 		{
 			// Add this object's color to the paticles' being drawn
+			Debug.Log("Begin Particles");
 			gameplayController.StartParticleManipulation(gameObject.name);
 		}
 		// Otherwise, if we have left the triangle or are not inside it
 		else
 		{
 			// Remove this object's color to the paticles' being drawn (or not add it at all, the gameplay controller will figure that out)
+			//Debug.Log("End Particles");
 			gameplayController.EndParticleManipulation(gameObject.name);
 		}
 	}
