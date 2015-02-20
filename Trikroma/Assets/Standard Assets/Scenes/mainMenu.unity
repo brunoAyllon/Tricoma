@@ -2235,6 +2235,7 @@ MonoBehaviour:
   levelSelectButton: {fileID: 996352857}
   levelContinueButton: {fileID: 1379045713}
   completionSlider: {fileID: 633799219}
+  completionText: 'Completed:'
   guiTabs:
   - tab: {fileID: 365491181}
     tabName: Tutorial

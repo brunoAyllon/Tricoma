@@ -135,7 +135,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tap/Click and Hold the Red TRI.
+  m_Text: Click on the tabs to see a Hint.
 --- !u!222 &106871004
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3279,7 +3279,6 @@ Prefab:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
-<<<<<<< HEAD
       propertyPath: saveDataInputFile
       value: 
       objectReference: {fileID: 4900000, guid: 58be9508dcd40d14eb40d0f446178db7, type: 3}
@@ -3287,11 +3286,10 @@ Prefab:
       propertyPath: particleSystemObject
       value: 
       objectReference: {fileID: 996243419}
-=======
+    - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: timeToreturnToMenu
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
->>>>>>> origin/Bug-fixes
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_RootGameObject: {fileID: 1440614163}
@@ -3576,7 +3574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completionObject: {fileID: 1093366646}
-  timeToreturnToMenu: 5
+  timeToreturnToMenu: 1
   victoryInputFile: {fileID: 4900000, guid: fe1d71f9ea4661d4abc3dc0f2ec2e135, type: 3}
   saveDataInputFile: {fileID: 4900000, guid: 58be9508dcd40d14eb40d0f446178db7, type: 3}
   hintDataInputFile: {fileID: 4900000, guid: 283b853a151297c418d447e0be47e8a9, type: 3}
@@ -4637,6 +4635,10 @@ Prefab:
     - target: {fileID: 22434470, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
       propertyPath: m_LocalScale.y
       value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_Text
+      value: Click on the tabs to see a Hint.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}

@@ -106,8 +106,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -2.5, y: -16}
-  m_SizeDelta: {x: 379, y: 49}
+  m_AnchoredPosition: {x: -1, y: -16}
+  m_SizeDelta: {x: 352, y: 49}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &106871003
 MonoBehaviour:
@@ -135,7 +135,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tap/Click and Hold the Red TRI.
+  m_Text: Click on the tabs to see a Hint.
 --- !u!222 &106871004
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: 
+  hint: Tap/Click on the Green Reset button to do the puzzle over again.
 --- !u!1001 &558578196
 Prefab:
   m_ObjectHideFlags: 0
@@ -1604,7 +1604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: Tap/Click and Hold the Red TRI.
+  hint: Tap/Click on the Magenta Peek button to toggle what the goal of the Puzzle
+    is.
 --- !u!1 &809999271
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,7 +3381,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: drawHintsByDefault
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: completionObject
@@ -3394,6 +3395,10 @@ Prefab:
       propertyPath: particleSystemObject
       value: 
       objectReference: {fileID: 913787979}
+    - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
+      propertyPath: timeToreturnToMenu
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_RootGameObject: {fileID: 1440614163}
@@ -3646,7 +3651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: Hold and Drag over to the Green TRI.
+  hint: Tap/Click on the Blue Undo button to go back one step.
 --- !u!1 &1440614163
 GameObject:
   m_ObjectHideFlags: 0
@@ -3678,12 +3683,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completionObject: {fileID: 1093366646}
+  timeToreturnToMenu: 1
   victoryInputFile: {fileID: 4900000, guid: 96517915770fe7242ae6f1eec8c71e73, type: 3}
   saveDataInputFile: {fileID: 4900000, guid: fd7914474de25ea4fb87190bc6d99553, type: 3}
   hintDataInputFile: {fileID: 4900000, guid: 6bae60a1d41a16543bc28a20232e5a20, type: 3}
   hintObjectToReplicate: {fileID: 130640, guid: ace1176b5be81014984373cdfab33836,
     type: 2}
-  drawHintsByDefault: 1
+  drawHintsByDefault: 0
   particleSystemObject: {fileID: 913787979}
   particleColorAdjustment: {r: 0, g: 0, b: 0, a: 0}
   currentCorrectTiles: 0
@@ -4603,6 +4609,18 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 11434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_Text
+      value: Click on the tabs to see a Hint.
+      objectReference: {fileID: 0}
+    - target: {fileID: 22434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 352
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
   m_RootGameObject: {fileID: 1094145493}
@@ -4735,7 +4753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: 
+  hint: Tap/Click on the Black Goal box to re-focus the camera.
 --- !u!1 &1919604161
 GameObject:
   m_ObjectHideFlags: 0
@@ -5106,7 +5124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: Let go to add the two colors!
+  hint: Tap/Click on the Orange Redo button to go forward one step.
 --- !u!1 &2035820880
 GameObject:
   m_ObjectHideFlags: 0

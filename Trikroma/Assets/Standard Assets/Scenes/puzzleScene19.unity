@@ -135,7 +135,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tap/Click and Hold the Red TRI.
+  m_Text: Click on the tabs to see a Hint.
 --- !u!222 &106871004
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: Tap/Click and Hold the Red TRI.
+  hint: 
 --- !u!1 &922370211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,6 +2539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completionObject: {fileID: 1093366646}
+  timeToreturnToMenu: 0
   victoryInputFile: {fileID: 4900000, guid: d590a4c50cb6fd9489a7a617c82e7955, type: 3}
   saveDataInputFile: {fileID: 4900000, guid: a2acf3dac9bbf04468351c356c069716, type: 3}
   hintDataInputFile: {fileID: 4900000, guid: 2b5553dffc903194a9629cb1b72474f6, type: 3}
@@ -3464,6 +3465,10 @@ Prefab:
     - target: {fileID: 22434470, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
       propertyPath: m_LocalScale.y
       value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_Text
+      value: Click on the tabs to see a Hint.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}

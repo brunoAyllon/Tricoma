@@ -135,7 +135,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tap/Click and Hold the Red TRI.
+  m_Text: Click on the tabs to see a Hint.
 --- !u!222 &106871004
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2059,7 +2059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &540707196
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2655,7 +2655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: Tap/Click and Hold the Red TRI.
+  hint: White - Secondary = Primary
 --- !u!1 &922370211
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,6 +3194,10 @@ Prefab:
       propertyPath: sortingOrderOfEdges
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
+      propertyPath: timeToreturnToMenu
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_RootGameObject: {fileID: 1440614163}
@@ -3389,7 +3393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1419064502
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3498,7 +3502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: Hold and Drag over to the Green TRI.
+  hint: Red + Green + Blue = White
 --- !u!1 &1440614163
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,6 +3534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completionObject: {fileID: 1093366646}
+  timeToreturnToMenu: 1
   victoryInputFile: {fileID: 4900000, guid: 38b70ec88a4262d4aa52c40226620238, type: 3}
   saveDataInputFile: {fileID: 4900000, guid: c5300a9c422e30d42920749e98ab730d, type: 3}
   hintDataInputFile: {fileID: 4900000, guid: 858141bd48119db4182cbef51f114768, type: 3}
@@ -4591,6 +4596,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 11434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_Text
+      value: Click on the tabs to see a Hint.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
   m_RootGameObject: {fileID: 1094145493}
@@ -4614,7 +4623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1902041560
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5029,7 +5038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2007133180
 RectTransform:
   m_ObjectHideFlags: 0

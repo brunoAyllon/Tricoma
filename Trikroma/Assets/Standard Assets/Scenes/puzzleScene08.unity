@@ -135,7 +135,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tap/Click and Hold the Red TRI.
+  m_Text: Click on the tabs to see a Hint.
 --- !u!222 &106871004
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -944,7 +944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &540707196
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1554,7 +1554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: Tap/Click and Hold the Red TRI.
+  hint: White can't be added to/from any TRI.
 --- !u!1 &922370211
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,6 +3344,10 @@ Prefab:
       propertyPath: sortingOrderOfEdges
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
+      propertyPath: timeToreturnToMenu
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_RootGameObject: {fileID: 1440614163}
@@ -3642,7 +3646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b391b96daf581445bd9c93f2244df43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hint: Hold and Drag over to the Green TRI.
+  hint: Black can't be subtracted to/from any TRI.
 --- !u!1 &1440614163
 GameObject:
   m_ObjectHideFlags: 0
@@ -3674,6 +3678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completionObject: {fileID: 1093366646}
+  timeToreturnToMenu: 1
   victoryInputFile: {fileID: 4900000, guid: 707e56a2fd91af449a511a4794f9a918, type: 3}
   saveDataInputFile: {fileID: 4900000, guid: 27e2ce9e16bf91a4aa81a6145750a98d, type: 3}
   hintDataInputFile: {fileID: 4900000, guid: 12ccc72d944edd14aa9bf23573c9e872, type: 3}
@@ -4599,6 +4604,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 11434472, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
+      propertyPath: m_Text
+      value: Click on the tabs to see a Hint.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae2d3f4a3f4f4424a8e24adb01c3ef1c, type: 2}
   m_RootGameObject: {fileID: 1094145493}
@@ -4622,7 +4631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1902041560
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5045,7 +5054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2007133180
 RectTransform:
   m_ObjectHideFlags: 0
