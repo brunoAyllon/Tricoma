@@ -9,11 +9,11 @@ public var zoomRatio:float;
 public function MouseCameraZoom(zoomPoint:Vector3, zoomRate:float)
 {
 	// New position = (desired position - current position)/ half-size when in orthographic mode   * zoomRate
-	transform.position += (zoomPoint - transform.position)/gameObject.camera.orthographicSize * zoomRate;
+	transform.position += (zoomPoint - transform.position)/gameObject.GetComponent.<Camera>().orthographicSize * zoomRate;
 	
 	// Since this is an orthographic camera, the zoom effect is achieved by changing its orthographic size
 	// Observation, the min value is a sanity check so we don't go outside the view frustum if the user passes in a negative value
-	gameObject.camera.orthographicSize = Mathf.Clamp(gameObject.camera.orthographicSize -zoomRate , Mathf.Max(minZoom, 1.0), maxZoom);
+	gameObject.GetComponent.<Camera>().orthographicSize = Mathf.Clamp(gameObject.GetComponent.<Camera>().orthographicSize -zoomRate , Mathf.Max(minZoom, 1.0), maxZoom);
 }
 
 public function PinchZoom(zoomRate:float)
@@ -34,21 +34,21 @@ public function PinchZoom(zoomRate:float)
 	var deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
 	// If the camera is orthographic...
-	if (camera.isOrthoGraphic)
+	if (GetComponent.<Camera>().orthographic)
 	{
 	    // ... change the orthographic size based on the change in distance between the touches.
-	    gameObject.camera.orthographicSize += deltaMagnitudeDiff * zoomRate;
+	    gameObject.GetComponent.<Camera>().orthographicSize += deltaMagnitudeDiff * zoomRate;
 
 	    // Make sure the orthographic size never drops below zero.
-	   gameObject. camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, Mathf.Max(minZoom, 1.0), maxZoom);
+	   gameObject. GetComponent.<Camera>().orthographicSize = Mathf.Clamp(GetComponent.<Camera>().orthographicSize, Mathf.Max(minZoom, 1.0), maxZoom);
 	}
 	else
 	{
 	    // Otherwise change the field of view based on the change in distance between the touches.
-	    camera.fieldOfView += deltaMagnitudeDiff * zoomRate;
+	    GetComponent.<Camera>().fieldOfView += deltaMagnitudeDiff * zoomRate;
 
 	    // Clamp the field of view to make sure it's between 0 and 180.
-	    camera.fieldOfView = Mathf.Clamp(camera.fieldOfView, 0.1f, 179.9f);
+	    GetComponent.<Camera>().fieldOfView = Mathf.Clamp(GetComponent.<Camera>().fieldOfView, 0.1f, 179.9f);
 	} 
 }
 
@@ -67,11 +67,11 @@ function Update ()
 	// Mouse zoom in
 	else if( Input.GetAxis("Mouse ScrollWheel") > 0)
 	{
-		MouseCameraZoom(gameObject.camera.ScreenToWorldPoint(Input.mousePosition), zoomRatio);
+		MouseCameraZoom(gameObject.GetComponent.<Camera>().ScreenToWorldPoint(Input.mousePosition), zoomRatio);
 	}
 	// Mouse zoom out
 	else if ( Input.GetAxis("Mouse ScrollWheel") < 0)
 	{
-		MouseCameraZoom(gameObject.camera.ScreenToWorldPoint(Input.mousePosition), -zoomRatio);	
+		MouseCameraZoom(gameObject.GetComponent.<Camera>().ScreenToWorldPoint(Input.mousePosition), -zoomRatio);	
 	}
 }

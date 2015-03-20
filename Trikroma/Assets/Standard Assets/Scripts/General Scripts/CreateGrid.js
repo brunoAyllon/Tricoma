@@ -110,6 +110,11 @@ public function getObjectPositionFromName(name: String):Vector2
 	return Vector2(-1, -1);
 }
 
+public function isValidPosition(nodePosition:Vector2):boolean
+{
+	return nodePosition.x > 0 && nodePosition.y > 0;
+}
+
 public function getEdge(From:Vector2, To:Vector2):Edge
 {
 //	Debug.Log("Edge check: "+ From.x+" "+From.y+" -> "+To.x+" "+To.y);
@@ -564,8 +569,8 @@ function CreateGrid()
 	objectRenderer = new SpriteRenderer[numberOfRows, numberOfColumns];
 	
 	// Some helper values
-	var objectWidth = objectToReplicate.renderer.bounds.size.x;
-	var objectHeight = objectToReplicate.renderer.bounds.size.y;
+	var objectWidth = objectToReplicate.GetComponent.<Renderer>().bounds.size.x;
+	var objectHeight = objectToReplicate.GetComponent.<Renderer>().bounds.size.y;
 	
 	var startingX = gameObject.transform.position.x -( numberOfColumns * objectToReplicate.transform.localScale.x)/2.0;
 	var startingY = gameObject.transform.position.y + ( numberOfRows * objectToReplicate.transform.localScale.y)/2.0;

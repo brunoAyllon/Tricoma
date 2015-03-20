@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+import UnityEngine.EventSystems;
+
 // Float representing what percentage of the mouse or touch movement will be applied to the drag motion
 public var dragRatio:float;
 
@@ -36,20 +38,27 @@ function Update ()
 		var mousePos:Vector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		// Cast a ray to it
 		 var ray: Vector2 = Vector2(mousePos.x, mousePos.y);
-		var hitInfo:RaycastHit2D[] = Physics2D.RaycastAll(ray, Vector2.zero, Mathf.Infinity);
+		var hitInfo:RaycastHit2D[] = Physics2D.RaycastAll(ray, -Vector2.up, Mathf.Infinity, LayerMask.NameToLayer("Default") || LayerMask.NameToLayer("UI") );
+		
+		// If we just clicked on a GUI object with the mouse button ( id of -1 ), then we do nothing
+		if(EventSystems.EventSystem.current.IsPointerOverGameObject(-1))
+		{
+			return;
+		}
+		
 		// If we hit an object and it has  a collider
 		for(hit in hitInfo)
 		{
 			// We cannot move the camera
 			// Observation: This means that clicking over a button will drag the camera unless the button has a collider
-			if(hit.collider != null)
+			if(hit.collider != null || EventSystems.EventSystem.current.IsPointerOverGameObject(0) )
 			{
 				return;
 			}
 		}
 		
 		// New position = (desired position - current position)/ half-size when in orthographic mode   * dragRatio
-		transform.position += (mousePos - transform.position)/gameObject.camera.orthographicSize * dragRatio;
+		transform.position += (mousePos - transform.position)/gameObject.GetComponent.<Camera>().orthographicSize * dragRatio;
 		
 		if(defineDragLimits)
 		{

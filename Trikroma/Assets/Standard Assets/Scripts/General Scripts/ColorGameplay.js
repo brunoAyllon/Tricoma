@@ -25,8 +25,13 @@ private var drawHint:boolean;
 
 // The particle system used to show the results of adding and subtracting colors
 public var particleSystemObject:GameObject;
+
 // Added to the particle color to distinguish it from the tile itself
 public var particleColorAdjustment:Color;
+
+private var lineDrawer:LineRenderer;
+private var lineFrom:Vector2;
+private var lineRendered:boolean;
 
 // This script RERQUIRES being attached to an object with a CreateGrid component
 private var gridScript:CreateGrid  = null;
@@ -476,6 +481,32 @@ public function StartParticleManipulation(nodeName:String):void
 	}
 }
 
+public function UpdateParticlesFollowMouse()
+{
+	if(particleSystemObject != null)
+	{
+		var particles : ParticleSystem.Particle[];
+		var particleCount:int = particleSystemObject.GetComponent(ParticleSystem).GetParticles(particles);
+		var mousePos:Vector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Debug.Log(particleCount > 0);
+		for(var i:int = 0; i < particleCount; ++i)
+		{
+			Debug.Log("HELLO, PARTICLES ?");
+			if(particles[i].position != mousePos)
+			{
+				Debug.Log("RIGHT POS ?");
+				particles[i].velocity = (mousePos - particleSystemObject.transform.position).normalized;
+			}
+			else 
+			{
+				Debug.Log("I AM DEAD");
+				//particles[i].lifetime = 0.0;
+			}
+		}
+	}
+	particleSystemObject.GetComponent(ParticleSystem).SetParticles(particles, particleCount);
+}
+
 public function EndParticleManipulation(nodeName:String):void
 {
 	if(particleSystemObject != null && insideValidNode && validNodeName == nodeName )
@@ -504,6 +535,63 @@ public function EndParticleManipulation(nodeName:String):void
 		}
 		
 		
+	}
+}
+
+public function StartLineDraw(nodeName:String):void
+{
+	if(lineDrawer == null)
+	{
+		lineDrawer = gameObject.GetComponent(LineRenderer);
+		if ( lineDrawer == null)
+		{
+			lineDrawer = gameObject.AddComponent(LineRenderer);
+		}
+		
+		lineDrawer.sortingLayerName = "Foreground"; 
+	}
+	
+	lineDrawer.SetVertexCount(2);
+	var nodePosition:Vector2 = gridScript.getObjectPositionFromName(nodeName);
+	if(!gridScript.isEmptyTile(nodePosition))
+	{
+		lineFrom = nodePosition;
+		lineRendered = true;
+		var linePos:Vector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		linePos.z = -1.0;
+		lineDrawer.SetPosition(0, linePos );
+		var beginColor:Color = gridScript.objectRenderer[nodePosition.x, nodePosition.y].material.color;
+		lineDrawer.SetColors(beginColor, beginColor);
+	}
+}
+
+public function UpdateLineDraw(nodeName:String):void
+{
+	var nodePosition:Vector2 = gridScript.getObjectPositionFromName(nodeName);
+	if( gridScript.isValidPosition(nodePosition) && lineDrawer && lineRendered && !gridScript.isEmptyTile(nodePosition) )
+	{
+		if(lineFrom != nodePosition)
+		{
+			var beginColor:Color = gridScript.objectRenderer[lineFrom.x, lineFrom.y].material.color;
+			var endColor:Color = gridScript.objectRenderer[nodePosition.x, nodePosition.y].material.color;
+			//lineDrawer.SetColors(beginColor, endColor);
+		}
+	
+		if ( gridScript.isNeighbor(lineFrom, nodePosition) || (nodePosition == lineFrom) )
+		{
+			var linePos:Vector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			linePos.z = -1.0;
+			lineDrawer.SetPosition(1, linePos );	
+		}
+    }
+}
+
+public function EndLineDraw(nodeName:String):void
+{
+	if(lineDrawer)
+	{
+		lineDrawer.SetVertexCount(0);
+		lineRendered = false;
 	}
 }
 
@@ -723,6 +811,8 @@ function Update ()
 	{
 		// Move the particle system to the mouse's position
 		particleSystemObject.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		//particleSystemObject.transform.position = Vector3.zero;
+		//UpdateParticlesFollowMouse();
 	}
 	
 	// If we haven't finished the level
@@ -765,14 +855,22 @@ function Update ()
 			ray = Vector2(mousePos.x, mousePos.y);
 			// Cast a ray to it
 			hitInfo = Physics2D.RaycastAll(ray, Vector2.zero, Mathf.Infinity);
-			// If we hit an object and it has  a collider
-			for(hit in hitInfo)
+			
+			if(hitInfo.Length == 0)
 			{
-				//Debug.Log("Message up");
-				// Send it the mouse up message
-				if(hit.collider != null)
+				particleSystemObject.SetActive(false);
+			}
+			else
+			{
+				// If we hit an object and it has  a collider
+				for(hit in hitInfo)
 				{
-					hit.collider.gameObject.SendMessage("MouseUp", SendMessageOptions.DontRequireReceiver);
+					//Debug.Log("Message up");
+					// Send it the mouse up message
+					if(hit.collider != null)
+					{
+						hit.collider.gameObject.SendMessage("MouseUp", SendMessageOptions.DontRequireReceiver);
+					}
 				}
 			}
 		}

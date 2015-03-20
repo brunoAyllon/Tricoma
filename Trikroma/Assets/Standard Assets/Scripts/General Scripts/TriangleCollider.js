@@ -65,6 +65,7 @@ function MouseDown()
 		// Tells the gameplay controller to start the logic for changing triangle collors, this phase represents selecting the triangle from which we will add / subtract color
 		gameplayController.StartColorManip(gameObject.name);
 		gameplayController.StartParticleManipulation(gameObject.name);
+		gameplayController.StartLineDraw(gameObject.name);
 		colorManipulationActive = true;
 	}
 }
@@ -77,8 +78,14 @@ function MouseUp()
 		// Tell the gameplay controller  to finish manipulating traingles, which means either giving up on manipulating the color or commiting to it
 		Debug.Log("Up: "+gameObject.name);
 		gameplayController.EndColorManip(gameObject.name);
+		gameplayController.EndLineDraw(gameObject.name);
 		colorManipulationActive = false;
 	}
+}
+
+function OnMouseExit()
+{
+	
 }
 
 // If the mouse hovering over this game object
@@ -93,6 +100,8 @@ function OnMouseOver():void
 			// Add this object's color to the paticles' being drawn
 			Debug.Log("Begin Particles");
 			gameplayController.StartParticleManipulation(gameObject.name);
+			gameplayController.UpdateLineDraw(gameObject.name);
+			
 		}
 		// Otherwise, if we have left the triangle or are not inside it
 		else
@@ -123,15 +132,15 @@ function Start ()
 	// Determine the traingle's vertices' positions based on whether it is upright or not
 	if(isUpright)
 	{
-		leftVert = Vector2(collider2D.bounds.min.x, gameObject.collider2D.bounds.min.y);
-		rightVert = Vector2(collider2D.bounds.max.x, gameObject.collider2D.bounds.min.y);
-		topVert  = Vector2(collider2D.bounds.center.x, gameObject.collider2D.bounds.max.y);
+		leftVert = Vector2(GetComponent.<Collider2D>().bounds.min.x, gameObject.GetComponent.<Collider2D>().bounds.min.y);
+		rightVert = Vector2(GetComponent.<Collider2D>().bounds.max.x, gameObject.GetComponent.<Collider2D>().bounds.min.y);
+		topVert  = Vector2(GetComponent.<Collider2D>().bounds.center.x, gameObject.GetComponent.<Collider2D>().bounds.max.y);
 	}
 	else
 	{
-		leftVert = Vector2(collider2D.bounds.min.x, gameObject.collider2D.bounds.max.y);
-		rightVert = Vector2(collider2D.bounds.max.x, gameObject.collider2D.bounds.max.y);
-		topVert  = Vector2(collider2D.bounds.center.x, gameObject.collider2D.bounds.min.y);
+		leftVert = Vector2(GetComponent.<Collider2D>().bounds.min.x, gameObject.GetComponent.<Collider2D>().bounds.max.y);
+		rightVert = Vector2(GetComponent.<Collider2D>().bounds.max.x, gameObject.GetComponent.<Collider2D>().bounds.max.y);
+		topVert  = Vector2(GetComponent.<Collider2D>().bounds.center.x, gameObject.GetComponent.<Collider2D>().bounds.min.y);
 	}
 	
 	

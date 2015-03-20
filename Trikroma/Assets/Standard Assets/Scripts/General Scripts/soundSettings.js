@@ -38,7 +38,7 @@ function Start ()
 		soundData = FindObjectsOfType(soundManager)[0];
 	}
 	// And start playing the audi
-	audio.Play();
+	GetComponent.<AudioSource>().Play();
 }
 
 function Update () 
