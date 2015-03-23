@@ -92,6 +92,48 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22456052, guid: 90e91d2afe09064469da4fa316527662,
     type: 2}
   m_PrefabInternal: {fileID: 1000763707}
+--- !u!1001 &221735805
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 493478, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493478, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493478, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493478, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493478, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493478, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493478, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 493478, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &243436154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,7 +1079,7 @@ Prefab:
       objectReference: {fileID: 1093366646}
     - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: sortingOrderOfEdges
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: particleSystemObject

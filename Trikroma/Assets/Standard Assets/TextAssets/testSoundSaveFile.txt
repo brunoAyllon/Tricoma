@@ -1,5 +1,5 @@
 Music Volume: 
-0.6642857
+0
 Music Mute: 
 False
 Sound Effects Volume: 
