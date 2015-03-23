@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_0_0;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,12 +51,18 @@
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Ridgeback.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_UsingTheHUD.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Magnetischism.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Tangrams.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_Ridgeback.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Magnetischism.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_LotusField.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_Triskelion.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_PrimaryColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Magnetischism.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_SecondaryColors.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_BlackWhite.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Triskelion.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_UsingTheHUD.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Hourglass.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_LotusField.txt" />
@@ -69,20 +75,28 @@
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_SubtractColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Rainbow.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_SubtractColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_Arrow.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Clover.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Firebird.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_UsingTheHUD.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Clover.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Balance.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Bermuda.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_PrimaryColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_CellPortal.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Arrow.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_SecondaryColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_SecondaryColors.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Caduceus.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Rainbow.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_UsingTheHUD.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Firebird.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Balance.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Tangrams.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_AddingColors.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Ridgeback.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_CellPortal.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Snowflake.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_SubtractColors.txt" />
@@ -91,17 +105,21 @@
      <None Include="Assets\Standard Assets\TextAssets\Solution_Pinwheel.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_Hourglass.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Triskelion.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Imp.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Tangrams.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Arrow.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
      <None Include="Assets\Standard Assets\TextAssets\testSoundSaveFile.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Pinwheel.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_SecondaryColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_AddingColors.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_PrimaryColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_Imp.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_AddingColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_Caduceus.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Caduceus.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_CellPortal.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Imp.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_BlackWhite.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_Rainbow.txt" />
@@ -111,6 +129,7 @@
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Ridgeback.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Pinwheel.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Snowflake.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Bermuda.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Hourglass.txt" />
@@ -128,14 +147,19 @@
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_AddingColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_PrimaryColors.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_Magnetischism.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Firebird.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Triskelion.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Lozenge.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Rainbow.txt" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
      <None Include="Assets\Standard Assets\TextAssets\Solution_Balance.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Hourglass.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_Caduceus.txt" />
+     <None Include="Assets\Standard Assets\TextAssets\Save_Snowflake.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Puzzle_Imp.txt" />
      <None Include="Assets\Standard Assets\TextAssets\Hint_CellPortal.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -33,6 +33,25 @@ private var soundEffectsMuter:Muter;
 private var musicSlider:Slider;
 private var soundEffectsSlider:Slider;
 
+// Support for drawing it as an exclusive scene
+public var drawOnLoad:boolean;
+public var originalLevel:int;
+
+function OnLevelWasLoaded (level : int) 
+{
+		Debug.Log("THIS HAPPENED!");
+		if (level == originalLevel && drawOnLoad) 
+		{
+			Debug.Log("SAM I AM!");
+			drawManagerScreen(true);
+		}
+		else
+		{
+			Debug.Log("WUNDERBAR!");
+			drawManagerScreen(false);
+		}
+}
+
 function drawManagerScreen(value:boolean)
 {
 	// To draw the manager screen or make it invisible, we make its children invisible, that way the manager can continue to receive messages
@@ -87,6 +106,8 @@ function OnDestroy()
 
 function Start () 
 {
+	originalLevel = Application.loadedLevel;
+	
 	// If our singleton is not yet instantiated
 	if(instance == null)
 	{

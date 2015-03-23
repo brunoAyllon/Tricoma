@@ -56,6 +56,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Standard Assets/Scenes/puzzleScene24.unity
   - enabled: 1
-    path: Assets/Standard Assets/Scenes/soundTest.unity
+    path: Assets/Standard Assets/Scenes/soundMenu.unity
+  - enabled: 1
+    path: Assets/Standard Assets/Scenes/a_startScene.unity
   - enabled: 1
     path: Assets/Standard Assets/Scenes/helpMenu.unity
+  - enabled: 1
+    path: Assets/Standard Assets/Scenes/creditsMenu.unity

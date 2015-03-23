@@ -49,7 +49,7 @@ function Update ()
 		}
 		
 		// New position = (desired position - current position)/ half-size when in orthographic mode   * dragRatio
-		transform.position += (mousePos - transform.position)/gameObject.camera.orthographicSize * dragRatio;
+		transform.position += (mousePos - transform.position)/gameObject.GetComponent.<Camera>().orthographicSize * dragRatio;
 		
 		if(defineDragLimits)
 		{

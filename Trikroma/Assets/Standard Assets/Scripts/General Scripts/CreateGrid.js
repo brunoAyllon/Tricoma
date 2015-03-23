@@ -564,8 +564,8 @@ function CreateGrid()
 	objectRenderer = new SpriteRenderer[numberOfRows, numberOfColumns];
 	
 	// Some helper values
-	var objectWidth = objectToReplicate.renderer.bounds.size.x;
-	var objectHeight = objectToReplicate.renderer.bounds.size.y;
+	var objectWidth = objectToReplicate.GetComponent.<Renderer>().bounds.size.x;
+	var objectHeight = objectToReplicate.GetComponent.<Renderer>().bounds.size.y;
 	
 	var startingX = gameObject.transform.position.x -( numberOfColumns * objectToReplicate.transform.localScale.x)/2.0;
 	var startingY = gameObject.transform.position.y + ( numberOfRows * objectToReplicate.transform.localScale.y)/2.0;

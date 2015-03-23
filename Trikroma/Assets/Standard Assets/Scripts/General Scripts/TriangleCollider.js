@@ -123,15 +123,15 @@ function Start ()
 	// Determine the traingle's vertices' positions based on whether it is upright or not
 	if(isUpright)
 	{
-		leftVert = Vector2(collider2D.bounds.min.x, gameObject.collider2D.bounds.min.y);
-		rightVert = Vector2(collider2D.bounds.max.x, gameObject.collider2D.bounds.min.y);
-		topVert  = Vector2(collider2D.bounds.center.x, gameObject.collider2D.bounds.max.y);
+		leftVert = Vector2(GetComponent.<Collider2D>().bounds.min.x, gameObject.GetComponent.<Collider2D>().bounds.min.y);
+		rightVert = Vector2(GetComponent.<Collider2D>().bounds.max.x, gameObject.GetComponent.<Collider2D>().bounds.min.y);
+		topVert  = Vector2(GetComponent.<Collider2D>().bounds.center.x, gameObject.GetComponent.<Collider2D>().bounds.max.y);
 	}
 	else
 	{
-		leftVert = Vector2(collider2D.bounds.min.x, gameObject.collider2D.bounds.max.y);
-		rightVert = Vector2(collider2D.bounds.max.x, gameObject.collider2D.bounds.max.y);
-		topVert  = Vector2(collider2D.bounds.center.x, gameObject.collider2D.bounds.min.y);
+		leftVert = Vector2(GetComponent.<Collider2D>().bounds.min.x, gameObject.GetComponent.<Collider2D>().bounds.max.y);
+		rightVert = Vector2(GetComponent.<Collider2D>().bounds.max.x, gameObject.GetComponent.<Collider2D>().bounds.max.y);
+		topVert  = Vector2(GetComponent.<Collider2D>().bounds.center.x, gameObject.GetComponent.<Collider2D>().bounds.min.y);
 	}
 	
 	
