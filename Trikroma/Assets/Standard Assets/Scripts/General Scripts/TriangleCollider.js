@@ -65,7 +65,6 @@ function MouseDown()
 		// Tells the gameplay controller to start the logic for changing triangle collors, this phase represents selecting the triangle from which we will add / subtract color
 		gameplayController.StartColorManip(gameObject.name);
 		gameplayController.StartParticleManipulation(gameObject.name);
-		gameplayController.StartLineDraw(gameObject.name);
 		colorManipulationActive = true;
 	}
 }
@@ -78,7 +77,6 @@ function MouseUp()
 		// Tell the gameplay controller  to finish manipulating traingles, which means either giving up on manipulating the color or commiting to it
 		Debug.Log("Up: "+gameObject.name);
 		gameplayController.EndColorManip(gameObject.name);
-		gameplayController.EndLineDraw(gameObject.name);
 		colorManipulationActive = false;
 	}
 }
@@ -100,7 +98,6 @@ function OnMouseOver():void
 			// Add this object's color to the paticles' being drawn
 			Debug.Log("Begin Particles");
 			gameplayController.StartParticleManipulation(gameObject.name);
-			gameplayController.UpdateLineDraw(gameObject.name);
 			
 		}
 		// Otherwise, if we have left the triangle or are not inside it

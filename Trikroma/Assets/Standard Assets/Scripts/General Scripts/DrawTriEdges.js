@@ -38,7 +38,8 @@ function Start ()
 					var leftPos:Vector2 = Vector2(1.0f, 0.5f);
 					if (leftEdgeFound.type == EdgeType.edgePlus)
 					{
-						leftSprite = Sprite.Create(plusTexture,  Rect(-toLeftBoundry, 0, plusTexture.width, plusTexture.height), leftPos);
+						Debug.Log(leftPos);
+						//leftSprite = Sprite.Create(plusTexture,  Rect(-toLeftBoundry, 0, plusTexture.width, plusTexture.height), leftPos);
 					}
 					else 
 					{

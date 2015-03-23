@@ -22,12 +22,6 @@ public var centerToBottomBoundry:int;
 public var centerToLeftBoundry:int;
 public var centerToRightBoundry:int;
 
-// On hold for the custom texture loading stretch goal
-/*private var useCustomSprites:boolean;
-public var spriteFolderPath:String;
-@HideInInspector public var startingSprites : int[,];
-public var loadedSprites : Array;*/
-
 /*																													________
  Do we have one turned up and one turned down in an alternating pattern ? For example, for triangles we would have /\/\/\/\/\  
   
@@ -115,6 +109,7 @@ public function isValidPosition(nodePosition:Vector2):boolean
 	return nodePosition.x > 0 && nodePosition.y > 0;
 }
 
+
 public function getEdge(From:Vector2, To:Vector2):Edge
 {
 //	Debug.Log("Edge check: "+ From.x+" "+From.y+" -> "+To.x+" "+To.y);
@@ -174,7 +169,7 @@ public function isEmptyTile(nodePosition:Vector2):boolean
 		return false;
 	}
 	
-	return defaultIsNull && (startingColors[nodePosition.x, nodePosition.y] == defaultColor);
+	return (startingColors[nodePosition.x, nodePosition.y] == defaultColor);
 }
 
 
@@ -390,41 +385,7 @@ public function ReadDataFromFile( ):void
 						{
 							Debug.Log("Cannot Initialize edges before color matrix");
 						}
-						break;
-					// On hold for the custom texture loading stretch goal
-					/*case DataParse.spriteFiles:
-							var filename:String = ( spriteFolderPath + currentLine ) as String;
-							Debug.Log(filename);
-							if( AssetDatabase.LoadAssetAtPath(filename, Texture2D) == null)
-							{
-								Debug.Log("Texture File not found: ");
-							}
-							else
-							{
-								Debug.Log(filename + "was loaded");
-							}
-							loadedSprites.Add( AssetDatabase.LoadAssetAtPath(filename, Texture2D));
-							break; 
-							
-					case DataParse.nodeSprite:
-						if(spriteMatrixLine < 0)
-						{
-							// Initialize the color vector
-							startingSprites = new int[numberOfRows, numberOfColumns];
-							++spriteMatrixLine;
-						}
-						//Debug.Log(i);
-						//Debug.Log(numberOfRows);
-						// Now read the color values from file
-						if(spriteMatrixLine < numberOfRows)
-						{
-							for(var k = 0.0; k < numberOfColumns; ++k)
-							{
-								startingSprites[spriteMatrixLine, k] = int.Parse(data[k] );
-							}
-							++spriteMatrixLine;
-						}	
-						break;	*/				
+						break;		
 			} // End switch
 		} // End else
 	} // End for
@@ -632,6 +593,16 @@ function CreateGrid()
 			else
 			{
 				currentPosition.x += objectToReplicate.transform.localScale.x * objectWidth;
+			}
+			
+			// Make it so invalid blocks do not register collision and block mouse drag
+			if(isEmptyTile(Vector2(i, j)))
+			{
+				var objectCollider:Collider = newObject.GetComponent(Collider);
+				if(objectCollider)
+				{
+					objectCollider.enabled = false;
+				}
 			}
 		}
 		// Reset the x position (we are drawing a new line)
