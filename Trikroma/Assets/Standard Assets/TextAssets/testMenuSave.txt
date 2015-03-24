@@ -1,5 +1,5 @@
 Tutorial
- ( Tutorial , 1 , Puzzle_Completed , 0 , False )
+ ( Tutorial , 1 , Puzzle_Unlocked , 0 , False )
  ( Tutorial , 2 , Puzzle_Hidden , 0 , False )
  ( Tutorial , 3 , Puzzle_Hidden , 0 , False )
  ( Tutorial , 4 , Puzzle_Hidden , 0 , False )
