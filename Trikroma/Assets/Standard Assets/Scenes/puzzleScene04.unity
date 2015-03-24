@@ -1155,9 +1155,29 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8253018, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b4aa789d7484d43429f0adf46edf5179, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1396557161
+GameObject:
+  m_PrefabParentObject: {fileID: 182728, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+  m_PrefabInternal: {fileID: 1396557160}
+--- !u!114 &1396557162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396557161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe2664880196b84c823853a6dc47984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentType: 1
 --- !u!1 &1419064501
 GameObject:
   m_ObjectHideFlags: 0

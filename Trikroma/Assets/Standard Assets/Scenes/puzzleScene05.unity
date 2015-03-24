@@ -131,9 +131,29 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8253018, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b4aa789d7484d43429f0adf46edf5179, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &221735806
+GameObject:
+  m_PrefabParentObject: {fileID: 182728, guid: 090038fd22c259d4da0cdbfc26e5a923, type: 2}
+  m_PrefabInternal: {fileID: 221735805}
+--- !u!114 &221735807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 221735806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe2664880196b84c823853a6dc47984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentType: 1
 --- !u!1 &243436154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,11 +1397,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22431692, guid: ee80c8b4b63cfed49a8df476d84c4cb2, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -451
+      value: -452.299988
       objectReference: {fileID: 0}
     - target: {fileID: 22431692, guid: ee80c8b4b63cfed49a8df476d84c4cb2, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -323
+      value: -324.299988
       objectReference: {fileID: 0}
     - target: {fileID: 22431692, guid: ee80c8b4b63cfed49a8df476d84c4cb2, type: 2}
       propertyPath: m_SizeDelta.x
