@@ -69,8 +69,8 @@ MonoBehaviour:
   plusPrefab: {fileID: 168538, guid: db72730fa6d0dbf44839cce9c555b2db, type: 2}
   minusPrefab: {fileID: 115766, guid: 56861fad2fedfc54eb6b89d42a07a3e1, type: 2}
   toBottomBoundry: .5
-  toLeftBoundry: 0
-  toRightBoundry: 0
+  toLeftBoundry: .25
+  toRightBoundry: .25
 --- !u!212 &21242354
 SpriteRenderer:
   m_ObjectHideFlags: 1

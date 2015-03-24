@@ -1095,7 +1095,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: centerToBottomBoundry
-      value: 10
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: victoryInputFile
@@ -1103,11 +1103,11 @@ Prefab:
       objectReference: {fileID: 4900000, guid: 2c36c23a7617c5949b29b00edbed5b9a, type: 3}
     - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: centerToLeftBoundry
-      value: 10
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: centerToRightBoundry
-      value: 10
+      value: .25
       objectReference: {fileID: 0}
     - target: {fileID: 11443398, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
       propertyPath: hintObjectToReplicate
@@ -1133,6 +1133,10 @@ Prefab:
       propertyPath: particleSystemObject
       value: 
       objectReference: {fileID: 2050977560}
+    - target: {fileID: 11486912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
+      propertyPath: sortingOrderOfEdges
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_IsPrefabParent: 0
@@ -1268,27 +1272,11 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 186912, guid: 18549551fd021a2498dc770b90a06f87, type: 2}
   m_PrefabInternal: {fileID: 1149272048}
---- !u!1 &1518464787
-GameObject:
-  m_PrefabParentObject: {fileID: 136270, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
-  m_PrefabInternal: {fileID: 1793767395}
 --- !u!224 &1518464788
 RectTransform:
   m_PrefabParentObject: {fileID: 22436270, guid: e2bca90a851b6154580d571e15949fbe,
     type: 2}
   m_PrefabInternal: {fileID: 1793767395}
---- !u!114 &1518464789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1518464787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be3c638dbbf8c6c488e53091617729d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelToLoad: 0
 --- !u!1001 &1539671151
 Prefab:
   m_ObjectHideFlags: 0
@@ -1730,7 +1718,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11436272, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: LoadLevel
       objectReference: {fileID: 0}
     - target: {fileID: 11436272, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1743,16 +1731,25 @@ Prefab:
     - target: {fileID: 11436272, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11500000, guid: be3c638dbbf8c6c488e53091617729d9,
-        type: 3}
+      objectReference: {fileID: 1793767396}
     - target: {fileID: 11436272, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 11481802, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
+      propertyPath: levelToLoad
+      value: 26
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11436270, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1793767396
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11481802, guid: e2bca90a851b6154580d571e15949fbe,
+    type: 2}
+  m_PrefabInternal: {fileID: 1793767395}
+  m_Script: {fileID: 11500000, guid: be3c638dbbf8c6c488e53091617729d9, type: 3}
 --- !u!1 &1866196493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,7 +2263,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11431748, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22431746, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2344,7 +2341,35 @@ Prefab:
       propertyPath: gameplayController
       value: 
       objectReference: {fileID: 1440614163}
+    - target: {fileID: 11431748, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2110372873}
+    - target: {fileID: 11431748, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431748, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11431746, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2110372872
+GameObject:
+  m_PrefabParentObject: {fileID: 131746, guid: 3589b64ae5a83c144bdbb6a3df99279f, type: 2}
+  m_PrefabInternal: {fileID: 2110372871}
+--- !u!114 &2110372873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2110372872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be3c638dbbf8c6c488e53091617729d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelToLoad: 25

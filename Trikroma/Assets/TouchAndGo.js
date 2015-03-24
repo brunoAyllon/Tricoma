@@ -8,6 +8,6 @@ function Update ()
 {
 	if(Input.GetMouseButton(0))
 	{
-		Application.LoadLevel(0);
+		Application.LoadLevel(26);
 	}
 }

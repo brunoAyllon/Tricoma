@@ -40,7 +40,7 @@ function Start ()
 					}
 					else 
 					{
-						leftObj = Instantiate(minusPrefab, transform.position, Quaternion.identity) as GameObject;
+						leftObj = Instantiate(minusPrefab, transform.position + Vector3(-toLeftBoundry, 0, 0 ), Quaternion.identity) as GameObject;
 					}
 					
 					// Now give a name

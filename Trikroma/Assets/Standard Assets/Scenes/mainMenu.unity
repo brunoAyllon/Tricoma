@@ -302,6 +302,10 @@ Prefab:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11481802, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
+      propertyPath: levelToLoad
+      value: 26
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2bca90a851b6154580d571e15949fbe, type: 2}
   m_IsPrefabParent: 0
