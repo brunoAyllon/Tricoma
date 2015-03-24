@@ -135,12 +135,13 @@ class MenuButton
 	{
 		// Remove one item from the total
 		leftToUnlock = Mathf.Max(leftToUnlock-1.0, 0.0);
-		
+		Debug.Log(puzzleName+" , "+puzzleState+" , "+leftToUnlock);
 		// If all requirements are met
 		if(puzzleState == PuzzleState.Puzzle_Hidden && leftToUnlock == 0)
 		{
 			// Unlock the button
 			puzzleState = PuzzleState.Puzzle_Unlocked;
+			button.GetComponent(Image).sprite = unlockedTexture;
 		}
 	}
 }
@@ -248,9 +249,9 @@ function CheckLevelsCompleted():int
 
 private function UpdateCompletionText()
 {
-	Debug.Log( levelsCompleted +" / "+ levelsToComplete);
 	if(sliderTextComponent)
 	{
+		Debug.Log(levelsCompleted+" / "+levelsToComplete);
 		sliderTextComponent.text = completionText +" "+ (levelsCompleted / levelsToComplete)+"%";
 	}
 }
@@ -525,6 +526,7 @@ public function CompleteLevel(sceneID:int):void
 	++levelsCompleted;
 	completionSlider.GetComponent(Slider).value = levelsCompleted;
 	UpdateCompletionText();
+	DrawTab(currentTab);
 }
 
 // Setter for the continue level variable of a scene
@@ -730,6 +732,7 @@ function Awake ()
 				var newReceiver:Receiver = new Receiver ();
 				newReceiver.tabName = tab.Value.tabName;
 				newReceiver.sceneItLoads = button.Value.sceneToLoad;
+				Debug.Log(buttonToRegister.tabName+" , "+buttonToRegister.sceneItLoads);
 				if (tabs[buttonToRegister.tabName].buttons[buttonToRegister.sceneItLoads].listenForCompletion == null )
 				{
 					tabs[buttonToRegister.tabName].buttons[buttonToRegister.sceneItLoads].listenForCompletion = new ArrayList();
