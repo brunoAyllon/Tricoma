@@ -41,10 +41,12 @@ function OnLevelWasLoaded (level : int)
 {
 		if (level == originalLevel && drawOnLoad) 
 		{
+			Debug.Log("DRAW SOUND");
 			drawManagerScreen(true);
 		}
 		else
 		{
+			Debug.Log("SOUNDS BAD");
 			drawManagerScreen(false);
 		}
 }
@@ -52,11 +54,16 @@ function OnLevelWasLoaded (level : int)
 function drawManagerScreen(value:boolean)
 {
 	// To draw the manager screen or make it invisible, we make its children invisible, that way the manager can continue to receive messages
-	MusicMuteButton.SetActive(value);
+	/*MusicMuteButton.SetActive(value);
 	SoundEffectsMuteButton.SetActive(value);
 	MusicVolumeSlider.SetActive(value);
 	SoundEffectsVolumeSlider.SetActive(value);
-	ManagerBackground.SetActive(value);
+	ManagerBackground.SetActive(value);*/
+	
+	for( var i:int = 0; i < transform.childCount; ++i )
+ 	{
+ 		transform.GetChild(i).gameObject.SetActive(value);
+ 	}
 }
 
 private function LoadSoundSettings():void
@@ -75,6 +82,7 @@ private function LoadSoundSettings():void
 
 private function SaveSoundSettingsToFile():void
 {
+	drawManagerScreen(true);
 	// If we have a valid save file
 	if(soundSettingsInputFile)
 	{
