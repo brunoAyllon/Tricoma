@@ -1,13 +1,13 @@
 ﻿#pragma strict
 
 // The textures for the plus and minus signs
-public var plusPrefab:GameObject;
-public var minusPrefab:GameObject;
+public var plusTexture:Texture2D;
+public var minusTexture:Texture2D;
 
 // Absolute distance from the center to the draw boundries
-public var toBottomBoundry:float;
-public var toLeftBoundry:float;
-public var toRightBoundry:float;
+public var toBottomBoundry:int;
+public var toLeftBoundry:int;
+public var toRightBoundry:int;
 
 // Used to keep track of the objects instantiated to draw the textures
 private var bottomObj:GameObject;
@@ -34,22 +34,31 @@ function Start ()
 				{
 					
 					// Create the appropriate sprite for it based on edge type	
+					var leftSprite:Sprite;
+					var leftPos:Vector2 = Vector2(1.0f, 0.5f);
 					if (leftEdgeFound.type == EdgeType.edgePlus)
 					{
-						leftObj = Instantiate(plusPrefab, transform.position + Vector3(-toLeftBoundry, 0, 0 ) , Quaternion.identity) as GameObject;
+						Debug.Log(leftPos);
+						//leftSprite = Sprite.Create(plusTexture,  Rect(-toLeftBoundry, 0, plusTexture.width, plusTexture.height), leftPos);
 					}
 					else 
 					{
-						leftObj = Instantiate(minusPrefab, transform.position, Quaternion.identity) as GameObject;
+						leftSprite = Sprite.Create(minusTexture,  Rect(-toLeftBoundry, 0, minusTexture.width, minusTexture.height), leftPos);
 					}
 					
-					// Now give a name
-					leftObj.name = "Left "+pos.x+" "+pos.y;
+					// Now initialize the left game object
+					leftObj = new GameObject("Left "+pos.x+" "+pos.y);
 					
 					
-					//And give it the correct sorting order
-					var leftRenderer:SpriteRenderer = leftObj.GetComponent(SpriteRenderer);
+					// Place it at the center of the current object
+					// Observation: Sprite coordinates are relative to its parent game object, hence why we placed the object at the same center as the triangle
+					leftObj.transform.position = transform.position;
+					
+					// Add a sprite renderer to it
+					var leftRenderer:SpriteRenderer = leftObj.AddComponent(SpriteRenderer);
 					leftRenderer.sortingOrder = gridScript.sortingOrderOfEdges;
+					// And tell it to render the sprite we created
+			   	 	leftRenderer.sprite = leftSprite;
 				}
 			
 				// If it has a valid right edge
@@ -58,21 +67,31 @@ function Start ()
 				{
 					
 					// Create the appropriate sprite for it based on edge type	
+					var rightSprite:Sprite;
+					var rightPos:Vector2 = Vector2(0.0f, 0.5f);
 					if (rightEdgeFound.type == EdgeType.edgePlus)
 					{
-						rightObj = Instantiate(plusPrefab, transform.position + Vector3(toRightBoundry, 0, 0 ) , Quaternion.identity) as GameObject;
+						rightSprite = Sprite.Create(plusTexture,  Rect(toRightBoundry, 0, plusTexture.width, plusTexture.height), rightPos);
 					}
 					else 
 					{
-						rightObj = Instantiate(minusPrefab, transform.position + Vector3(toRightBoundry, 0, 0 ) , Quaternion.identity) as GameObject;
+						rightSprite = Sprite.Create(minusTexture,  Rect(toRightBoundry, 0, minusTexture.width, minusTexture.height), rightPos);
 					}
 					
-					// Now give a name
-					rightObj.name = "Right "+pos.x+" "+pos.y;
-			   	 	
-			   	 	//And give it the correct sorting order
-					var rightRenderer:SpriteRenderer = rightObj.GetComponent(SpriteRenderer);
+					// Now initialize the right game object
+					rightObj = new GameObject("right "+pos.x+" "+pos.y);
+					
+					// Place it at the center of the current object
+					// Observation: Sprite coordinates are relative to its parent game object, hence why we placed the object at the same center as the triangle
+					rightObj.transform.position = transform.position;
+					
+					// Add a sprite renderer to it
+					var rightRenderer:SpriteRenderer = rightObj.AddComponent(SpriteRenderer);
 					rightRenderer.sortingOrder = gridScript.sortingOrderOfEdges;
+					
+					// And tell it to render the sprite we created
+			   	 	rightRenderer.sprite = rightSprite;
+			   	 	
 				}
 		}
 		
@@ -80,22 +99,32 @@ function Start ()
 		var bottomEdgeFound:Edge = gridScript.getEdge(pos, pos + Vector2(1.0, 0.0));
 		if(gridScript.isUpright(pos) && bottomEdgeFound.isValid() )
 		{
+			
+			var bottomSprite:Sprite;
+			var bottomPos:Vector2 = Vector2(0.5f, 1.4f);
+			
 			// Create the appropriate sprite for it based on edge type		
 			if (bottomEdgeFound.type == EdgeType.edgePlus)
 			{
-				bottomObj = Instantiate(plusPrefab, transform.position + Vector3(0, -toBottomBoundry, 0 ) , Quaternion.identity) as GameObject;
+				bottomSprite = Sprite.Create(plusTexture,  Rect(0, -toBottomBoundry, plusTexture.width, plusTexture.height), bottomPos);
 			}
 			else 
 			{
-				bottomObj = Instantiate(minusPrefab, transform.position + Vector3(0, -toBottomBoundry, 0 ) , Quaternion.identity) as GameObject;
+				bottomSprite = Sprite.Create(minusTexture,  Rect(0, -toBottomBoundry, minusTexture.width, minusTexture.height), bottomPos);
 			}
 			
 			// Now initialize the bottom game object
-			bottomObj.name = "Bottom "+pos.x+" "+pos.y;
+			bottomObj = new GameObject("Bottom "+pos.x+" "+pos.y);
 			
-			//And give it the correct sorting order
-			var bottomRenderer:SpriteRenderer = bottomObj.GetComponent(SpriteRenderer);
-			bottomRenderer.sortingOrder = gridScript.sortingOrderOfEdges;
+			// Place it at the center of the current object
+			// Observation: Sprite coordinates are relative to its parent game object, hence why we placed the object at the same center as the triangle
+			bottomObj.transform.position = transform.position;
+			
+			// Add a sprite renderer to it
+			var bottomRenderer:SpriteRenderer = bottomObj.AddComponent(SpriteRenderer);
+			bottomRenderer.sortingOrder =  gridScript.sortingOrderOfEdges;
+			// And tell it to render the sprite we created
+	   	 	bottomRenderer.sprite = bottomSprite;
 		}
     }
     

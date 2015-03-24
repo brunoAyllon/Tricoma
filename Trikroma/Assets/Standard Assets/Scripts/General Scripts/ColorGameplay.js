@@ -1,4 +1,5 @@
 ﻿#pragma strict
+import UnityEditor;
 
 // The objectv we draw when the puzzle is completed
 public var completionObject:GameObject;
