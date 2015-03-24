@@ -18,9 +18,9 @@ public var objectToReplicate:GameObject;
 
 public var drawEdges:boolean;
 public var sortingOrderOfEdges:int;
-public var centerToBottomBoundry:int;
-public var centerToLeftBoundry:int;
-public var centerToRightBoundry:int;
+public var centerToBottomBoundry:float;
+public var centerToLeftBoundry:float;
+public var centerToRightBoundry:float;
 
 /*																													________
  Do we have one turned up and one turned down in an alternating pattern ? For example, for triangles we would have /\/\/\/\/\  
